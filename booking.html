@@ -17,7 +17,6 @@
             overflow-x: hidden;
         }
 
-        /* Navigation Bar */
         .navbar {
             position: fixed;
             top: 0;
@@ -78,7 +77,6 @@
             background: #FF3333;
         }
 
-        /* Hero Section */
         .hero-section {
             margin-top: 90px;
             padding: 60px 60px 40px;
@@ -105,7 +103,6 @@
             margin-bottom: 40px;
         }
 
-        /* Progress Steps */
         .progress-container {
             max-width: 900px;
             margin: 0 auto 60px;
@@ -183,7 +180,6 @@
             color: #FF3333;
         }
 
-        /* Form Container */
         .form-container {
             max-width: 900px;
             margin: 0 auto;
@@ -230,7 +226,6 @@
             margin-bottom: 40px;
         }
 
-        /* Form Fields */
         .form-row {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -285,7 +280,6 @@
             font-style: italic;
         }
 
-        /* Image Upload */
         .upload-area {
             border: 3px dashed #e0e0e0;
             border-radius: 15px;
@@ -360,7 +354,6 @@
             transform: scale(1.1);
         }
 
-        /* Checkboxes */
         .checkbox-group {
             display: flex;
             flex-direction: column;
@@ -395,7 +388,6 @@
             font-weight: 600;
         }
 
-        /* Buttons */
         .button-group {
             display: flex;
             gap: 15px;
@@ -439,13 +431,6 @@
             color: #FF3333;
         }
 
-        .btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-
-        /* Success Message */
         .success-message {
             display: none;
             text-align: center;
@@ -476,7 +461,6 @@
             margin-bottom: 30px;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .navbar {
                 padding: 15px 20px;
@@ -507,30 +491,6 @@
                 font-size: 16px;
             }
 
-            .progress-steps {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .progress-steps::before,
-            .progress-line {
-                display: none;
-            }
-
-            .step {
-                flex-direction: row;
-                gap: 15px;
-                width: 100%;
-            }
-
-            .step-circle {
-                margin-bottom: 0;
-            }
-
-            .step-label {
-                text-align: left;
-            }
-
             .form-card {
                 padding: 30px 20px;
             }
@@ -548,24 +508,9 @@
                 justify-content: center;
             }
         }
-
-        @media (max-width: 480px) {
-            .hero-section h1 {
-                font-size: 32px;
-            }
-
-            .step-title {
-                font-size: 24px;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <a href="index.html" class="logo-link">
             <img src="https://i.postimg.cc/k5RM67Nt/logo-(2).png" alt="EGO Express">
@@ -576,7 +521,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero-section">
         <h1>
             <span class="red">Book</span> <span class="black">Your</span><br>
@@ -585,7 +529,6 @@
         <p>Simple, fast, and reliable freight forwarding</p>
     </section>
 
-    <!-- Progress Steps -->
     <div class="progress-container">
         <div class="progress-steps">
             <div class="progress-line" id="progressLine"></div>
@@ -595,11 +538,11 @@
             </div>
             <div class="step" data-step="2">
                 <div class="step-circle">2</div>
-                <div class="step-label">Shipment Route</div>
+                <div class="step-label">Route</div>
             </div>
             <div class="step" data-step="3">
                 <div class="step-circle">3</div>
-                <div class="step-label">Cargo Details</div>
+                <div class="step-label">Cargo</div>
             </div>
             <div class="step" data-step="4">
                 <div class="step-circle">4</div>
@@ -608,20 +551,16 @@
         </div>
     </div>
 
-    <!-- Form Container -->
     <div class="form-container">
         <div class="form-card">
-            <!-- Success Message -->
             <div class="success-message" id="successMessage">
                 <div class="success-icon">✓</div>
                 <h2>Request Submitted!</h2>
-                <p>Thank you for choosing EGO Express. Our team will review your shipment details and contact you within 1 hour with a customized quote.</p>
+                <p>Thank you for choosing EGO Express. Our team will contact you within 1 hour.</p>
                 <a href="index.html" class="btn btn-primary">Back to Home</a>
             </div>
 
-            <!-- Form Steps -->
             <div id="bookingForm">
-                <!-- Step 1: Contact Information -->
                 <div class="form-step active" data-step="1">
                     <h2 class="step-title">Contact Information</h2>
                     <p class="step-subtitle">How can we reach you?</p>
@@ -650,13 +589,10 @@
 
                     <div class="button-group">
                         <div></div>
-                        <button type="button" class="btn btn-primary" onclick="nextStep()">
-                            Next →
-                        </button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep()">Next →</button>
                     </div>
                 </div>
 
-                <!-- Step 2: Shipment Route -->
                 <div class="form-step" data-step="2">
                     <h2 class="step-title">Shipment Route</h2>
                     <p class="step-subtitle">Where are we picking up and delivering?</p>
@@ -672,7 +608,6 @@
                                 <option value="Ajman">Ajman</option>
                                 <option value="RAK">Ras Al Khaimah</option>
                                 <option value="Fujairah">Fujairah</option>
-                                <option value="UAQ">Umm Al Quwain</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -680,7 +615,7 @@
                             <select id="destinationCity" required>
                                 <option value="">Select City</option>
                                 <option value="Kuwait">Kuwait</option>
-                                <option value="Other">Other (We'll contact you)</option>
+                                <option value="Other">Other</option>
                             </select>
                         </div>
                     </div>
@@ -688,16 +623,14 @@
                     <div class="form-row">
                         <div class="form-group full-width">
                             <label>Pickup Address <span class="required">*</span></label>
-                            <textarea id="pickupAddress" placeholder="Street, building number, area, landmarks..." required></textarea>
-                            <span class="helper-text">Please provide complete address for pickup</span>
+                            <textarea id="pickupAddress" required></textarea>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group full-width">
                             <label>Delivery Address <span class="required">*</span></label>
-                            <textarea id="deliveryAddress" placeholder="Street, building number, area, landmarks..." required></textarea>
-                            <span class="helper-text">Please provide complete address for delivery</span>
+                            <textarea id="deliveryAddress" required></textarea>
                         </div>
                     </div>
 
@@ -707,26 +640,21 @@
                             <input type="date" id="readyDate" required>
                         </div>
                         <div class="form-group">
-                            <label>Preferred Pickup Time</label>
+                            <label>Preferred Time</label>
                             <select id="pickupTime">
                                 <option value="Anytime">Anytime</option>
-                                <option value="Morning">Morning (8 AM - 12 PM)</option>
-                                <option value="Afternoon">Afternoon (2 PM - 6 PM)</option>
+                                <option value="Morning">Morning</option>
+                                <option value="Afternoon">Afternoon</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="button-group">
-                        <button type="button" class="btn btn-secondary" onclick="prevStep()">
-                            ← Back
-                        </button>
-                        <button type="button" class="btn btn-primary" onclick="nextStep()">
-                            Next →
-                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="prevStep()">← Back</button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep()">Next →</button>
                     </div>
                 </div>
 
-                <!-- Step 3: Cargo Details -->
                 <div class="form-step" data-step="3">
                     <h2 class="step-title">Cargo Details</h2>
                     <p class="step-subtitle">Tell us about your shipment</p>
@@ -734,14 +662,14 @@
                     <div class="form-row">
                         <div class="form-group full-width">
                             <label>Cargo Description <span class="required">*</span></label>
-                            <textarea id="cargoDescription" placeholder="e.g., Furniture, electronics, clothing..." required></textarea>
+                            <textarea id="cargoDescription" required></textarea>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
                             <label>Number of Packages <span class="required">*</span></label>
-                            <input type="number" id="packageCount" min="1" placeholder="e.g., 5" required>
+                            <input type="number" id="packageCount" min="1" required>
                         </div>
                         <div class="form-group">
                             <label>Package Type <span class="required">*</span></label>
@@ -750,22 +678,18 @@
                                 <option value="Cartons">Cartons</option>
                                 <option value="Pallets">Pallets</option>
                                 <option value="Bags">Bags</option>
-                                <option value="Crates">Crates</option>
-                                <option value="Other">Other</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label>Total Weight (KG)</label>
-                            <input type="number" id="totalWeight" step="0.1" placeholder="Approximate">
-                            <span class="helper-text">Approximate weight - we'll verify at pickup</span>
+                            <label>Weight (KG)</label>
+                            <input type="number" id="totalWeight" step="0.1">
                         </div>
                         <div class="form-group">
                             <label>Volume (CBM)</label>
-                            <input type="number" id="volume" step="0.01" placeholder="Approximate">
-                            <span class="helper-text">Cubic meters (optional)</span>
+                            <input type="number" id="volume" step="0.01">
                         </div>
                     </div>
 
@@ -781,7 +705,7 @@
                             <label>Dangerous Goods?</label>
                             <select id="dangerous">
                                 <option value="No">No</option>
-                                <option value="Yes">Yes (UN Number required)</option>
+                                <option value="Yes">Yes</option>
                             </select>
                         </div>
                     </div>
@@ -791,66 +715,48 @@
                         <div class="upload-area" onclick="document.getElementById('cargoImages').click()">
                             <div class="upload-icon">📸</div>
                             <p><strong>Click to upload photos</strong></p>
-                            <p>Upload 2-10 clear photos from different angles</p>
+                            <p>2-10 clear photos</p>
                             <input type="file" id="cargoImages" class="file-input" accept="image/*" multiple>
                         </div>
                         <div id="imagePreview" class="image-preview"></div>
                     </div>
 
-                    <div class="form-group full-width">
-                        <label>Special Instructions</label>
-                        <textarea id="specialInstructions" placeholder="Any special handling requirements or notes..."></textarea>
-                    </div>
-
                     <div class="button-group">
-                        <button type="button" class="btn btn-secondary" onclick="prevStep()">
-                            ← Back
-                        </button>
-                        <button type="button" class="btn btn-primary" onclick="nextStep()">
-                            Next →
-                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="prevStep()">← Back</button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep()">Next →</button>
                     </div>
                 </div>
 
-                <!-- Step 4: Documents -->
                 <div class="form-step" data-step="4">
-                    <h2 class="step-title">Documents & Customs</h2>
+                    <h2 class="step-title">Documents</h2>
                     <p class="step-subtitle">What documents do you have?</p>
 
                     <div class="form-group full-width">
                         <label>Available Documents</label>
                         <div class="checkbox-group">
                             <div class="checkbox-item">
-                                <input type="checkbox" id="doc1" value="Commercial Invoice">
+                                <input type="checkbox" id="doc1" value="Invoice">
                                 <label for="doc1">📄 Commercial Invoice</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="doc2" value="Packing List">
+                                <input type="checkbox" id="doc2" value="Packing">
                                 <label for="doc2">📋 Packing List</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="doc3" value="Certificate of Origin">
+                                <input type="checkbox" id="doc3" value="Origin">
                                 <label for="doc3">🏭 Certificate of Origin</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="doc4" value="Other Documents">
-                                <label for="doc4">📎 Other Documents</label>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group full-width">
                         <label>Additional Notes</label>
-                        <textarea id="additionalNotes" placeholder="Any other information we should know..."></textarea>
+                        <textarea id="additionalNotes"></textarea>
                     </div>
 
                     <div class="button-group">
-                        <button type="button" class="btn btn-secondary" onclick="prevStep()">
-                            ← Back
-                        </button>
-                        <button type="button" class="btn btn-primary" onclick="submitForm()">
-                            Submit Request ✓
-                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="prevStep()">← Back</button>
+                        <button type="button" class="btn btn-primary" onclick="submitForm()">Submit ✓</button>
                     </div>
                 </div>
             </div>
@@ -861,15 +767,12 @@
         let currentStep = 1;
         let uploadedImages = [];
 
-        // Set minimum date to tomorrow
         const tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate() + 1);
         document.getElementById('readyDate').min = tomorrow.toISOString().split('T')[0];
 
-        // Navigation Functions
         function nextStep() {
             if (!validateStep(currentStep)) return;
-            
             if (currentStep < 4) {
                 currentStep++;
                 updateSteps();
@@ -884,12 +787,16 @@
         }
 
         function updateSteps() {
-            document.querySelectorAll('.form-step').forEach(step => {
+            document.querySelectorAll('.form-step').forEach(function(step) {
                 step.classList.remove('active');
             });
-            document.querySelector('.form-step[data-step="' + currentStep + '"]').classList.add('active');
+            
+            const currentStepEl = document.querySelector('.form-step[data-step="' + currentStep + '"]');
+            if (currentStepEl) {
+                currentStepEl.classList.add('active');
+            }
 
-            document.querySelectorAll('.step').forEach((step, index) => {
+            document.querySelectorAll('.step').forEach(function(step, index) {
                 step.classList.remove('active', 'completed');
                 if (index + 1 < currentStep) {
                     step.classList.add('completed');
@@ -900,53 +807,41 @@
 
             const progressPercentage = ((currentStep - 1) / 3) * 100;
             document.getElementById('progressLine').style.width = progressPercentage + '%';
-
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function validateStep(step) {
-            const currentStepElement = document.querySelector('.form-step[data-step="' + step + '"]');
-            const requiredFields = currentStepElement.querySelectorAll('[required]');
+            const stepEl = document.querySelector('.form-step[data-step="' + step + '"]');
+            const required = stepEl.querySelectorAll('[required]');
             
-            for (let i = 0; i < requiredFields.length; i++) {
-                if (!requiredFields[i].value.trim()) {
-                    requiredFields[i].focus();
-                    alert('Please fill in all required fields');
+            for (let i = 0; i < required.length; i++) {
+                if (!required[i].value.trim()) {
+                    required[i].focus();
+                    alert('Please fill all required fields');
                     return false;
                 }
             }
 
             if (step === 3 && uploadedImages.length < 2) {
-                alert('Please upload at least 2 photos of your cargo');
+                alert('Please upload at least 2 photos');
                 return false;
             }
 
             return true;
         }
 
-        // Image Upload Handler
         document.getElementById('cargoImages').addEventListener('change', function(e) {
             const files = Array.from(e.target.files);
-            const maxSize = 5 * 1024 * 1024;
-            const maxImages = 10;
-
-            if (uploadedImages.length + files.length > maxImages) {
-                alert('Maximum ' + maxImages + ' images allowed');
-                return;
-            }
-
+            
             files.forEach(function(file) {
-                if (file.size > maxSize) {
-                    alert(file.name + ' is too large. Max 5MB per image');
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('File too large');
                     return;
                 }
 
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    uploadedImages.push({
-                        name: file.name,
-                        data: e.target.result
-                    });
+                    uploadedImages.push({ name: file.name, data: e.target.result });
                     displayImages();
                 };
                 reader.readAsDataURL(file);
@@ -960,4 +855,47 @@
             uploadedImages.forEach(function(img, index) {
                 const div = document.createElement('div');
                 div.className = 'preview-item';
-                div.innerHTML = '<img src="' + img.data +
+                div.innerHTML = '<img src="' + img.data + '"><button type="button" class="remove-btn" onclick="removeImage(' + index + ')">×</button>';
+                preview.appendChild(div);
+            });
+        }
+
+        function removeImage(index) {
+            uploadedImages.splice(index, 1);
+            displayImages();
+        }
+
+        function submitForm() {
+            if (!validateStep(4)) return;
+            
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                mobile: document.getElementById('mobile').value,
+                email: document.getElementById('email').value,
+                company: document.getElementById('company').value,
+                originCity: document.getElementById('originCity').value,
+                destinationCity: document.getElementById('destinationCity').value,
+                pickupAddress: document.getElementById('pickupAddress').value,
+                deliveryAddress: document.getElementById('deliveryAddress').value,
+                readyDate: document.getElementById('readyDate').value,
+                pickupTime: document.getElementById('pickupTime').value,
+                cargoDescription: document.getElementById('cargoDescription').value,
+                packageCount: document.getElementById('packageCount').value,
+                packageType: document.getElementById('packageType').value,
+                totalWeight: document.getElementById('totalWeight').value,
+                volume: document.getElementById('volume').value,
+                stackable: document.getElementById('stackable').value,
+                dangerous: document.getElementById('dangerous').value,
+                images: uploadedImages,
+                additionalNotes: document.getElementById('additionalNotes').value,
+                timestamp: new Date().toISOString()
+            };
+
+            console.log('Form submitted:', formData);
+            
+            document.getElementById('bookingForm').style.display = 'none';
+            document.getElementById('successMessage').classList.add('show');
+        }
+    </script>
+</body>
+</html>
