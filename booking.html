@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Your Shipment - EGO Express</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -13,123 +12,230 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
-            color: #333;
-            line-height: 1.6;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(180deg, #f8f5f0 0%, #ffffff 100%);
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #FF3333 0%, #cc0000 100%);
-            color: white;
-            padding: 60px 30px;
-            text-align: center;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(255, 51, 51, 0.3);
+        .navbar .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
         }
 
-        .hero h1 {
-            font-size: 2.5em;
-            font-weight: 900;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .hero p {
-            font-size: 1.2em;
-            opacity: 0.95;
-        }
-
-        /* Trust Badges */
-        .trust-badges {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .badge {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        .navbar .logo-link img {
+            height: 50px;
+            width: auto;
             transition: transform 0.3s;
         }
 
-        .badge:hover {
-            transform: translateY(-5px);
+        .navbar .logo-link:hover img {
+            transform: scale(1.05);
         }
 
-        .badge i {
-            font-size: 2.5em;
+        .navbar .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .navbar .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #FF3333;
+        }
+
+        .navbar .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #FF3333;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            margin-top: 90px;
+            padding: 60px 60px 40px;
+            text-align: center;
+        }
+
+        .hero-section h1 {
+            font-size: 72px;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .hero-section h1 .red {
+            color: #FF3333;
+        }
+
+        .hero-section h1 .black {
+            color: #000;
+        }
+
+        .hero-section p {
+            font-size: 22px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        /* Progress Steps */
+        .progress-container {
+            max-width: 900px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .progress-steps::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #e0e0e0;
+            z-index: 0;
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 25px;
+            left: 0;
+            height: 3px;
+            background: #FF3333;
+            transition: width 0.4s ease;
+            z-index: 1;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #fff;
+            border: 3px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 20px;
+            color: #999;
+            transition: all 0.3s;
+            margin-bottom: 10px;
+        }
+
+        .step.active .step-circle,
+        .step.completed .step-circle {
+            border-color: #FF3333;
+            background: #FF3333;
+            color: white;
+        }
+
+        .step-label {
+            font-size: 14px;
+            color: #999;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .step.active .step-label,
+        .step.completed .step-label {
+            color: #FF3333;
+        }
+
+        /* Form Container */
+        .form-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px 80px;
+        }
+
+        .form-card {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+            animation: fadeIn 0.4s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .step-title {
+            font-size: 32px;
+            font-weight: 900;
             color: #FF3333;
             margin-bottom: 10px;
         }
 
-        .badge h3 {
-            font-size: 1em;
-            color: #333;
-            margin-bottom: 5px;
-        }
-
-        .badge p {
-            font-size: 0.85em;
+        .step-subtitle {
+            font-size: 16px;
             color: #666;
-        }
-
-        /* Form Container */
-        .form-wrapper {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-        }
-
-        .section {
             margin-bottom: 40px;
-            padding-bottom: 30px;
-            border-bottom: 2px solid #f0f0f0;
         }
 
-        .section:last-child {
-            border-bottom: none;
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #FF3333;
-        }
-
-        .section-header i {
-            font-size: 1.8em;
-            color: #FF3333;
-            margin-right: 15px;
-        }
-
-        .section-header h2 {
-            font-size: 1.5em;
-            color: #1A1A1A;
-            font-weight: 700;
-        }
-
-        /* Form Groups */
+        /* Form Fields */
         .form-row {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .form-group {
@@ -142,72 +248,71 @@
         }
 
         label {
-            font-weight: 600;
+            font-weight: 700;
             color: #333;
-            margin-bottom: 8px;
-            font-size: 0.95em;
+            margin-bottom: 10px;
+            font-size: 15px;
         }
 
         label .required {
             color: #FF3333;
-            font-weight: bold;
         }
 
         input, select, textarea {
-            padding: 12px 15px;
+            padding: 15px;
             border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1em;
-            transition: all 0.3s;
+            border-radius: 10px;
+            font-size: 16px;
             font-family: inherit;
+            transition: all 0.3s;
         }
 
         input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: #FF3333;
-            box-shadow: 0 0 0 3px rgba(255, 51, 51, 0.1);
+            box-shadow: 0 0 0 4px rgba(255, 51, 51, 0.1);
         }
 
         textarea {
             resize: vertical;
-            min-height: 100px;
+            min-height: 120px;
         }
 
         .helper-text {
-            font-size: 0.85em;
-            color: #666;
-            margin-top: 5px;
+            font-size: 13px;
+            color: #999;
+            margin-top: 6px;
             font-style: italic;
         }
 
         /* Image Upload */
-        .image-upload-area {
+        .upload-area {
             border: 3px dashed #e0e0e0;
-            border-radius: 10px;
-            padding: 40px 20px;
+            border-radius: 15px;
+            padding: 60px 30px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s;
             background: #fafafa;
         }
 
-        .image-upload-area:hover {
+        .upload-area:hover {
             border-color: #FF3333;
             background: #fff5f5;
         }
 
-        .image-upload-area i {
-            font-size: 3em;
-            color: #FF3333;
-            margin-bottom: 15px;
+        .upload-area .upload-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
         }
 
-        .image-upload-area p {
+        .upload-area p {
             color: #666;
+            font-size: 16px;
             margin-bottom: 10px;
         }
 
-        .image-upload-area input {
+        .upload-area .file-input {
             display: none;
         }
 
@@ -215,15 +320,15 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .preview-item {
             position: relative;
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
             aspect-ratio: 1;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
         }
 
         .preview-item img {
@@ -234,19 +339,19 @@
 
         .preview-item .remove-btn {
             position: absolute;
-            top: 5px;
-            right: 5px;
+            top: 8px;
+            right: 8px;
             background: #FF3333;
             color: white;
             border: none;
-            width: 25px;
-            height: 25px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             cursor: pointer;
+            font-size: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.9em;
             transition: all 0.3s;
         }
 
@@ -255,513 +360,584 @@
             transform: scale(1.1);
         }
 
-        /* Checkboxes & Radio */
-        .checkbox-group, .radio-group {
+        /* Checkboxes */
+        .checkbox-group {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-        }
-
-        .checkbox-item, .radio-item {
-            display: flex;
-            align-items: center;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .checkbox-item:hover, .radio-item:hover {
-            border-color: #FF3333;
-            background: #fff5f5;
-        }
-
-        .checkbox-item input, .radio-item input {
-            margin-right: 10px;
-            cursor: pointer;
-            width: 18px;
-            height: 18px;
-        }
-
-        .checkbox-item label, .radio-item label {
-            cursor: pointer;
-            margin: 0;
-            flex: 1;
-        }
-
-        /* Loading Direction Icons */
-        .direction-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 15px;
         }
 
-        .direction-card {
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
             border: 2px solid #e0e0e0;
             border-radius: 10px;
-            padding: 20px;
-            text-align: center;
             cursor: pointer;
             transition: all 0.3s;
         }
 
-        .direction-card:hover {
+        .checkbox-item:hover {
             border-color: #FF3333;
             background: #fff5f5;
         }
 
-        .direction-card.selected {
-            border-color: #FF3333;
-            background: #fff5f5;
-            box-shadow: 0 0 0 3px rgba(255, 51, 51, 0.1);
+        .checkbox-item input {
+            margin-right: 12px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
         }
 
-        .direction-card i {
-            font-size: 2.5em;
-            color: #FF3333;
-            margin-bottom: 10px;
-        }
-
-        .direction-card p {
-            font-size: 0.9em;
-            color: #333;
+        .checkbox-item label {
+            cursor: pointer;
+            margin: 0;
             font-weight: 600;
         }
 
-        /* Submit Button */
-        .submit-section {
-            text-align: center;
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 15px;
             margin-top: 40px;
+            justify-content: space-between;
         }
 
-        .submit-btn {
-            background: linear-gradient(135deg, #FF3333 0%, #cc0000 100%);
-            color: white;
+        .btn {
+            padding: 16px 40px;
             border: none;
-            padding: 18px 50px;
-            font-size: 1.2em;
-            font-weight: 700;
             border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #FF3333 0%, #cc0000 100%);
+            color: white;
             box-shadow: 0 5px 20px rgba(255, 51, 51, 0.3);
         }
 
-        .submit-btn:hover {
+        .btn-primary:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(255, 51, 51, 0.4);
         }
 
-        .submit-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
+        .btn-secondary {
+            background: white;
+            color: #333;
+            border: 2px solid #e0e0e0;
         }
 
-        .submit-note {
-            margin-top: 20px;
-            padding: 15px;
-            background: #e8f5e9;
-            border-radius: 8px;
-            color: #2e7d32;
-            font-size: 0.95em;
+        .btn-secondary:hover {
+            border-color: #FF3333;
+            color: #FF3333;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 60px 30px;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        .success-icon {
+            font-size: 80px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .success-message h2 {
+            font-size: 36px;
+            font-weight: 900;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .success-message p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 1.8em;
+            .navbar {
+                padding: 15px 20px;
             }
 
-            .form-wrapper {
-                padding: 25px;
+            .navbar .logo-link img {
+                height: 40px;
             }
 
-            .trust-badges {
-                grid-template-columns: 1fr;
+            .navbar .nav-links {
+                gap: 20px;
+            }
+
+            .navbar .nav-links a {
+                font-size: 14px;
+            }
+
+            .hero-section {
+                padding: 40px 20px 30px;
+                margin-top: 70px;
+            }
+
+            .hero-section h1 {
+                font-size: 42px;
+            }
+
+            .hero-section p {
+                font-size: 16px;
+            }
+
+            .progress-steps {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .progress-steps::before,
+            .progress-line {
+                display: none;
+            }
+
+            .step {
+                flex-direction: row;
+                gap: 15px;
+                width: 100%;
+            }
+
+            .step-circle {
+                margin-bottom: 0;
+            }
+
+            .step-label {
+                text-align: left;
+            }
+
+            .form-card {
+                padding: 30px 20px;
+            }
+
+            .step-title {
+                font-size: 28px;
+            }
+
+            .button-group {
+                flex-direction: column-reverse;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section h1 {
+                font-size: 32px;
+            }
+
+            .step-title {
+                font-size: 24px;
             }
 
             .form-row {
                 grid-template-columns: 1fr;
             }
-
-            .direction-options {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        /* Success/Error Messages */
-        .message-box {
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            display: none;
-        }
-
-        .message-box.success {
-            background: #d4edda;
-            border: 2px solid #28a745;
-            color: #155724;
-        }
-
-        .message-box.error {
-            background: #f8d7da;
-            border: 2px solid #dc3545;
-            color: #721c24;
-        }
-
-        .message-box.show {
-            display: block;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Hero Section -->
-        <div class="hero">
-            <h1><i class="fas fa-truck"></i> Book Your Shipment</h1>
-            <p>We'll pick up from your doorstep within hours</p>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="logo-link">
+            <img src="https://i.postimg.cc/k5RM67Nt/logo-(2).png" alt="EGO Express">
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="booking.html" class="active">Book Shipment</a>
         </div>
+    </nav>
 
-        <!-- Trust Badges -->
-        <div class="trust-badges">
-            <div class="badge">
-                <i class="fas fa-door-open"></i>
-                <h3>Door to Door</h3>
-                <p>Complete delivery service</p>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1>
+            <span class="red">Book</span> <span class="black">Your</span><br>
+            <span class="black">Shipment</span>
+        </h1>
+        <p>Simple, fast, and reliable freight forwarding</p>
+    </section>
+
+    <!-- Progress Steps -->
+    <div class="progress-container">
+        <div class="progress-steps">
+            <div class="progress-line" id="progressLine"></div>
+            <div class="step active" data-step="1">
+                <div class="step-circle">1</div>
+                <div class="step-label">Contact Info</div>
             </div>
-            <div class="badge">
-                <i class="fas fa-box"></i>
-                <h3>Professional Packaging</h3>
-                <p>Safe & secure handling</p>
+            <div class="step" data-step="2">
+                <div class="step-circle">2</div>
+                <div class="step-label">Shipment Route</div>
             </div>
-            <div class="badge">
-                <i class="fas fa-shield-alt"></i>
-                <h3>Full Insurance</h3>
-                <p>Your cargo is protected</p>
+            <div class="step" data-step="3">
+                <div class="step-circle">3</div>
+                <div class="step-label">Cargo Details</div>
             </div>
-            <div class="badge">
-                <i class="fas fa-clock"></i>
-                <h3>Fast Response</h3>
-                <p>Quote within 1 hour</p>
+            <div class="step" data-step="4">
+                <div class="step-circle">4</div>
+                <div class="step-label">Documents</div>
             </div>
         </div>
+    </div>
 
-        <!-- Messages -->
-        <div id="successMsg" class="message-box success">
-            <h3><i class="fas fa-check-circle"></i> Success!</h3>
-            <p>Your booking request has been submitted. We'll contact you shortly with a quote.</p>
-        </div>
+    <!-- Form Container -->
+    <div class="form-container">
+        <div class="form-card">
+            <!-- Success Message -->
+            <div class="success-message" id="successMessage">
+                <div class="success-icon">✓</div>
+                <h2>Request Submitted!</h2>
+                <p>Thank you for choosing EGO Express. Our team will review your shipment details and contact you within 1 hour with a customized quote.</p>
+                <a href="index.html" class="btn btn-primary">Back to Home</a>
+            </div>
 
-        <div id="errorMsg" class="message-box error">
-            <h3><i class="fas fa-exclamation-circle"></i> Error!</h3>
-            <p id="errorText">Something went wrong. Please try again.</p>
-        </div>
-
-        <!-- Form -->
-        <div class="form-wrapper">
-            <form id="bookingForm">
-                
-                <!-- Section 1: Customer Information -->
-                <div class="section">
-                    <div class="section-header">
-                        <i class="fas fa-user"></i>
-                        <h2>Your Information</h2>
-                    </div>
+            <!-- Form Steps -->
+            <div id="bookingForm">
+                <!-- Step 1: Contact Information -->
+                <div class="form-step active" data-step="1">
+                    <h2 class="step-title">Contact Information</h2>
+                    <p class="step-subtitle">How can we reach you?</p>
 
                     <div class="form-row">
                         <div class="form-group">
                             <label>Full Name <span class="required">*</span></label>
-                            <input type="text" id="fullName" name="fullName" required>
+                            <input type="text" id="fullName" required>
                         </div>
-
                         <div class="form-group">
                             <label>Mobile Number <span class="required">*</span></label>
-                            <input type="tel" id="mobile" name="mobile" placeholder="+971 XX XXX XXXX" required>
+                            <input type="tel" id="mobile" placeholder="+971 XX XXX XXXX" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
                             <label>Email Address</label>
-                            <input type="email" id="email" name="email" placeholder="optional">
+                            <input type="email" id="email" placeholder="optional">
                         </div>
+                        <div class="form-group">
+                            <label>Company Name</label>
+                            <input type="text" id="company" placeholder="optional">
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <div></div>
+                        <button type="button" class="btn btn-primary" onclick="nextStep()">
+                            Next →
+                        </button>
                     </div>
                 </div>
 
-                <!-- Section 2: Pickup Address -->
-                <div class="section">
-                    <div class="section-header">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <h2>Pickup Address</h2>
-                    </div>
+                <!-- Step 2: Shipment Route -->
+                <div class="form-step" data-step="2">
+                    <h2 class="step-title">Shipment Route</h2>
+                    <p class="step-subtitle">Where are we picking up and delivering?</p>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label>Country/Emirate <span class="required">*</span></label>
-                            <select id="country" name="country" required>
-                                <option value="">Select Country</option>
-                                <option value="UAE-Dubai">UAE - Dubai</option>
-                                <option value="UAE-Abu Dhabi">UAE - Abu Dhabi</option>
-                                <option value="UAE-Sharjah">UAE - Sharjah</option>
-                                <option value="UAE-Ajman">UAE - Ajman</option>
-                                <option value="UAE-RAK">UAE - Ras Al Khaimah</option>
-                                <option value="UAE-Fujairah">UAE - Fujairah</option>
-                                <option value="UAE-UAQ">UAE - Umm Al Quwain</option>
-                                <option value="Kuwait">Kuwait</option>
-                                <option value="Saudi Arabia">Saudi Arabia (Coming Soon)</option>
+                            <label>Origin City <span class="required">*</span></label>
+                            <select id="originCity" required>
+                                <option value="">Select City</option>
+                                <option value="Dubai">Dubai</option>
+                                <option value="Abu Dhabi">Abu Dhabi</option>
+                                <option value="Sharjah">Sharjah</option>
+                                <option value="Ajman">Ajman</option>
+                                <option value="RAK">Ras Al Khaimah</option>
+                                <option value="Fujairah">Fujairah</option>
+                                <option value="UAQ">Umm Al Quwain</option>
                             </select>
                         </div>
-
                         <div class="form-group">
-                            <label>Area/District <span class="required">*</span></label>
-                            <input type="text" id="area" name="area" placeholder="e.g., Business Bay, Jabriya" required>
+                            <label>Destination City <span class="required">*</span></label>
+                            <select id="destinationCity" required>
+                                <option value="">Select City</option>
+                                <option value="Kuwait">Kuwait</option>
+                                <option value="Other">Other (We'll contact you)</option>
+                            </select>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group full-width">
-                            <label>Street/Building <span class="required">*</span></label>
-                            <input type="text" id="street" name="street" placeholder="Street name and building number" required>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Apartment/Office Number</label>
-                            <input type="text" id="aptNumber" name="aptNumber" placeholder="optional">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Landmark</label>
-                            <input type="text" id="landmark" name="landmark" placeholder="e.g., Near Mall of Emirates">
+                            <label>Pickup Address <span class="required">*</span></label>
+                            <textarea id="pickupAddress" placeholder="Street, building number, area, landmarks..." required></textarea>
+                            <span class="helper-text">Please provide complete address for pickup</span>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group full-width">
-                            <label>Google Maps Link</label>
-                            <input type="url" id="mapLink" name="mapLink" placeholder="https://maps.google.com/...">
-                            <span class="helper-text">Drop a pin on Google Maps and paste the link here</span>
+                            <label>Delivery Address <span class="required">*</span></label>
+                            <textarea id="deliveryAddress" placeholder="Street, building number, area, landmarks..." required></textarea>
+                            <span class="helper-text">Please provide complete address for delivery</span>
                         </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Cargo Ready Date <span class="required">*</span></label>
+                            <input type="date" id="readyDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Preferred Pickup Time</label>
+                            <select id="pickupTime">
+                                <option value="Anytime">Anytime</option>
+                                <option value="Morning">Morning (8 AM - 12 PM)</option>
+                                <option value="Afternoon">Afternoon (2 PM - 6 PM)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep()">
+                            ← Back
+                        </button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep()">
+                            Next →
+                        </button>
                     </div>
                 </div>
 
-                <!-- Section 3: Shipment Details -->
-                <div class="section">
-                    <div class="section-header">
-                        <i class="fas fa-box-open"></i>
-                        <h2>Shipment Details</h2>
+                <!-- Step 3: Cargo Details -->
+                <div class="form-step" data-step="3">
+                    <h2 class="step-title">Cargo Details</h2>
+                    <p class="step-subtitle">Tell us about your shipment</p>
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label>Cargo Description <span class="required">*</span></label>
+                            <textarea id="cargoDescription" placeholder="e.g., Furniture, electronics, clothing..." required></textarea>
+                        </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label>Type of Goods <span class="required">*</span></label>
-                            <select id="goodsType" name="goodsType" required>
+                            <label>Number of Packages <span class="required">*</span></label>
+                            <input type="number" id="packageCount" min="1" placeholder="e.g., 5" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Package Type <span class="required">*</span></label>
+                            <select id="packageType" required>
                                 <option value="">Select Type</option>
-                                <option value="Documents">Documents</option>
-                                <option value="Clothing">Clothing</option>
-                                <option value="Electronics">Electronics</option>
-                                <option value="Furniture">Furniture</option>
-                                <option value="Food Items">Food Items</option>
-                                <option value="Medicine">Medicine</option>
-                                <option value="Spare Parts">Spare Parts</option>
+                                <option value="Cartons">Cartons</option>
+                                <option value="Pallets">Pallets</option>
+                                <option value="Bags">Bags</option>
+                                <option value="Crates">Crates</option>
                                 <option value="Other">Other</option>
                             </select>
                         </div>
-
-                        <div class="form-group">
-                            <label>Number of Packages <span class="required">*</span></label>
-                            <input type="number" id="packageCount" name="packageCount" min="1" placeholder="e.g., 3" required>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group full-width">
-                            <label>Detailed Description <span class="required">*</span></label>
-                            <textarea id="description" name="description" placeholder="e.g., 3 cartons of winter clothing" required></textarea>
-                            <span class="helper-text">Please be as detailed as possible</span>
-                        </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label>Approximate Weight (KG)</label>
-                            <input type="number" id="weight" name="weight" step="0.1" placeholder="e.g., 25.5">
-                            <span class="helper-text">Rough estimate - we'll verify at pickup</span>
+                            <label>Total Weight (KG)</label>
+                            <input type="number" id="totalWeight" step="0.1" placeholder="Approximate">
+                            <span class="helper-text">Approximate weight - we'll verify at pickup</span>
                         </div>
-
                         <div class="form-group">
-                            <label>Dimensions (L×W×H cm)</label>
-                            <input type="text" id="dimensions" name="dimensions" placeholder="e.g., 50×40×30">
-                            <span class="helper-text">Optional - helps us prepare</span>
+                            <label>Volume (CBM)</label>
+                            <input type="number" id="volume" step="0.01" placeholder="Approximate">
+                            <span class="helper-text">Cubic meters (optional)</span>
                         </div>
                     </div>
 
-                    <!-- Image Upload -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Stackable?</label>
+                            <select id="stackable">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Dangerous Goods?</label>
+                            <select id="dangerous">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes (UN Number required)</option>
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="form-group full-width">
-                        <label>Photos of Goods <span class="required">*</span></label>
-                        <div class="image-upload-area" onclick="document.getElementById('imageUpload').click()">
-                            <i class="fas fa-camera"></i>
-                            <p><strong>Click to upload or drag images here</strong></p>
-                            <p>2-10 photos from different angles (Max 5MB each)</p>
-                            <input type="file" id="imageUpload" accept="image/*" multiple>
+                        <label>Photos of Cargo <span class="required">*</span></label>
+                        <div class="upload-area" onclick="document.getElementById('cargoImages').click()">
+                            <div class="upload-icon">📸</div>
+                            <p><strong>Click to upload photos</strong></p>
+                            <p>Upload 2-10 clear photos from different angles</p>
+                            <input type="file" id="cargoImages" class="file-input" accept="image/*" multiple>
                         </div>
                         <div id="imagePreview" class="image-preview"></div>
                     </div>
+
+                    <div class="form-group full-width">
+                        <label>Special Instructions</label>
+                        <textarea id="specialInstructions" placeholder="Any special handling requirements or notes..."></textarea>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep()">
+                            ← Back
+                        </button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep()">
+                            Next →
+                        </button>
+                    </div>
                 </div>
 
-                <!-- Section 4: Special Requirements -->
-                <div class="section">
-                    <div class="section-header">
-                        <i class="fas fa-cogs"></i>
-                        <h2>Special Requirements</h2>
-                    </div>
+                <!-- Step 4: Documents -->
+                <div class="form-step" data-step="4">
+                    <h2 class="step-title">Documents & Customs</h2>
+                    <p class="step-subtitle">What documents do you have?</p>
 
-                    <div class="form-group">
-                        <label>Packaging Type Required</label>
-                        <div class="radio-group">
-                            <div class="radio-item">
-                                <input type="radio" id="pack1" name="packaging" value="Standard (Free)" checked>
-                                <label for="pack1">Standard (Free)</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="pack2" name="packaging" value="Reinforced Plastic Wrap">
-                                <label for="pack2">Reinforced Plastic Wrap (+AED 50)</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="pack3" name="packaging" value="Wooden Crate">
-                                <label for="pack3">Wooden Crate (+AED 200)</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="pack4" name="packaging" value="Bubble Wrap">
-                                <label for="pack4">Bubble Wrap (+AED 30)</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Nature of Goods</label>
+                    <div class="form-group full-width">
+                        <label>Available Documents</label>
                         <div class="checkbox-group">
                             <div class="checkbox-item">
-                                <input type="checkbox" id="fragile" name="nature" value="Fragile">
-                                <label for="fragile">⚠️ Fragile (Handle with care)</label>
+                                <input type="checkbox" id="doc1" value="Commercial Invoice">
+                                <label for="doc1">📄 Commercial Invoice</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="heat" name="nature" value="Heat Sensitive">
-                                <label for="heat">🌡️ Heat Sensitive</label>
+                                <input type="checkbox" id="doc2" value="Packing List">
+                                <label for="doc2">📋 Packing List</label>
                             </div>
                             <div class="checkbox-item">
-                                <input type="checkbox" id="moisture" name="nature" value="Moisture Sensitive">
-                                <label for="moisture">💧 Moisture Sensitive</label>
+                                <input type="checkbox" id="doc3" value="Certificate of Origin">
+                                <label for="doc3">🏭 Certificate of Origin</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="doc4" value="Other Documents">
+                                <label for="doc4">📎 Other Documents</label>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Loading Direction</label>
-                        <div class="direction-options">
-                            <div class="direction-card selected" data-value="Normal" onclick="selectDirection(this)">
-                                <i class="fas fa-arrow-up"></i>
-                                <p>Normal</p>
-                            </div>
-                            <div class="direction-card" data-value="This Side Up" onclick="selectDirection(this)">
-                                <i class="fas fa-arrow-circle-up"></i>
-                                <p>This Side Up</p>
-                            </div>
-                            <div class="direction-card" data-value="Do Not Flip" onclick="selectDirection(this)">
-                                <i class="fas fa-ban"></i>
-                                <p>Do Not Flip</p>
-                            </div>
-                            <div class="direction-card" data-value="Handle Here" onclick="selectDirection(this)">
-                                <i class="fas fa-hand-pointer"></i>
-                                <p>Handle Here</p>
-                            </div>
-                        </div>
-                        <input type="hidden" id="loadingDirection" name="loadingDirection" value="Normal">
                     </div>
 
                     <div class="form-group full-width">
                         <label>Additional Notes</label>
-                        <textarea id="notes" name="notes" placeholder="e.g., Please call 30 minutes before arrival"></textarea>
+                        <textarea id="additionalNotes" placeholder="Any other information we should know..."></textarea>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep()">
+                            ← Back
+                        </button>
+                        <button type="button" class="btn btn-primary" onclick="submitForm()">
+                            Submit Request ✓
+                        </button>
                     </div>
                 </div>
-
-                <!-- Section 5: Pickup & Delivery -->
-                <div class="section">
-                    <div class="section-header">
-                        <i class="fas fa-calendar-check"></i>
-                        <h2>Pickup & Delivery Details</h2>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Preferred Pickup Date <span class="required">*</span></label>
-                            <input type="date" id="pickupDate" name="pickupDate" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Preferred Time <span class="required">*</span></label>
-                            <select id="pickupTime" name="pickupTime" required>
-                                <option value="">Select Time</option>
-                                <option value="Morning (8 AM - 12 PM)">Morning (8 AM - 12 PM)</option>
-                                <option value="Afternoon (2 PM - 6 PM)">Afternoon (2 PM - 6 PM)</option>
-                                <option value="Anytime">Anytime</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Final Destination <span class="required">*</span></label>
-                            <select id="destination" name="destination" required>
-                                <option value="">Select Destination</option>
-                                <option value="Kuwait">Kuwait</option>
-                                <option value="UAE (Domestic)">UAE (Domestic)</option>
-                                <option value="Saudi Arabia">Saudi Arabia (Coming Soon)</option>
-                                <option value="Other">Other (Please Specify)</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Submit Section -->
-                <div class="submit-section">
-                    <button type="submit" class="submit-btn">
-                        <i class="fas fa-paper-plane"></i> Submit Booking Request
-                    </button>
-                    <div class="submit-note">
-                        <i class="fas fa-info-circle"></i> We'll review your request and send you a quote within 1 hour
-                    </div>
-                </div>
-
-            </form>
+            </div>
         </div>
     </div>
 
     <script>
+        let currentStep = 1;
+        let uploadedImages = [];
+
         // Set minimum date to tomorrow
         const tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate() + 1);
-        document.getElementById('pickupDate').min = tomorrow.toISOString().split('T')[0];
+        document.getElementById('readyDate').min = tomorrow.toISOString().split('T')[0];
+
+        // Navigation Functions
+        function nextStep() {
+            if (!validateStep(currentStep)) return;
+            
+            if (currentStep < 4) {
+                currentStep++;
+                updateSteps();
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateSteps();
+            }
+        }
+
+        function updateSteps() {
+            document.querySelectorAll('.form-step').forEach(step => {
+                step.classList.remove('active');
+            });
+            document.querySelector('.form-step[data-step="' + currentStep + '"]').classList.add('active');
+
+            document.querySelectorAll('.step').forEach((step, index) => {
+                step.classList.remove('active', 'completed');
+                if (index + 1 < currentStep) {
+                    step.classList.add('completed');
+                } else if (index + 1 === currentStep) {
+                    step.classList.add('active');
+                }
+            });
+
+            const progressPercentage = ((currentStep - 1) / 3) * 100;
+            document.getElementById('progressLine').style.width = progressPercentage + '%';
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function validateStep(step) {
+            const currentStepElement = document.querySelector('.form-step[data-step="' + step + '"]');
+            const requiredFields = currentStepElement.querySelectorAll('[required]');
+            
+            for (let i = 0; i < requiredFields.length; i++) {
+                if (!requiredFields[i].value.trim()) {
+                    requiredFields[i].focus();
+                    alert('Please fill in all required fields');
+                    return false;
+                }
+            }
+
+            if (step === 3 && uploadedImages.length < 2) {
+                alert('Please upload at least 2 photos of your cargo');
+                return false;
+            }
+
+            return true;
+        }
 
         // Image Upload Handler
-        let uploadedImages = [];
-        
-        document.getElementById('imageUpload').addEventListener('change', function(e) {
+        document.getElementById('cargoImages').addEventListener('change', function(e) {
             const files = Array.from(e.target.files);
-            const maxSize = 5 * 1024 * 1024; // 5MB
+            const maxSize = 5 * 1024 * 1024;
             const maxImages = 10;
 
             if (uploadedImages.length + files.length > maxImages) {
-                alert(`Maximum ${maxImages} images allowed`);
+                alert('Maximum ' + maxImages + ' images allowed');
                 return;
             }
 
-            files.forEach(file => {
+            files.forEach(function(file) {
                 if (file.size > maxSize) {
-                    alert(`${file.name} is too large. Max size is 5MB`);
+                    alert(file.name + ' is too large. Max 5MB per image');
                     return;
                 }
 
@@ -769,8 +945,7 @@
                 reader.onload = function(e) {
                     uploadedImages.push({
                         name: file.name,
-                        data: e.target.result,
-                        size: file.size
+                        data: e.target.result
                     });
                     displayImages();
                 };
@@ -782,79 +957,7 @@
             const preview = document.getElementById('imagePreview');
             preview.innerHTML = '';
             
-            uploadedImages.forEach((img, index) => {
+            uploadedImages.forEach(function(img, index) {
                 const div = document.createElement('div');
                 div.className = 'preview-item';
-                div.innerHTML = `
-                    <img src="${img.data}" alt="${img.name}">
-                    <button type="button" class="remove-btn" onclick="removeImage(${index})">
-                        <i class="fas fa-times"></i>
-                    </button>
-                `;
-                preview.appendChild(div);
-            });
-        }
-
-        function removeImage(index) {
-            uploadedImages.splice(index, 1);
-            displayImages();
-        }
-
-        // Loading Direction Selection
-        function selectDirection(card) {
-            document.querySelectorAll('.direction-card').forEach(c => c.classList.remove('selected'));
-            card.classList.add('selected');
-            document.getElementById('loadingDirection').value = card.dataset.value;
-        }
-
-        // Form Submission
-        document.getElementById('bookingForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Validate images
-            if (uploadedImages.length < 2) {
-                alert('Please upload at least 2 photos of your goods');
-                return;
-            }
-
-            // Collect form data
-            const formData = {
-                // Customer Info
-                fullName: document.getElementById('fullName').value,
-                mobile: document.getElementById('mobile').value,
-                email: document.getElementById('email').value,
-
-                // Pickup Address
-                country: document.getElementById('country').value,
-                area: document.getElementById('area').value,
-                street: document.getElementById('street').value,
-                aptNumber: document.getElementById('aptNumber').value,
-                landmark: document.getElementById('landmark').value,
-                mapLink: document.getElementById('mapLink').value,
-
-                // Shipment Details
-                goodsType: document.getElementById('goodsType').value,
-                packageCount: document.getElementById('packageCount').value,
-                description: document.getElementById('description').value,
-                weight: document.getElementById('weight').value,
-                dimensions: document.getElementById('dimensions').value,
-
-                // Special Requirements
-                packaging: document.querySelector('input[name="packaging"]:checked').value,
-                nature: Array.from(document.querySelectorAll('input[name="nature"]:checked')).map(cb => cb.value),
-                loadingDirection: document.getElementById('loadingDirection').value,
-                notes: document.getElementById('notes').value,
-
-                // Pickup & Delivery
-                pickupDate: document.getElementById('pickupDate').value,
-                pickupTime: document.getElementById('pickupTime').value,
-                destination: document.getElementById('destination').value,
-
-                // Images
-                images: uploadedImages,
-
-                // Timestamp
-                timestamp: new Date().toISOString()
-            };
-
-            console.log('Form Data:', formData
+                div.innerHTML = '<img src="' + img.data +
