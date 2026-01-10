@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - EGO Express</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            background: #ffffff;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .navbar .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .navbar .logo-link img {
+            height: 50px;
+            width: auto;
+            transition: transform 0.3s;
+        }
+
+        .navbar .logo-link:hover img {
+            transform: scale(1.05);
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .navbar .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #FF3333;
+        }
+
+        .navbar .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #FF3333;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            margin-top: 90px;
+            padding: 80px 60px;
+            background: linear-gradient(135deg, #FF3333 0%, #cc0000 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '?';
+            position: absolute;
+            top: -20px;
+            right: 10%;
+            font-size: 300px;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-section::after {
+            content: '?';
+            position: absolute;
+            bottom: -50px;
+            left: 5%;
+            font-size: 250px;
+            font-weight: 900;
+            color: rgba(0, 0, 0, 0.05);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: 72px;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 22px;
+            color: white;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Search Box */
+        .search-section {
+            padding: 0 60px;
+            margin-top: -40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 60px;
+            padding: 10px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .search-icon {
+            font-size: 24px;
+            color: #FF3333;
+            margin-left: 20px;
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 18px;
+            padding: 15px 10px;
+            font-family: inherit;
+        }
+
+        .search-input::placeholder {
+            color: #999;
+        }
+
+        /* Categories */
+        .categories-section {
+            padding: 80px 60px 40px;
+            background: linear-gradient(180deg, #f8f5f0 0%, #ffffff 100%);
+        }
+
+        .categories-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .category-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(255, 51, 51, 0.15);
+        }
+
+        .category-card.active {
+            background: #FF3333;
+        }
+
+        .category-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .category-card.active .category-icon {
+            filter: brightness(0) invert(1);
+        }
+
+        .category-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .category-card.active .category-title {
+            color: white;
+        }
+
+        .category-count {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .category-card.active .category-count {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 0 60px 80px;
+            background: white;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-category-title {
+            font-size: 36px;
+            font-weight: 900;
+            color: #FF3333;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .faq-item {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: #FF3333;
+        }
+
+        .faq-item.active {
+            border-color: #FF3333;
+            box-shadow: 0 5px 20px rgba(255, 51, 51, 0.1);
+        }
+
+        .faq-question {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            transition: background 0.3s;
+        }
+
+        .faq-item:hover .faq-question {
+            background: #fff5f5;
+        }
+
+        .faq-question h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            flex: 1;
+        }
+
+        .faq-icon {
+            font-size: 24px;
+            color: #FF3333;
+            font-weight: 900;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 30px 25px;
+        }
+
+        .faq-answer p {
+            font-size: 17px;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .faq-answer p:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-answer ul {
+            margin: 15px 0 15px 20px;
+        }
+
+        .faq-answer li {
+            font-size: 17px;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 60px;
+            background: linear-gradient(180deg, #f8f5f0 0%, #ffffff 100%);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .cta-content h2 {
+            font-size: 42px;
+            font-weight: 900;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .cta-content h2 .red {
+            color: #FF3333;
+        }
+
+        .cta-content p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 35px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            padding: 16px 40px;
+            background: linear-gradient(135deg, #FF3333 0%, #cc0000 100%);
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(255, 51, 51, 0.3);
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 51, 51, 0.4);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            padding: 16px 40px;
+            background: white;
+            color: #333;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 50px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            border-color: #FF3333;
+            color: #FF3333;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .navbar .logo-link img {
+                height: 40px;
+            }
+
+            .navbar .nav-links {
+                gap: 20px;
+            }
+
+            .navbar .nav-links a {
+                font-size: 14px;
+            }
+
+            .hero-section {
+                padding: 60px 20px;
+                margin-top: 70px;
+            }
+
+            .hero-content h1 {
+                font-size: 38px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .search-section {
+                padding: 0 20px;
+                margin-top: -30px;
+            }
+
+            .search-container {
+                border-radius: 50px;
+                padding: 8px;
+            }
+
+            .search-input {
+                font-size: 16px;
+                padding: 12px 8px;
+            }
+
+            .categories-section,
+            .faq-section,
+            .cta-section {
+                padding: 50px 20px;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .category-card {
+                padding: 20px 15px;
+            }
+
+            .category-icon {
+                font-size: 40px;
+            }
+
+            .category-title {
+                font-size: 16px;
+            }
+
+            .category-count {
+                font-size: 12px;
+            }
+
+            .faq-category-title {
+                font-size: 28px;
+            }
+
+            .faq-question {
+                padding: 20px 20px;
+            }
+
+            .faq-question h3 {
+                font-size: 17px;
+            }
+
+            .faq-icon {
+                font-size: 20px;
+            }
+
+            .faq-item.active .faq-answer {
+                padding: 0 20px 20px;
+            }
+
+            .faq-answer p,
+            .faq-answer li {
+                font-size: 15px;
+            }
+
+            .cta-content {
+                padding: 40px 25px;
+            }
+
+            .cta-content h2 {
+                font-size: 32px;
+            }
+
+            .cta-content p {
+                font-size: 16px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .btn-cta,
+            .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-category-title {
+                font-size: 24px;
+            }
+
+            .cta-content h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="logo-link">
+            <img src="https://i.postimg.cc/k5RM67Nt/logo-(2).png" alt="EGO Express">
+        </a>
+        <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="why-us.html">Why Us</a>
+    <a href="faq.html" class="active">FAQ</a>  
+    <a href="booking.html">Book Shipment</a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Frequently Asked Questions</h1>
+            <p>Find quick answers to common questions about shipping, pricing, and our services.</p>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="search-container">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" id="searchInput" placeholder="Search for answers...">
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="categories-grid">
+            <div class="category-card active" onclick="showCategory('general')">
+                <div class="category-icon">📦</div>
+                <div class="category-title">General</div>
+                <div class="category-count">8 questions</div>
+            </div>
+            <div class="category-card" onclick="showCategory('shipping')">
+                <div class="category-icon">🚚</div>
+                <div class="category-title">Shipping</div>
+                <div class="category-count">6 questions</div>
+            </div>
+            <div class="category-card" onclick="showCategory('pricing')">
+                <div class="category-icon">💰</div>
+                <div class="category-title">Pricing</div>
+                <div class="category-count">5 questions</div>
+            </div>
+            <div class="category-card" onclick="showCategory('customs')">
+                <div class="category-icon">📋</div>
+                <div class="category-title">Customs</div>
+                <div class="category-count">4 questions</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="faq-container">
+            <!-- General Category -->
+            <div class="faq-category" id="general">
+                <h2 class="faq-category-title">General Questions</h2>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>What is EGO Express?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>EGO Express is a premier freight forwarding and logistics company specializing in door-to-door cargo transport between the UAE, Kuwait, and expanding to other regions. We handle everything from small packages to large commercial shipments with complete care and professionalism.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>What areas do you serve?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Currently, we offer services between:</p>
+                        <ul>
+                            <li>All Emirates in the UAE (Dubai, Abu Dhabi, Sharjah, Ajman, RAK, Fujairah, UAQ)</li>
+                            <li>Kuwait</li>
+                            <li>Saudi Arabia (Coming Soon)</li>
+                        </ul>
+                        <p>We're continuously expanding our network to serve more destinations.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>How do I book a shipment?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Booking is simple! Just visit our booking page, fill in your shipment details including origin, destination, cargo information, and upload photos. Our team will review your request and send you a customized quote within 1 hour.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>How quickly can you pick up my cargo?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Once you confirm your booking, we can typically arrange pickup within 24-48 hours. For urgent shipments, same-day pickup may be available in select areas - please contact us to check availability.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>Do you provide packaging materials?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We offer professional packaging services including:</p>
+                        <ul>
+                            <li>Standard packaging (included free)</li>
+                            <li>Reinforced plastic wrap for extra protection</li>
+                            <li>Wooden crates for fragile or valuable items</li>
+                            <li>Bubble wrap and cushioning materials</li>
+                        </ul>
+                        <p>Our team will recommend the best packaging solution for your specific cargo.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>Is my cargo insured?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! All shipments are fully insured from pickup to delivery. We offer comprehensive coverage to protect your cargo against loss, damage, or theft during transit. Additional insurance options are available for high-value items.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>Can I track my shipment?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! You'll receive a tracking number once your shipment is picked up. You can track your cargo in real-time and receive updates via SMS and email at every major milestone of the journey.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>What if I need to change my delivery address?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Please contact us as soon as possible. Address changes can usually be accommodated if the shipment hasn't reached the final destination. Additional fees may apply depending on the new location and current shipment status.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shipping Category -->
+            <div class="faq-category" id="shipping" style="display: none;">
+                <h2 class="faq-category-title">Shipping Questions</h2>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>How long does shipping take?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Delivery times vary by route:</p>
+                        <ul>
+                            <li>UAE to Kuwait: 5-7 business days</li>
+                            <li>Within UAE: 2-3 business days</li>
+                            <li>Express service: Available for urgent shipments</li>
+                        </ul>
+                        <p>Actual delivery time depends on customs clearance and destination accessibility.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>What items cannot be shipped?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We cannot ship prohibited items including:</p>
+                        <ul>
+                            <li>Illegal substances or contraband</li>
+                            <li>Weapons and ammunition</li>
+                            <li>Hazardous materials (without proper documentation)</li>
+                            <li>Perishable food items (case by case)</li>
+                            <li>Live animals</li>
+                        </ul>
+                        <p>If you're unsure about an item, please contact us before booking.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>Do you handle fragile items?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We specialize in handling fragile and valuable items. Simply mark your shipment as fragile when booking, and we'll ensure special care including reinforced packaging, careful loading, and priority handling throughout transit.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>Is there a weight or size limit?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We can handle shipments of virtually any size! From small packages to large commercial cargo, furniture, and vehicles. For oversized or extremely heavy items, please provide detailed dimensions when booking so we can arrange appropriate equipment.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>Do you offer door-to-door service?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! Complete door-to-door service is our specialty. We pick up from your location and deliver directly to the recipient's address. No need to visit depots or warehouses - we handle everything.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>Can I ship to a P.O. Box?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>For large cargo shipments, we require a physical address for delivery. However, for smaller packages and documents, P.O. Box delivery may be available in certain areas. Please specify when booking.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pricing Category -->
+            <div class="faq-category" id="pricing" style="display: none;">
+                <h2 class="faq-category-title">Pricing Questions</h2>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>How is shipping cost calculated?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Shipping costs are based on several factors:</p>
+                        <ul>
+                            <li>Weight and volume of cargo</li>
+                            <li>Origin and destination locations</li>
+                            <li>Type of goods being shipped</li>
+                            <li>Packaging requirements</li>
+                            <li>Speed of delivery (standard or express)</li>
+                        </ul>
+                        <p>We provide transparent, detailed quotes with no hidden fees.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>Are there any hidden fees?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Never! We believe in complete transparency. Your quote includes all costs: pickup, transport, packaging, insurance, and delivery. The only additional charges would be for optional services you choose or unexpected customs duties.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>Do I pay before or after shipping?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Payment terms are flexible. Typically, we require 50% deposit upon booking confirmation and the remaining 50% before final delivery. For regular corporate clients, we offer credit terms. Cash on delivery options may be available.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>What payment methods do you accept?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept various payment methods for your convenience:</p>
+                        <ul>
+                            <li>Bank transfers</li>
+                            <li>Credit/Debit cards</li>
+                            <li>Cash payments</li>
+                            <li>Online payment platforms</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>Do you offer discounts for bulk shipments?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We offer competitive rates for regular customers and bulk shipments. If you ship frequently or have large volume requirements, contact us to discuss customized pricing packages tailored to your needs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customs Category -->
+            <div class="faq-category" id="customs" style="display: none;">
+                <h2 class="faq-category-title">Customs & Documentation</h2>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>Do you handle customs clearance?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! Our experienced customs brokerage team handles all customs documentation and clearance procedures. We ensure your shipment complies with all regulations and moves through customs smoothly and quickly.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>What documents do I need to provide?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Common documents required include:</p>
+                        <ul>
+                            <li>Commercial Invoice (for commercial goods)</li>
+                            <li>Packing List</li>
+                            <li>Certificate of Origin (if applicable)</li>
+                            <li>Copy of passport/Emirates ID</li>
+                        </ul>
+                        <p>Our team will guide you on specific requirements based on your shipment type.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>Who pays customs duties?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Customs duties are typically paid by the recipient unless otherwise arranged. We'll inform you of estimated duties during the quote process. You can choose to pay duties upfront or have the recipient pay upon delivery.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3>How long does customs clearance take?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>With proper documentation, customs clearance typically takes 1-3 business days. However, this can vary based on the type of goods, destination country regulations, and customs inspection requirements. We monitor the process closely and keep you updated.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Still Have <span class="red">Questions?</span></h2>
+            <p>Our customer support team is ready to help you with any questions or concerns.</p>
+            <div class="cta-buttons">
+                <a href="booking.html" class="btn-cta">Book Your Shipment</a>
+                <a href="why-us.html" class="btn-secondary">Learn More About Us</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleFAQ(element) {
+            const wasActive = element.classList.contains('active');
+            
+            document.querySelectorAll('.faq-item').forEach(function(item) {
+                item.classList.remove('active');
+            });
+            
+            if (!wasActive) {
+                element.classList.add('active');
+            }
+        }
+
+        function showCategory(category) {
+            document.querySelectorAll('.category-card').forEach(function(card) {
+                card.classList.remove('active');
+            });
+            
+            event.target.closest('.category-card').classList.add('active');
+            
+            document.querySelectorAll('.faq-category').forEach(function(cat) {
+                cat.style.display = 'none';
+            });
+            
+            document.getElementById(category).style.display = 'block';
+            
+            window.scrollTo({
+                top: document.querySelector('.faq-section').offsetTop - 100,
+                behavior: 'smooth'
+            });
+        }
+
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const allFaqItems = document.querySelectorAll('.faq-item');
+            
+            if (searchTerm === '') {
+                allFaqItems.forEach(function(item) {
+                    item.style.display = 'block';
+                });
+                return;
+            }
+            
+            allFaqItems.forEach(function(item) {
+                const question = item.querySelector('.faq-question h3').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    item.closest('.faq-category').style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

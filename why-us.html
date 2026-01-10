@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Choose Us - EGO Express</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            background: #ffffff;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .navbar .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .navbar .logo-link img {
+            height: 50px;
+            width: auto;
+            transition: transform 0.3s;
+        }
+
+        .navbar .logo-link:hover img {
+            transform: scale(1.05);
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .navbar .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #FF3333;
+        }
+
+        .navbar .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #FF3333;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            margin-top: 90px;
+            padding: 80px 60px;
+            background: linear-gradient(135deg, #FF3333 0%, #cc0000 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: 72px;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 22px;
+            color: white;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 80px 60px;
+            background: linear-gradient(180deg, #f8f5f0 0%, #ffffff 100%);
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 51, 51, 0.15);
+        }
+
+        .stat-number {
+            font-size: 64px;
+            font-weight: 900;
+            color: #FF3333;
+            margin-bottom: 15px;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 80px 60px;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-header h2 {
+            font-size: 56px;
+            font-weight: 900;
+            color: #FF3333;
+            margin-bottom: 20px;
+        }
+
+        .section-header p {
+            font-size: 20px;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
+        }
+
+        .feature-card {
+            display: flex;
+            gap: 25px;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            font-size: 60px;
+            flex-shrink: 0;
+        }
+
+        .feature-content h3 {
+            font-size: 26px;
+            font-weight: 900;
+            color: #333;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .feature-content p {
+            font-size: 17px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Values Section */
+        .values-section {
+            padding: 80px 60px;
+            background: #FF3333;
+        }
+
+        .values-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .values-header h2 {
+            font-size: 56px;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .values-header p {
+            font-size: 20px;
+            color: white;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .values-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 50px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .value-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-10px);
+        }
+
+        .value-icon {
+            font-size: 70px;
+            margin-bottom: 20px;
+        }
+
+        .value-title {
+            font-size: 24px;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .value-description {
+            font-size: 16px;
+            color: white;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 60px;
+            background: linear-gradient(180deg, #f8f5f0 0%, #ffffff 100%);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: 56px;
+            font-weight: 900;
+            color: #333;
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .cta-content h2 .red {
+            color: #FF3333;
+        }
+
+        .cta-content p {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, #FF3333 0%, #cc0000 100%);
+            color: white;
+            font-weight: 700;
+            font-size: 20px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(255, 51, 51, 0.3);
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 51, 51, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content h1 {
+                font-size: 52px;
+            }
+
+            .section-header h2,
+            .values-header h2 {
+                font-size: 44px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .navbar .logo-link img {
+                height: 40px;
+            }
+
+            .navbar .nav-links {
+                gap: 20px;
+            }
+
+            .navbar .nav-links a {
+                font-size: 14px;
+            }
+
+            .hero-section {
+                padding: 60px 20px;
+                margin-top: 70px;
+            }
+
+            .hero-content h1 {
+                font-size: 38px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .stats-section,
+            .features-section,
+            .values-section,
+            .cta-section {
+                padding: 50px 20px;
+            }
+
+            .section-header h2,
+            .values-header h2 {
+                font-size: 32px;
+            }
+
+            .section-header p,
+            .values-header p {
+                font-size: 16px;
+            }
+
+            .stat-number {
+                font-size: 48px;
+            }
+
+            .stat-label {
+                font-size: 16px;
+            }
+
+            .features-grid,
+            .values-grid {
+                gap: 30px;
+            }
+
+            .feature-card {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+
+            .feature-content h3 {
+                font-size: 22px;
+            }
+
+            .cta-content h2 {
+                font-size: 36px;
+            }
+
+            .cta-content p {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .section-header h2,
+            .values-header h2 {
+                font-size: 28px;
+            }
+
+            .stat-number {
+                font-size: 40px;
+            }
+
+            .cta-content h2 {
+                font-size: 28px;
+            }
+
+            .btn-cta {
+                padding: 15px 35px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="logo-link">
+            <img src="https://i.postimg.cc/k5RM67Nt/logo-(2).png" alt="EGO Express">
+        </a>
+        <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="why-us.html" class="active">Why Us</a>  
+    <a href="faq.html">FAQ</a>
+    <a href="booking.html">Book Shipment</a>
+    </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Why Choose EGO Express?</h1>
+            <p>We're more than a logistics company - we're your trusted partner in global trade, committed to delivering excellence every step of the way.</p>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">99%</div>
+                <div class="stat-label">On-Time Delivery</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Customer Support</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">1000+</div>
+                <div class="stat-label">Happy Clients</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Countries Served</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="section-header">
+            <h2>What Sets Us Apart</h2>
+            <p>We combine cutting-edge technology with personalized service to deliver unmatched logistics solutions.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <div class="feature-content">
+                    <h3>Speed & Efficiency</h3>
+                    <p>We understand that time is money. Our optimized routes and streamlined processes ensure your cargo reaches its destination faster than ever.</p>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <div class="feature-content">
+                    <h3>Security First</h3>
+                    <p>Your cargo's safety is our top priority. With full insurance coverage and state-of-the-art tracking, you can ship with complete peace of mind.</p>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💎</div>
+                <div class="feature-content">
+                    <h3>Premium Service</h3>
+                    <p>From door-to-door delivery to white-glove handling, we treat every shipment with the care and attention it deserves.</p>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <div class="feature-content">
+                    <h3>Real-Time Tracking</h3>
+                    <p>Stay informed every step of the way with our advanced tracking system. Know exactly where your cargo is, 24/7.</p>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <div class="feature-content">
+                    <h3>Transparent Pricing</h3>
+                    <p>No hidden fees, no surprises. Get a detailed quote upfront and know exactly what you're paying for.</p>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <div class="feature-content">
+                    <h3>Global Network</h3>
+                    <p>With partnerships across 50+ countries, we have the reach and resources to handle shipments anywhere in the world.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="values-header">
+            <h2>Our Core Values</h2>
+            <p>These principles guide everything we do, ensuring excellence in every shipment.</p>
+        </div>
+
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">🎯</div>
+                <div class="value-title">Reliability</div>
+                <div class="value-description">We deliver on our promises. When we say your cargo will arrive, it will - on time, every time.</div>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">🤝</div>
+                <div class="value-title">Integrity</div>
+                <div class="value-description">Honesty and transparency are at the heart of everything we do. You can always trust us to do what's right.</div>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">⚡</div>
+                <div class="value-title">Innovation</div>
+                <div class="value-description">We constantly evolve and improve, leveraging the latest technology to make shipping simpler and smarter.</div>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">❤️</div>
+                <div class="value-title">Care</div>
+                <div class="value-description">We treat every shipment like it's our own. Your cargo matters to us, and we handle it with the utmost care.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Experience <span class="red">The Difference?</span></h2>
+            <p>Join thousands of satisfied customers who trust EGO Express with their most important shipments.</p>
+            <a href="booking.html" class="btn-cta">Get Started Today →</a>
+        </div>
+    </section>
+</body>
+</html>
