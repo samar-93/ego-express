@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visit Us - EGO Express</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(180deg, #f8f5f0 0%, #ffffff 100%);
+        }
+
+        body[dir="rtl"] {
+            font-family: 'Arial', 'Tajawal', sans-serif;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .navbar .logo-nav {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .navbar .logo-nav img {
+            height: 50px;
+            width: auto;
+            transition: transform 0.3s;
+        }
+
+        .navbar .logo-nav:hover img {
+            transform: scale(1.05);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .navbar .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #FF3333;
+        }
+
+        .navbar .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #FF3333;
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            z-index: 3000;
+            width: 50px;
+            height: 50px;
+            background: #FF3333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 51, 51, 0.4);
+        }
+
+        .lang-switcher:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 51, 51, 0.6);
+        }
+
+        .lang-text {
+            font-weight: 900;
+            font-size: 16px;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1500;
+            width: 65px;
+            height: 65px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-float svg {
+            width: 38px;
+            height: 38px;
+            fill: white;
+        }
+
+        /* Main Content */
+        .visit-container {
+            margin-top: 120px;
+            padding: 60px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-title {
+            font-size: 72px;
+            font-weight: 900;
+            color: #FF3333;
+            text-align: center;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+        }
+
+        body[dir="rtl"] .page-title {
+            text-align: center;
+        }
+
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .contact-info h2 {
+            font-size: 42px;
+            font-weight: 900;
+            color: #FF3333;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        body[dir="rtl"] .contact-info h2 {
+            text-align: right;
+        }
+
+        .info-item {
+            margin-bottom: 35px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        body[dir="rtl"] .info-item {
+            flex-direction: row-reverse;
+        }
+
+        .info-icon {
+            font-size: 32px;
+            flex-shrink: 0;
+            margin-top: 5px;
+        }
+
+        .info-content h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        body[dir="rtl"] .info-content h3 {
+            text-align: right;
+        }
+
+        .info-content p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #666;
+            text-align: left;
+        }
+
+        body[dir="rtl"] .info-content p {
+            text-align: right;
+        }
+
+        .info-content a {
+            color: #FF3333;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .info-content a:hover {
+            color: #cc0000;
+            text-decoration: underline;
+        }
+
+        /* Map Container */
+        .map-container {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            height: 600px;
+            position: sticky;
+            top: 140px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 15px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .navbar {
+                padding: 15px 40px;
+            }
+
+            .visit-container {
+                padding: 40px;
+                margin-top: 100px;
+            }
+
+            .page-title {
+                font-size: 52px;
+                margin-bottom: 40px;
+            }
+
+            .content-wrapper {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .map-container {
+                position: static;
+                height: 500px;
+            }
+
+            .contact-info {
+                padding: 40px;
+            }
+
+            .contact-info h2 {
+                font-size: 36px;
+            }
+
+            .lang-switcher {
+                top: 85px;
+                right: 25px;
+                width: 45px;
+                height: 45px;
+            }
+
+            .lang-text {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 12px 20px;
+            }
+
+            .navbar .logo-nav img {
+                height: 38px;
+            }
+
+            .navbar .nav-links {
+                gap: 15px;
+            }
+
+            .navbar .nav-links a {
+                font-size: 13px;
+            }
+
+            .visit-container {
+                padding: 30px 20px;
+                margin-top: 90px;
+            }
+
+            .page-title {
+                font-size: 36px;
+                margin-bottom: 30px;
+            }
+
+            .contact-info {
+                padding: 30px 25px;
+            }
+
+            .contact-info h2 {
+                font-size: 28px;
+                margin-bottom: 30px;
+            }
+
+            .info-item {
+                margin-bottom: 25px;
+                gap: 15px;
+            }
+
+            .info-icon {
+                font-size: 28px;
+            }
+
+            .info-content h3 {
+                font-size: 18px;
+            }
+
+            .info-content p {
+                font-size: 15px;
+            }
+
+            .map-container {
+                height: 400px;
+                padding: 15px;
+            }
+
+            .lang-switcher {
+                top: 75px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .lang-text {
+                font-size: 13px;
+            }
+
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .whatsapp-float svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .visit-container {
+                padding: 20px 15px;
+            }
+
+            .page-title {
+                font-size: 28px;
+            }
+
+            .contact-info {
+                padding: 25px 20px;
+            }
+
+            .contact-info h2 {
+                font-size: 24px;
+            }
+
+            .info-content h3 {
+                font-size: 16px;
+            }
+
+            .info-content p {
+                font-size: 14px;
+            }
+
+            .map-container {
+                height: 350px;
+            }
+
+            .lang-switcher {
+                top: 70px;
+                right: 12px;
+                width: 38px;
+                height: 38px;
+            }
+
+            .lang-text {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body dir="ltr">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="logo-nav">
+            <img src="https://i.postimg.cc/k5RM67Nt/logo-(2).png" alt="EGO Express">
+        </a>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="index.html" data-en="Home" data-ar="الرئيسية">Home</a>
+                <a href="why-us.html" data-en="Why Us" data-ar="لماذا نحن">Why Us</a>
+                <a href="faq.html" data-en="FAQ" data-ar="الأسئلة">FAQ</a>
+                <a href="visit-us.html" class="active" data-en="Visit Us" data-ar="زورنا">Visit Us</a>
+                <a href="booking.html" data-en="Book Shipment" data-ar="احجز شحنة">Book Shipment</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Language Switcher Button -->
+    <div class="lang-switcher" onclick="toggleLanguage()">
+        <span class="lang-text" id="langText">EN</span>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/201234567890?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20your%20services" 
+       class="whatsapp-float" 
+       target="_blank" 
+       rel="noopener noreferrer">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16.002 0C7.164 0 0 7.162 0 16c0 2.848.753 5.521 2.065 7.832L.088 31.61l8.056-2.112A15.892 15.892 0 0016.002 32C24.838 32 32 24.838 32 16S24.838 0 16.002 0zm9.385 22.604c-.393 1.109-1.952 2.032-3.193 2.297-.847.177-1.952.318-5.671-1.218-4.766-1.969-7.845-6.783-8.083-7.095-.233-.312-1.904-2.533-1.904-4.831 0-2.298 1.205-3.43 1.632-3.897.427-.467.932-.583 1.243-.583.311 0 .622.005.893.017.286.013.668-.109.945.721.285.853.972 2.372 1.057 2.543.085.171.142.371.028.583-.114.212-.171.342-.34.525-.171.184-.359.41-.514.55-.171.155-.349.322-.15.634.199.301.884 1.458 1.898 2.361 1.306 1.163 2.408 1.524 2.75 1.695.342.171.542.142.74-.086.198-.228.849-.99 1.076-1.332.227-.342.454-.285.766-.171.312.114 1.982.935 2.324 1.105.342.171.57.256.654.398.085.142.085.82-.308 1.929z"/>
+        </svg>
+    </a>
+
+    <!-- Main Content -->
+    <div class="visit-container">
+        <h1 class="page-title" data-en="Visit Us" data-ar="زورنا">Visit Us</h1>
+
+        <div class="content-wrapper">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h2 data-en="Our Office" data-ar="مكتبنا">Our Office</h2>
+
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-content">
+                        <h3 data-en="Address" data-ar="العنوان">Address</h3>
+                        <p data-en="2nd Floor, Al Jawhara Tower<br>Al Qibla, 26 Ali Al-Salem St<br>Kuwait City, Kuwait<br><br>P.O. Box: 64400<br>Shuwaikh (B) – Code 70454<br>STATE OF KUWAIT" 
+                           data-ar="الطابق الثاني، برج الجوهرة<br>القبلة، شارع علي السالم 26<br>مدينة الكويت، الكويت<br><br>ص.ب: 64400<br>الشويخ (ب) - الرمز 70454<br>دولة الكويت">
+                            2nd Floor, Al Jawhara Tower<br>
+                            Al Qibla, 26 Ali Al-Salem St<br>
+                            Kuwait City, Kuwait<br><br>
+                            P.O. Box: 64400<br>
+                            Shuwaikh (B) – Code 70454<br>
+                            STATE OF KUWAIT
+                        </p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">📞</div>
+                    <div class="info-content">
+                        <h3 data-en="Phone" data-ar="الهاتف">Phone</h3>
+                        <p>
+                            <a href="tel:+96522280742">+965 22280742</a> / 
+                            <a href="tel:+96522280743">22280743</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">✉️</div>
+                    <div class="info-content">
+                        <h3 data-en="Email" data-ar="البريد الإلكتروني">Email</h3>
+                        <p>
+                            <a href="mailto:info@sailshipping.net">info@sailshipping.net</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">🕐</div>
+                    <div class="info-content">
+                        <h3 data-en="Business Hours" data-ar="ساعات العمل">Business Hours</h3>
+                        <p data-en="Sunday - Thursday: 8:00 AM - 5:00 PM<br>Friday - Saturday: Closed" 
+                           data-ar="الأحد - الخميس: 8:00 صباحاً - 5:00 مساءً<br>الجمعة - السبت: مغلق">
+                            Sunday - Thursday: 8:00 AM - 5:00 PM<br>
+                            Friday - Saturday: Closed
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Google Map -->
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3476.8934668936385!2d47.97536887549754!3d29.37448965254831!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fcf9a7e0f7f9c2d%3A0x4f8f5e5c5f5f5f5f!2sAl%20Jawhara%20Tower!5e0!3m2!1sen!2seg!4v1705000000000!5m2!1sen!2seg"
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentLang = 'en';
+
+        function toggleLanguage() {
+            if (currentLang === 'en') {
+                changeLang('ar');
+            } else {
+                changeLang('en');
+            }
+        }
+
+        function changeLang(lang) {
+            const body = document.body;
+            const langText = document.getElementById('langText');
+            
+            currentLang = lang;
+            
+            if (lang === 'ar') {
+                body.setAttribute('dir', 'rtl');
+                langText.textContent = 'AR';
+                
+                document.querySelectorAll('[data-ar]').forEach(function(el) {
+                    const arText = el.getAttribute('data-ar');
+                    if (arText) {
+                        el.innerHTML = arText;
+                    }
+                });
+            } else {
+                body.setAttribute('dir', 'ltr');
+                langText.textContent = 'EN';
+                
+                document.querySelectorAll('[data-en]').forEach(function(el) {
+                    const enText = el.getAttribute('data-en');
+                    if (enText) {
+                        el.innerHTML = enText;
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
