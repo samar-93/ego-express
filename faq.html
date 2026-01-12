@@ -15,6 +15,11 @@
             font-family: 'Arial', sans-serif;
             overflow-x: hidden;
             background: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        body[dir="rtl"] {
+            font-family: 'Arial', 'Tajawal', sans-serif;
         }
 
         /* Navigation Bar */
@@ -76,6 +81,67 @@
             width: 100%;
             height: 3px;
             background: #FF3333;
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            z-index: 3000;
+            width: 50px;
+            height: 50px;
+            background: #FF3333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 51, 51, 0.4);
+        }
+
+        .lang-switcher:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 51, 51, 0.6);
+        }
+
+        .lang-text {
+            font-weight: 900;
+            font-size: 16px;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1500;
+            width: 65px;
+            height: 65px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-float svg {
+            width: 38px;
+            height: 38px;
+            fill: white;
         }
 
         /* Hero Section */
@@ -155,6 +221,11 @@
             font-size: 24px;
             color: #FF3333;
             margin-left: 20px;
+        }
+
+        body[dir="rtl"] .search-icon {
+            margin-left: 0;
+            margin-right: 20px;
         }
 
         .search-input {
@@ -280,6 +351,10 @@
             transition: background 0.3s;
         }
 
+        body[dir="rtl"] .faq-question {
+            flex-direction: row-reverse;
+        }
+
         .faq-item:hover .faq-question {
             background: #fff5f5;
         }
@@ -289,6 +364,11 @@
             font-weight: 700;
             color: #333;
             flex: 1;
+            text-align: left;
+        }
+
+        body[dir="rtl"] .faq-question h3 {
+            text-align: right;
         }
 
         .faq-icon {
@@ -318,6 +398,11 @@
             color: #666;
             line-height: 1.7;
             margin-bottom: 15px;
+            text-align: left;
+        }
+
+        body[dir="rtl"] .faq-answer p {
+            text-align: right;
         }
 
         .faq-answer p:last-child {
@@ -328,11 +413,20 @@
             margin: 15px 0 15px 20px;
         }
 
+        body[dir="rtl"] .faq-answer ul {
+            margin: 15px 20px 15px 0;
+        }
+
         .faq-answer li {
             font-size: 17px;
             color: #666;
             line-height: 1.7;
             margin-bottom: 8px;
+            text-align: left;
+        }
+
+        body[dir="rtl"] .faq-answer li {
+            text-align: right;
         }
 
         /* CTA Section */
@@ -414,6 +508,19 @@
         }
 
         /* Responsive */
+        @media (max-width: 1024px) {
+            .lang-switcher {
+                top: 85px;
+                right: 25px;
+                width: 45px;
+                height: 45px;
+            }
+
+            .lang-text {
+                font-size: 14px;
+            }
+        }
+
         @media (max-width: 768px) {
             .navbar {
                 padding: 15px 20px;
@@ -424,11 +531,34 @@
             }
 
             .navbar .nav-links {
-                gap: 20px;
+                gap: 15px;
             }
 
             .navbar .nav-links a {
-                font-size: 14px;
+                font-size: 13px;
+            }
+
+            .lang-switcher {
+                top: 75px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .lang-text {
+                font-size: 13px;
+            }
+
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .whatsapp-float svg {
+                width: 32px;
+                height: 32px;
             }
 
             .hero-section {
@@ -536,6 +666,17 @@
         }
 
         @media (max-width: 480px) {
+            .lang-switcher {
+                top: 70px;
+                right: 12px;
+                width: 38px;
+                height: 38px;
+            }
+
+            .lang-text {
+                font-size: 12px;
+            }
+
             .hero-content h1 {
                 font-size: 32px;
             }
@@ -554,25 +695,42 @@
         }
     </style>
 </head>
-<body>
+<body dir="ltr">
     <!-- Navigation -->
     <nav class="navbar">
         <a href="index.html" class="logo-link">
             <img src="https://i.postimg.cc/k5RM67Nt/logo-(2).png" alt="EGO Express">
         </a>
         <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="why-us.html">Why Us</a>
-    <a href="faq.html" class="active">FAQ</a>  
-    <a href="booking.html">Book Shipment</a>
-      </div>
+            <a href="index.html" data-en="Home" data-ar="الرئيسية">Home</a>
+            <a href="why-us.html" data-en="Why Us" data-ar="لماذا نحن">Why Us</a>
+            <a href="faq.html" class="active" data-en="FAQ" data-ar="الأسئلة">FAQ</a>
+            <a href="visit-us.html" data-en="Visit Us" data-ar="زورنا">Visit Us</a>
+            <a href="booking.html" data-en="Book Shipment" data-ar="احجز شحنة">Book Shipment</a>
+        </div>
     </nav>
+
+    <!-- Language Switcher Button -->
+    <div class="lang-switcher" onclick="toggleLanguage()">
+        <span class="lang-text" id="langText">EN</span>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/20100066625?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20your%20services" 
+       class="whatsapp-float" 
+       target="_blank" 
+       rel="noopener noreferrer">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16.002 0C7.164 0 0 7.162 0 16c0 2.848.753 5.521 2.065 7.832L.088 31.61l8.056-2.112A15.892 15.892 0 0016.002 32C24.838 32 32 24.838 32 16S24.838 0 16.002 0zm9.385 22.604c-.393 1.109-1.952 2.032-3.193 2.297-.847.177-1.952.318-5.671-1.218-4.766-1.969-7.845-6.783-8.083-7.095-.233-.312-1.904-2.533-1.904-4.831 0-2.298 1.205-3.43 1.632-3.897.427-.467.932-.583 1.243-.583.311 0 .622.005.893.017.286.013.668-.109.945.721.285.853.972 2.372 1.057 2.543.085.171.142.371.028.583-.114.212-.171.342-.34.525-.171.184-.359.41-.514.55-.171.155-.349.322-.15.634.199.301.884 1.458 1.898 2.361 1.306 1.163 2.408 1.524 2.75 1.695.342.171.542.142.74-.086.198-.228.849-.99 1.076-1.332.227-.342.454-.285.766-.171.312.114 1.982.935 2.324 1.105.342.171.57.256.654.398.085.142.085.82-.308 1.929z"/>
+        </svg>
+    </a>
 
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-content">
-            <h1>Frequently Asked Questions</h1>
-            <p>Find quick answers to common questions about shipping, pricing, and our services.</p>
+            <h1 data-en="Frequently Asked Questions" data-ar="الأسئلة الشائعة">Frequently Asked Questions</h1>
+            <p data-en="Find quick answers to common questions about shipping, pricing, and our services." 
+               data-ar="ابحث عن إجابات سريعة للأسئلة الشائعة حول الشحن والأسعار وخدماتنا.">Find quick answers to common questions about shipping, pricing, and our services.</p>
         </div>
     </section>
 
@@ -580,7 +738,10 @@
     <section class="search-section">
         <div class="search-container">
             <span class="search-icon">🔍</span>
-            <input type="text" class="search-input" id="searchInput" placeholder="Search for answers...">
+            <input type="text" class="search-input" id="searchInput" 
+                   data-placeholder-en="Search for answers..." 
+                   data-placeholder-ar="ابحث عن إجابات..."
+                   placeholder="Search for answers...">
         </div>
     </section>
 
@@ -589,23 +750,23 @@
         <div class="categories-grid">
             <div class="category-card active" onclick="showCategory('general')">
                 <div class="category-icon">📦</div>
-                <div class="category-title">General</div>
-                <div class="category-count">8 questions</div>
+                <div class="category-title" data-en="General" data-ar="عام">General</div>
+                <div class="category-count" data-en="8 questions" data-ar="8 أسئلة">8 questions</div>
             </div>
             <div class="category-card" onclick="showCategory('shipping')">
                 <div class="category-icon">🚚</div>
-                <div class="category-title">Shipping</div>
-                <div class="category-count">6 questions</div>
+                <div class="category-title" data-en="Shipping" data-ar="الشحن">Shipping</div>
+                <div class="category-count" data-en="6 questions" data-ar="6 أسئلة">6 questions</div>
             </div>
             <div class="category-card" onclick="showCategory('pricing')">
                 <div class="category-icon">💰</div>
-                <div class="category-title">Pricing</div>
-                <div class="category-count">5 questions</div>
+                <div class="category-title" data-en="Pricing" data-ar="الأسعار">Pricing</div>
+                <div class="category-count" data-en="5 questions" data-ar="5 أسئلة">5 questions</div>
             </div>
             <div class="category-card" onclick="showCategory('customs')">
                 <div class="category-icon">📋</div>
-                <div class="category-title">Customs</div>
-                <div class="category-count">4 questions</div>
+                <div class="category-title" data-en="Customs" data-ar="الجمارك">Customs</div>
+                <div class="category-count" data-en="4 questions" data-ar="4 أسئلة">4 questions</div>
             </div>
         </div>
     </section>
@@ -615,298 +776,321 @@
         <div class="faq-container">
             <!-- General Category -->
             <div class="faq-category" id="general">
-                <h2 class="faq-category-title">General Questions</h2>
+                <h2 class="faq-category-title" data-en="General Questions" data-ar="أسئلة عامة">General Questions</h2>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3>What is EGO Express?</h3>
+                        <h3 data-en="What is EGO Express?" data-ar="ما هو إيجو إكسبريس؟">What is EGO Express?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>EGO Express is a premier freight forwarding and logistics company specializing in door-to-door cargo transport between the UAE, Kuwait, and expanding to other regions. We handle everything from small packages to large commercial shipments with complete care and professionalism.</p>
+                        <p data-en="EGO Express is a premier freight forwarding and logistics company specializing in door-to-door cargo transport between the UAE, Kuwait, and expanding to other regions. We handle everything from small packages to large commercial shipments with complete care and professionalism." 
+                           data-ar="إيجو إكسبريس هي شركة رائدة في مجال الشحن واللوجستيات متخصصة في نقل البضائع من الباب إلى الباب بين الإمارات والكويت، ونتوسع إلى مناطق أخرى. نتعامل مع كل شيء من الطرود الصغيرة إلى الشحنات التجارية الكبيرة بعناية واحترافية كاملة.">EGO Express is a premier freight forwarding and logistics company specializing in door-to-door cargo transport between the UAE, Kuwait, and expanding to other regions. We handle everything from small packages to large commercial shipments with complete care and professionalism.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3>What areas do you serve?</h3>
+                        <h3 data-en="What areas do you serve?" data-ar="ما هي المناطق التي تخدمونها؟">What areas do you serve?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Currently, we offer services between:</p>
+                        <p data-en="Currently, we offer services between:" data-ar="حالياً، نقدم خدمات بين:">Currently, we offer services between:</p>
                         <ul>
-                            <li>All Emirates in the UAE (Dubai, Abu Dhabi, Sharjah, Ajman, RAK, Fujairah, UAQ)</li>
-                            <li>Kuwait</li>
-                            <li>Saudi Arabia (Coming Soon)</li>
+                            <li data-en="All Emirates in the UAE (Dubai, Abu Dhabi, Sharjah, Ajman, RAK, Fujairah, UAQ)" 
+                                data-ar="جميع إمارات الإمارات (دبي، أبوظبي، الشارقة، عجمان، رأس الخيمة، الفجيرة، أم القيوين)">All Emirates in the UAE (Dubai, Abu Dhabi, Sharjah, Ajman, RAK, Fujairah, UAQ)</li>
+                            <li data-en="Kuwait" data-ar="الكويت">Kuwait</li>
+                            <li data-en="Saudi Arabia (Coming Soon)" data-ar="السعودية (قريباً)">Saudi Arabia (Coming Soon)</li>
                         </ul>
-                        <p>We're continuously expanding our network to serve more destinations.</p>
+                        <p data-en="We're continuously expanding our network to serve more destinations." 
+                           data-ar="نحن نوسع شبكتنا باستمرار لخدمة المزيد من الوجهات.">We're continuously expanding our network to serve more destinations.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3>How do I book a shipment?</h3>
+                        <h3 data-en="How do I book a shipment?" data-ar="كيف أحجز شحنة؟">How do I book a shipment?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Booking is simple! Just visit our booking page, fill in your shipment details including origin, destination, cargo information, and upload photos. Our team will review your request and send you a customized quote within 1 hour.</p>
+                        <p data-en="Booking is simple! Just visit our booking page, fill in your shipment details including origin, destination, cargo information, and upload photos. Our team will review your request and send you a customized quote within 1 hour." 
+                           data-ar="الحجز بسيط! فقط قم بزيارة صفحة الحجز، املأ تفاصيل شحنتك بما في ذلك المنشأ والوجهة ومعلومات البضائع، وقم بتحميل الصور. سيقوم فريقنا بمراجعة طلبك وإرسال عرض أسعار مخصص خلال ساعة واحدة.">Booking is simple! Just visit our booking page, fill in your shipment details including origin, destination, cargo information, and upload photos. Our team will review your request and send you a customized quote within 1 hour.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3>How quickly can you pick up my cargo?</h3>
+                        <h3 data-en="How quickly can you pick up my cargo?" data-ar="كم من الوقت يستغرق استلام بضاعتي؟">How quickly can you pick up my cargo?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Once you confirm your booking, we can typically arrange pickup within 24-48 hours. For urgent shipments, same-day pickup may be available in select areas - please contact us to check availability.</p>
+                        <p data-en="Once you confirm your booking, we can typically arrange pickup within 24-48 hours. For urgent shipments, same-day pickup may be available in select areas - please contact us to check availability." 
+                           data-ar="بمجرد تأكيد حجزك، يمكننا عادة ترتيب الاستلام خلال 24-48 ساعة. للشحنات العاجلة، قد يكون الاستلام في نفس اليوم متاحاً في مناطق مختارة - يرجى الاتصال بنا للتحقق من التوفر.">Once you confirm your booking, we can typically arrange pickup within 24-48 hours. For urgent shipments, same-day pickup may be available in select areas - please contact us to check availability.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3>Do you provide packaging materials?</h3>
+                        <h3 data-en="Do you provide packaging materials?" data-ar="هل توفرون مواد التغليف؟">Do you provide packaging materials?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes! We offer professional packaging services including:</p>
+                        <p data-en="Yes! We offer professional packaging services including:" data-ar="نعم! نحن نقدم خدمات التغليف المهنية بما في ذلك:">Yes! We offer professional packaging services including:</p>
                         <ul>
-                            <li>Standard packaging (included free)</li>
-                            <li>Reinforced plastic wrap for extra protection</li>
-                            <li>Wooden crates for fragile or valuable items</li>
-                            <li>Bubble wrap and cushioning materials</li>
+                            <li data-en="Standard packaging (included free)" data-ar="التغليف القياسي (مجاناً)">Standard packaging (included free)</li>
+                            <li data-en="Reinforced plastic wrap for extra protection" data-ar="غلاف بلاستيكي معزز للحماية الإضافية">Reinforced plastic wrap for extra protection</li>
+                            <li data-en="Wooden crates for fragile or valuable items" data-ar="صناديق خشبية للأشياء الهشة أو القيمة">Wooden crates for fragile or valuable items</li>
+                            <li data-en="Bubble wrap and cushioning materials" data-ar="فقاعات الهواء ومواد التبطين">Bubble wrap and cushioning materials</li>
                         </ul>
-                        <p>Our team will recommend the best packaging solution for your specific cargo.</p>
+                        <p data-en="Our team will recommend the best packaging solution for your specific cargo." 
+                           data-ar="سيوصي فريقنا بأفضل حل تغليف لبضاعتك المحددة.">Our team will recommend the best packaging solution for your specific cargo.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3>Is my cargo insured?</h3>
+                        <h3 data-en="Is my cargo insured?" data-ar="هل بضاعتي مؤمنة؟">Is my cargo insured?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Absolutely! All shipments are fully insured from pickup to delivery. We offer comprehensive coverage to protect your cargo against loss, damage, or theft during transit. Additional insurance options are available for high-value items.</p>
+                        <p data-en="Absolutely! All shipments are fully insured from pickup to delivery. We offer comprehensive coverage to protect your cargo against loss, damage, or theft during transit. Additional insurance options are available for high-value items." 
+                           data-ar="بالتأكيد! جميع الشحنات مؤمنة بالكامل من الاستلام إلى التسليم. نحن نقدم تغطية شاملة لحماية بضاعتك ضد الفقدان أو التلف أو السرقة أثناء النقل. خيارات التأمين الإضافية متاحة للعناصر عالية القيمة.">Absolutely! All shipments are fully insured from pickup to delivery. We offer comprehensive coverage to protect your cargo against loss, damage, or theft during transit. Additional insurance options are available for high-value items.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3>Can I track my shipment?</h3>
+                        <h3 data-en="Can I track my shipment?" data-ar="هل يمكنني تتبع شحنتي؟">Can I track my shipment?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes! You'll receive a tracking number once your shipment is picked up. You can track your cargo in real-time and receive updates via SMS and email at every major milestone of the journey.</p>
+                        <p data-en="Yes! You'll receive a tracking number once your shipment is picked up. You can track your cargo in real-time and receive updates via SMS and email at every major milestone of the journey." 
+                           data-ar="نعم! ستتلقى رقم تتبع بمجرد استلام شحنتك. يمكنك تتبع بضاعتك في الوقت الفعلي وتلقي التحديثات عبر الرسائل النصية والبريد الإلكتروني في كل مرحلة رئيسية من الرحلة.">Yes! You'll receive a tracking number once your shipment is picked up. You can track your cargo in real-time and receive updates via SMS and email at every major milestone of the journey.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3>What if I need to change my delivery address?</h3>
+                        <h3 data-en="What if I need to change my delivery address?" data-ar="ماذا لو احتجت لتغيير عنوان التسليم؟">What if I need to change my delivery address?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Please contact us as soon as possible. Address changes can usually be accommodated if the shipment hasn't reached the final destination. Additional fees may apply depending on the new location and current shipment status.</p>
+                        <p data-en="Please contact us as soon as possible. Address changes can usually be accommodated if the shipment hasn't reached the final destination. Additional fees may apply depending on the new location and current shipment status." 
+                           data-ar="يرجى الاتصال بنا في أقرب وقت ممكن. يمكن عادة استيعاب تغييرات العنوان إذا لم تصل الشحنة إلى الوجهة النهائية. قد يتم تطبيق رسوم إضافية اعتماداً على الموقع الجديد وحالة الشحنة الحالية.">Please contact us as soon as possible. Address changes can usually be accommodated if the shipment hasn't reached the final destination. Additional fees may apply depending on the new location and current shipment status.</p>
                     </div>
                 </div>
             </div>
 
             <!-- Shipping Category -->
             <div class="faq-category" id="shipping" style="display: none;">
-                <h2 class="faq-category-title">Shipping Questions</h2>
+                <h2 class="faq-category-title" data-en="Shipping Questions" data-ar="أسئلة الشحن">Shipping Questions</h2>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3>How long does shipping take?</h3>
+                        <h3 data-en="How long does shipping take?" data-ar="كم من الوقت يستغرق الشحن؟">How long does shipping take?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Delivery times vary by route:</p>
+                        <p data-en="Delivery times vary by route:" data-ar="تختلف أوقات التسليم حسب المسار:">Delivery times vary by route:</p>
                         <ul>
-                            <li>UAE to Kuwait: 5-7 business days</li>
-                            <li>Within UAE: 2-3 business days</li>
-                            <li>Express service: Available for urgent shipments</li>
+                            <li data-en="UAE to Kuwait: 5-7 business days" data-ar="من الإمارات إلى الكويت: 5-7 أيام عمل">UAE to Kuwait: 5-7 business days</li>
+                            <li data-en="Within UAE: 2-3 business days" data-ar="داخل الإمارات: 2-3 أيام عمل">Within UAE: 2-3 business days</li>
+                            <li data-en="Express service: Available for urgent shipments" data-ar="الخدمة السريعة: متاحة للشحنات العاجلة">Express service: Available for urgent shipments</li>
                         </ul>
-                        <p>Actual delivery time depends on customs clearance and destination accessibility.</p>
+                        <p data-en="Actual delivery time depends on customs clearance and destination accessibility." 
+                           data-ar="يعتمد وقت التسليم الفعلي على التخليص الجمركي وإمكانية الوصول إلى الوجهة.">Actual delivery time depends on customs clearance and destination accessibility.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3>What items cannot be shipped?</h3>
+                        <h3 data-en="What items cannot be shipped?" data-ar="ما هي العناصر التي لا يمكن شحنها؟">What items cannot be shipped?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>We cannot ship prohibited items including:</p>
+                        <p data-en="We cannot ship prohibited items including:" data-ar="لا يمكننا شحن العناصر المحظورة بما في ذلك:">We cannot ship prohibited items including:</p>
                         <ul>
-                            <li>Illegal substances or contraband</li>
-                            <li>Weapons and ammunition</li>
-                            <li>Hazardous materials (without proper documentation)</li>
-                            <li>Perishable food items (case by case)</li>
-                            <li>Live animals</li>
+                            <li data-en="Illegal substances or contraband" data-ar="المواد غير القانونية أو المحظورات">Illegal substances or contraband</li>
+                            <li data-en="Weapons and ammunition" data-ar="الأسلحة والذخيرة">Weapons and ammunition</li>
+                            <li data-en="Hazardous materials (without proper documentation)" data-ar="المواد الخطرة (بدون التوثيق المناسب)">Hazardous materials (without proper documentation)</li>
+                            <li data-en="Perishable food items (case by case)" data-ar="المواد الغذائية القابلة للتلف (حالة بحالة)">Perishable food items (case by case)</li>
+                            <li data-en="Live animals" data-ar="الحيوانات الحية">Live animals</li>
                         </ul>
-                        <p>If you're unsure about an item, please contact us before booking.</p>
+                        <p data-en="If you're unsure about an item, please contact us before booking." 
+                           data-ar="إذا لم تكن متأكداً من عنصر ما، يرجى الاتصال بنا قبل الحجز.">If you're unsure about an item, please contact us before booking.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3>Do you handle fragile items?</h3>
+                        <h3 data-en="Do you handle fragile items?" data-ar="هل تتعاملون مع الأشياء الهشة؟">Do you handle fragile items?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes! We specialize in handling fragile and valuable items. Simply mark your shipment as fragile when booking, and we'll ensure special care including reinforced packaging, careful loading, and priority handling throughout transit.</p>
+                        <p data-en="Yes! We specialize in handling fragile and valuable items. Simply mark your shipment as fragile when booking, and we'll ensure special care including reinforced packaging, careful loading, and priority handling throughout transit." 
+                           data-ar="نعم! نحن متخصصون في التعامل مع الأشياء الهشة والقيمة. ببساطة قم بتمييز شحنتك على أنها هشة عند الحجز، وسنضمن عناية خاصة بما في ذلك التغليف المعزز والتحميل الدقيق والمعالجة ذات الأولوية طوال النقل.">Yes! We specialize in handling fragile and valuable items. Simply mark your shipment as fragile when booking, and we'll ensure special care including reinforced packaging, careful loading, and priority handling throughout transit.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3>Is there a weight or size limit?</h3>
+                        <h3 data-en="Is there a weight or size limit?" data-ar="هل هناك حد للوزن أو الحجم؟">Is there a weight or size limit?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>We can handle shipments of virtually any size! From small packages to large commercial cargo, furniture, and vehicles. For oversized or extremely heavy items, please provide detailed dimensions when booking so we can arrange appropriate equipment.</p>
+                        <p data-en="We can handle shipments of virtually any size! From small packages to large commercial cargo, furniture, and vehicles. For oversized or extremely heavy items, please provide detailed dimensions when booking so we can arrange appropriate equipment." 
+                           data-ar="يمكننا التعامل مع شحنات من أي حجم تقريباً! من الطرود الصغيرة إلى البضائع التجارية الكبيرة والأثاث والمركبات. للعناصر كبيرة الحجم أو الثقيلة للغاية، يرجى تقديم الأبعاد التفصيلية عند الحجز حتى نتمكن من ترتيب المعدات المناسبة.">We can handle shipments of virtually any size! From small packages to large commercial cargo, furniture, and vehicles. For oversized or extremely heavy items, please provide detailed dimensions when booking so we can arrange appropriate equipment.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3>Do you offer door-to-door service?</h3>
+                        <h3 data-en="Do you offer door-to-door service?" data-ar="هل تقدمون خدمة من الباب إلى الباب؟">Do you offer door-to-door service?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes! Complete door-to-door service is our specialty. We pick up from your location and deliver directly to the recipient's address. No need to visit depots or warehouses - we handle everything.</p>
+                        <p data-en="Yes! Complete door-to-door service is our specialty. We pick up from your location and deliver directly to the recipient's address. No need to visit depots or warehouses - we handle everything." 
+                           data-ar="نعم! الخدمة الكاملة من الباب إلى الباب هي تخصصنا. نقوم بالاستلام من موقعك والتسليم مباشرة إلى عنوان المستلم. لا حاجة لزيارة المستودعات أو المخازن - نحن نتعامل مع كل شيء.">Yes! Complete door-to-door service is our specialty. We pick up from your location and deliver directly to the recipient's address. No need to visit depots or warehouses - we handle everything.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3>Can I ship to a P.O. Box?</h3>
+                        <h3 data-en="Can I ship to a P.O. Box?" data-ar="هل يمكنني الشحن إلى صندوق بريد؟">Can I ship to a P.O. Box?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>For large cargo shipments, we require a physical address for delivery. However, for smaller packages and documents, P.O. Box delivery may be available in certain areas. Please specify when booking.</p>
+                        <p data-en="For large cargo shipments, we require a physical address for delivery. However, for smaller packages and documents, P.O. Box delivery may be available in certain areas. Please specify when booking." 
+                           data-ar="بالنسبة لشحنات البضائع الكبيرة، نحتاج إلى عنوان فعلي للتسليم. ومع ذلك، بالنسبة للطرود الصغيرة والمستندات، قد يكون التسليم إلى صندوق البريد متاحاً في مناطق معينة. يرجى التحديد عند الحجز.">For large cargo shipments, we require a physical address for delivery. However, for smaller packages and documents, P.O. Box delivery may be available in certain areas. Please specify when booking.</p>
                     </div>
                 </div>
             </div>
 
             <!-- Pricing Category -->
             <div class="faq-category" id="pricing" style="display: none;">
-                <h2 class="faq-category-title">Pricing Questions</h2>
+                <h2 class="faq-category-title" data-en="Pricing Questions" data-ar="أسئلة الأسعار">Pricing Questions</h2>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3>How is shipping cost calculated?</h3>
+                        <h3 data-en="How is shipping cost calculated?" data-ar="كيف يتم حساب تكلفة الشحن؟">How is shipping cost calculated?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Shipping costs are based on several factors:</p>
+                        <p data-en="Shipping costs are based on several factors:" data-ar="تعتمد تكاليف الشحن على عدة عوامل:">Shipping costs are based on several factors:</p>
                         <ul>
-                            <li>Weight and volume of cargo</li>
-                            <li>Origin and destination locations</li>
-                            <li>Type of goods being shipped</li>
-                            <li>Packaging requirements</li>
-                            <li>Speed of delivery (standard or express)</li>
+                            <li data-en="Weight and volume of cargo" data-ar="وزن وحجم البضائع">Weight and volume of cargo</li>
+                            <li data-en="Origin and destination locations" data-ar="مواقع المنشأ والوجهة">Origin and destination locations</li>
+                            <li data-en="Type of goods being shipped" data-ar="نوع البضائع التي يتم شحنها">Type of goods being shipped</li>
+                            <li data-en="Packaging requirements" data-ar="متطلبات التغليف">Packaging requirements</li>
+                            <li data-en="Speed of delivery (standard or express)" data-ar="سرعة التسليم (قياسية أو سريعة)">Speed of delivery (standard or express)</li>
                         </ul>
-                        <p>We provide transparent, detailed quotes with no hidden fees.</p>
+                        <p data-en="We provide transparent, detailed quotes with no hidden fees." 
+                           data-ar="نحن نقدم عروض أسعار شفافة ومفصلة بدون رسوم مخفية.">We provide transparent, detailed quotes with no hidden fees.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3>Are there any hidden fees?</h3>
+                        <h3 data-en="Are there any hidden fees?" data-ar="هل هناك أي رسوم مخفية؟">Are there any hidden fees?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Never! We believe in complete transparency. Your quote includes all costs: pickup, transport, packaging, insurance, and delivery. The only additional charges would be for optional services you choose or unexpected customs duties.</p>
+                        <p data-en="Never! We believe in complete transparency. Your quote includes all costs: pickup, transport, packaging, insurance, and delivery. The only additional charges would be for optional services you choose or unexpected customs duties." 
+                           data-ar="أبداً! نحن نؤمن بالشفافية الكاملة. عرض الأسعار الخاص بك يشمل جميع التكاليف: الاستلام والنقل والتغليف والتأمين والتسليم. الرسوم الإضافية الوحيدة ستكون للخدمات الاختيارية التي تختارها أو الرسوم الجمركية غير المتوقعة.">Never! We believe in complete transparency. Your quote includes all costs: pickup, transport, packaging, insurance, and delivery. The only additional charges would be for optional services you choose or unexpected customs duties.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3>Do I pay before or after shipping?</h3>
+                        <h3 data-en="Do I pay before or after shipping?" data-ar="هل أدفع قبل أو بعد الشحن؟">Do I pay before or after shipping?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Payment terms are flexible. Typically, we require 50% deposit upon booking confirmation and the remaining 50% before final delivery. For regular corporate clients, we offer credit terms. Cash on delivery options may be available.</p>
+                        <p data-en="Payment terms are flexible. Typically, we require 50% deposit upon booking confirmation and the remaining 50% before final delivery. For regular corporate clients, we offer credit terms. Cash on delivery options may be available." 
+                           data-ar="شروط الدفع مرنة. عادة، نطلب إيداع 50٪ عند تأكيد الحجز والـ 50٪ المتبقية قبل التسليم النهائي. بالنسبة للعملاء المؤسسيين المنتظمين، نقدم شروط ائتمانية. قد تكون خيارات الدفع عند الاستلام متاحة.">Payment terms are flexible. Typically, we require 50% deposit upon booking confirmation and the remaining 50% before final delivery. For regular corporate clients, we offer credit terms. Cash on delivery options may be available.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3>What payment methods do you accept?</h3>
+                        <h3 data-en="What payment methods do you accept?" data-ar="ما هي طرق الدفع التي تقبلونها؟">What payment methods do you accept?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>We accept various payment methods for your convenience:</p>
+                        <p data-en="We accept various payment methods for your convenience:" data-ar="نحن نقبل طرق دفع مختلفة لراحتك:">We accept various payment methods for your convenience:</p>
                         <ul>
-                            <li>Bank transfers</li>
-                            <li>Credit/Debit cards</li>
-                            <li>Cash payments</li>
-                            <li>Online payment platforms</li>
+                            <li data-en="Bank transfers" data-ar="التحويلات البنكية">Bank transfers</li>
+                            <li data-en="Credit/Debit cards" data-ar="بطاقات الائتمان/الخصم">Credit/Debit cards</li>
+                            <li data-en="Cash payments" data-ar="الدفع نقداً">Cash payments</li>
+                            <li data-en="Online payment platforms" data-ar="منصات الدفع عبر الإنترنت">Online payment platforms</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3>Do you offer discounts for bulk shipments?</h3>
+                        <h3 data-en="Do you offer discounts for bulk shipments?" data-ar="هل تقدمون خصومات للشحنات الكبيرة؟">Do you offer discounts for bulk shipments?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes! We offer competitive rates for regular customers and bulk shipments. If you ship frequently or have large volume requirements, contact us to discuss customized pricing packages tailored to your needs.</p>
+                        <p data-en="Yes! We offer competitive rates for regular customers and bulk shipments. If you ship frequently or have large volume requirements, contact us to discuss customized pricing packages tailored to your needs." 
+                           data-ar="نعم! نحن نقدم أسعاراً تنافسية للعملاء المنتظمين والشحنات الكبيرة. إذا كنت تشحن بشكل متكرر أو لديك متطلبات حجم كبيرة، اتصل بنا لمناقشة حزم التسعير المخصصة التي تناسب احتياجاتك.">Yes! We offer competitive rates for regular customers and bulk shipments. If you ship frequently or have large volume requirements, contact us to discuss customized pricing packages tailored to your needs.</p>
                     </div>
                 </div>
             </div>
 
             <!-- Customs Category -->
             <div class="faq-category" id="customs" style="display: none;">
-                <h2 class="faq-category-title">Customs & Documentation</h2>
+                <h2 class="faq-category-title" data-en="Customs & Documentation" data-ar="الجمارك والمستندات">Customs & Documentation</h2>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3>Do you handle customs clearance?</h3>
+                        <h3 data-en="Do you handle customs clearance?" data-ar="هل تتولون التخليص الجمركي؟">Do you handle customs clearance?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Absolutely! Our experienced customs brokerage team handles all customs documentation and clearance procedures. We ensure your shipment complies with all regulations and moves through customs smoothly and quickly.</p>
+                        <p data-en="Absolutely! Our experienced customs brokerage team handles all customs documentation and clearance procedures. We ensure your shipment complies with all regulations and moves through customs smoothly and quickly." 
+                           data-ar="بالتأكيد! يتولى فريق الوساطة الجمركية ذو الخبرة لدينا جميع وثائق الجمارك وإجراءات التخليص. نحن نضمن أن شحنتك تتوافق مع جميع اللوائح وتتحرك عبر الجمارك بسلاسة وسرعة.">Absolutely! Our experienced customs brokerage team handles all customs documentation and clearance procedures. We ensure your shipment complies with all regulations and moves through customs smoothly and quickly.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3>What documents do I need to provide?</h3>
+                        <h3 data-en="What documents do I need to provide?" data-ar="ما هي المستندات التي أحتاج إلى تقديمها؟">What documents do I need to provide?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Common documents required include:</p>
+                        <p data-en="Common documents required include:" data-ar="تشمل المستندات الشائعة المطلوبة:">Common documents required include:</p>
                         <ul>
-                            <li>Commercial Invoice (for commercial goods)</li>
-                            <li>Packing List</li>
-                            <li>Certificate of Origin (if applicable)</li>
-                            <li>Copy of passport/Emirates ID</li>
+                            <li data-en="Commercial Invoice (for commercial goods)" data-ar="الفاتورة التجارية (للبضائع التجارية)">Commercial Invoice (for commercial goods)</li>
+                            <li data-en="Packing List" data-ar="قائمة التعبئة">Packing List</li>
+                            <li data-en="Certificate of Origin (if applicable)" data-ar="شهادة المنشأ (إذا كانت قابلة للتطبيق)">Certificate of Origin (if applicable)</li>
+                            <li data-en="Copy of passport/Emirates ID" data-ar="نسخة من جواز السفر/الهوية الإماراتية">Copy of passport/Emirates ID</li>
                         </ul>
-                        <p>Our team will guide you on specific requirements based on your shipment type.</p>
+                        <p data-en="Our team will guide you on specific requirements based on your shipment type." 
+                           data-ar="سيوجهك فريقنا بشأن المتطلبات المحددة بناءً على نوع شحنتك.">Our team will guide you on specific requirements based on your shipment type.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3>Who pays customs duties?</h3>
+                        <h3 data-en="Who pays customs duties?" data-ar="من يدفع الرسوم الجمركية؟">Who pays customs duties?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Customs duties are typically paid by the recipient unless otherwise arranged. We'll inform you of estimated duties during the quote process. You can choose to pay duties upfront or have the recipient pay upon delivery.</p>
+                        <p data-en="Customs duties are typically paid by the recipient unless otherwise arranged. We'll inform you of estimated duties during the quote process. You can choose to pay duties upfront or have the recipient pay upon delivery." 
+                           data-ar="عادة ما يدفع المستلم الرسوم الجمركية ما لم يتم الترتيب بخلاف ذلك. سنبلغك بالرسوم المقدرة أثناء عملية عرض الأسعار. يمكنك اختيار دفع الرسوم مقدماً أو جعل المستلم يدفع عند التسليم.">Customs duties are typically paid by the recipient unless otherwise arranged. We'll inform you of estimated duties during the quote process. You can choose to pay duties upfront or have the recipient pay upon delivery.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3>How long does customs clearance take?</h3>
+                        <h3 data-en="How long does customs clearance take?" data-ar="كم من الوقت يستغرق التخليص الجمركي؟">How long does customs clearance take?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>With proper documentation, customs clearance typically takes 1-3 business days. However, this can vary based on the type of goods, destination country regulations, and customs inspection requirements. We monitor the process closely and keep you updated.</p>
+                        <p data-en="With proper documentation, customs clearance typically takes 1-3 business days. However, this can vary based on the type of goods, destination country regulations, and customs inspection requirements. We monitor the process closely and keep you updated." 
+                           data-ar="مع التوثيق المناسب، يستغرق التخليص الجمركي عادةً 1-3 أيام عمل. ومع ذلك، يمكن أن يختلف هذا بناءً على نوع البضائع ولوائح بلد الوجهة ومتطلبات التفتيش الجمركي. نحن نراقب العملية عن كثب ونبقيك على اطلاع.">With proper documentation, customs clearance typically takes 1-3 business days. However, this can vary based on the type of goods, destination country regulations, and customs inspection requirements. We monitor the process closely and keep you updated.</p>
                     </div>
                 </div>
             </div>
@@ -916,16 +1100,70 @@
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="cta-content">
-            <h2>Still Have <span class="red">Questions?</span></h2>
-            <p>Our customer support team is ready to help you with any questions or concerns.</p>
+            <h2 data-en="Still Have Questions?" data-ar="لا تزال لديك أسئلة؟">Still Have <span class="red" data-en="Questions?" data-ar="أسئلة؟">Questions?</span></h2>
+            <p data-en="Our customer support team is ready to help you with any questions or concerns." 
+               data-ar="فريق دعم العملاء لدينا جاهز لمساعدتك في أي أسئلة أو مخاوف.">Our customer support team is ready to help you with any questions or concerns.</p>
             <div class="cta-buttons">
-                <a href="booking.html" class="btn-cta">Book Your Shipment</a>
-                <a href="why-us.html" class="btn-secondary">Learn More About Us</a>
+                <a href="booking.html" class="btn-cta" data-en="Book Your Shipment" data-ar="احجز شحنتك">Book Your Shipment</a>
+                <a href="why-us.html" class="btn-secondary" data-en="Learn More About Us" data-ar="تعرف علينا أكثر">Learn More About Us</a>
             </div>
         </div>
     </section>
 
     <script>
+        let currentLang = 'en';
+
+        function toggleLanguage() {
+            if (currentLang === 'en') {
+                changeLang('ar');
+            } else {
+                changeLang('en');
+            }
+        }
+
+        function changeLang(lang) {
+            const body = document.body;
+            const langText = document.getElementById('langText');
+            const searchInput = document.getElementById('searchInput');
+            
+            currentLang = lang;
+            
+            if (lang === 'ar') {
+                body.setAttribute('dir', 'rtl');
+                langText.textContent = 'AR';
+                searchInput.placeholder = searchInput.getAttribute('data-placeholder-ar');
+                
+                document.querySelectorAll('[data-ar]').forEach(function(el) {
+                    const arText = el.getAttribute('data-ar');
+                    if (arText) {
+                        if (el.innerHTML.includes('<span')) {
+                            // For elements with nested spans
+                            const tempDiv = document.createElement('div');
+                            tempDiv.innerHTML = arText;
+                            el.innerHTML = arText;
+                        } else {
+                            el.innerHTML = arText;
+                        }
+                    }
+                });
+            } else {
+                body.setAttribute('dir', 'ltr');
+                langText.textContent = 'EN';
+                searchInput.placeholder = searchInput.getAttribute('data-placeholder-en');
+                
+                document.querySelectorAll('[data-en]').forEach(function(el) {
+                    const enText = el.getAttribute('data-en');
+                    if (enText) {
+                        if (el.innerHTML.includes('<span')) {
+                            el.innerHTML = enText;
+                        } else {
+                            el.innerHTML = enText;
+                        }
+                    }
+                });
+            }
+        }
+
         function toggleFAQ(element) {
             const wasActive = element.classList.contains('active');
             
