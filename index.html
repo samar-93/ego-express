@@ -14,6 +14,11 @@
         body {
             font-family: 'Arial', sans-serif;
             overflow-x: hidden;
+            transition: all 0.3s ease;
+        }
+
+        body[dir="rtl"] {
+            font-family: 'Arial', 'Tajawal', sans-serif;
         }
 
         /* Navigation Bar */
@@ -30,6 +35,7 @@
             backdrop-filter: blur(10px);
             z-index: 2000;
             box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s;
         }
 
         .navbar .logo-nav {
@@ -46,6 +52,12 @@
 
         .navbar .logo-nav:hover img {
             transform: scale(1.05);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 40px;
         }
 
         .navbar .nav-links {
@@ -77,6 +89,37 @@
             background: #FF3333;
         }
 
+        /* Language Switcher */
+        .lang-switcher {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            z-index: 3000;
+            width: 50px;
+            height: 50px;
+            background: #FF3333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 51, 51, 0.4);
+        }
+
+        .lang-switcher:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 51, 51, 0.6);
+        }
+
+        .lang-text {
+            font-weight: 900;
+            font-size: 16px;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
         /* Hero Section with Video */
         .hero-section {
             position: relative;
@@ -103,9 +146,75 @@
             box-shadow: 0 5px 15px rgba(255,51,51,0.3);
         }
 
+        body[dir="rtl"] .btn-booking {
+            right: auto;
+            left: 40px;
+        }
+
         .btn-booking:hover {
             transform: translateY(-50%) translateY(-3px);
             box-shadow: 0 8px 25px rgba(255,51,51,0.4);
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1500;
+            width: 65px;
+            height: 65px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        body[dir="rtl"] .whatsapp-float {
+            right: auto;
+            left: 30px;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-float svg {
+            width: 38px;
+            height: 38px;
+            fill: white;
+        }
+
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 80px;
+            background: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+
+        body[dir="rtl"] .whatsapp-tooltip {
+            right: auto;
+            left: 80px;
+        }
+
+        .whatsapp-float:hover .whatsapp-tooltip {
+            opacity: 1;
+            visibility: visible;
         }
 
         /* Fixed Video Background */
@@ -126,6 +235,10 @@
             height: 100vh;
             transform: translate(-50%, -50%);
             pointer-events: none;
+        }
+
+        body[dir="rtl"] .hero-video-container iframe {
+            transform: translate(-50%, -50%) scaleX(-1);
         }
 
         @media (min-aspect-ratio: 16/9) {
@@ -161,6 +274,11 @@
             animation: slideUp 1.2s ease-out 0.3s forwards;
         }
 
+        body[dir="rtl"] .logo {
+            left: auto;
+            right: 100px;
+        }
+
         .logo img {
             height: 180px;
             width: auto;
@@ -190,6 +308,12 @@
             margin-top: 200px;
             opacity: 0;
             animation: slideUp 1.2s ease-out 0.6s forwards;
+        }
+
+        body[dir="rtl"] .hero-content {
+            left: auto;
+            right: 100px;
+            text-align: right;
         }
 
         .hero-content h2 {
@@ -241,11 +365,19 @@
             text-align: left;
         }
 
+        body[dir="rtl"] .about-text h2 {
+            text-align: right;
+        }
+
         .about-description {
             font-size: 19px;
             line-height: 1.7;
             color: #FF3333;
             text-align: left;
+        }
+
+        body[dir="rtl"] .about-description {
+            text-align: right;
         }
 
         /* Services Section */
@@ -291,6 +423,11 @@
             text-align: left;
         }
 
+        body[dir="rtl"] .service-card {
+            text-align: right;
+            flex-direction: row-reverse;
+        }
+
         .service-icon {
             font-size: 70px;
             flex-shrink: 0;
@@ -305,11 +442,19 @@
             text-align: left;
         }
 
+        body[dir="rtl"] .service-content h3 {
+            text-align: right;
+        }
+
         .service-content p {
             font-size: 17px;
             color: white;
             line-height: 1.6;
             text-align: left;
+        }
+
+        body[dir="rtl"] .service-content p {
+            text-align: right;
         }
 
         /* Responsive Design */
@@ -322,16 +467,53 @@
                 height: 45px;
             }
 
+            .nav-right {
+                gap: 20px;
+            }
+
+            .navbar .nav-links {
+                gap: 20px;
+            }
+
             .btn-booking {
                 right: 20px;
                 padding: 12px 28px;
                 font-size: 16px;
             }
 
+            body[dir="rtl"] .btn-booking {
+                left: 20px;
+            }
+
+            .lang-switcher {
+                top: 85px;
+                right: 25px;
+                width: 45px;
+                height: 45px;
+            }
+
+            .lang-text {
+                font-size: 14px;
+            }
+
+            .whatsapp-float {
+                width: 60px;
+                height: 60px;
+                bottom: 25px;
+                right: 25px;
+            }
+
+            body[dir="rtl"] .whatsapp-float {
+                left: 25px;
+            }
+
             .logo {
                 left: 40px;
-                transform: translateY(-50%);
                 margin-bottom: 350px;
+            }
+
+            body[dir="rtl"] .logo {
+                right: 40px;
             }
 
             .logo img {
@@ -343,6 +525,10 @@
                 left: 40px;
                 max-width: calc(100% - 80px);
                 margin-top: 150px;
+            }
+
+            body[dir="rtl"] .hero-content {
+                right: 40px;
             }
 
             .hero-content h2 {
@@ -392,12 +578,28 @@
                 height: 38px;
             }
 
+            .nav-right {
+                gap: 15px;
+            }
+
             .navbar .nav-links {
-                gap: 20px;
+                gap: 15px;
             }
 
             .navbar .nav-links a {
-                font-size: 14px;
+                font-size: 13px;
+            }
+
+            .lang-switcher {
+                padding: 6px 12px;
+            }
+
+            .lang-flag {
+                font-size: 16px;
+            }
+
+            .lang-text {
+                font-size: 12px;
             }
 
             .btn-booking {
@@ -414,37 +616,68 @@
                 transform: translateY(-3px);
             }
 
+            .lang-switcher {
+                top: 75px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .lang-text {
+                font-size: 13px;
+            }
+
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            body[dir="rtl"] .whatsapp-float {
+                left: 20px;
+            }
+
+            .whatsapp-float svg {
+                width: 32px;
+                height: 32px;
+            }
+
+            .whatsapp-tooltip {
+                display: none;
+            }
+
             .logo {
                 left: 20px;
-                transform: translateY(-50%);
                 margin-bottom: 300px;
-                text-align: left;
+            }
+
+            body[dir="rtl"] .logo {
+                right: 20px;
             }
 
             .logo img {
                 height: 110px;
                 max-width: 280px;
-                margin: 0;
             }
 
             .hero-content {
                 left: 20px;
-                right: auto;
                 max-width: calc(100% - 40px);
                 top: 45%;
                 margin-top: 160px;
-                text-align: left;
+            }
+
+            body[dir="rtl"] .hero-content {
+                right: 20px;
             }
 
             .hero-content h2 {
                 font-size: 11px;
-                margin-bottom: 15px;
-                text-align: left;
             }
 
             .hero-content h1 {
                 font-size: 32px;
-                text-align: left;
             }
 
             .about-section,
@@ -454,17 +687,14 @@
 
             .about-text h2 {
                 font-size: 32px;
-                text-align: center;
             }
 
             .about-description {
                 font-size: 15px;
-                text-align: center;
             }
 
             .services-header h2 {
                 font-size: 36px;
-                margin-bottom: 20px;
             }
 
             .services-header p {
@@ -473,15 +703,16 @@
 
             .service-card {
                 flex-direction: column;
-                gap: 15px;
                 text-align: center;
                 align-items: center;
             }
 
+            body[dir="rtl"] .service-card {
+                flex-direction: column;
+            }
+
             .service-content h3,
-            .service-content p,
-            .about-text h2,
-            .about-description {
+            .service-content p {
                 text-align: center;
             }
 
@@ -501,8 +732,11 @@
         @media (max-width: 480px) {
             .logo {
                 left: 15px;
-                transform: translateY(-50%);
                 margin-bottom: 260px;
+            }
+
+            body[dir="rtl"] .logo {
+                right: 15px;
             }
 
             .logo img {
@@ -512,25 +746,24 @@
 
             .hero-content {
                 left: 15px;
-                right: auto;
-                transform: translateY(-50%);
                 max-width: calc(100% - 30px);
                 margin-top: 140px;
-                text-align: left;
+            }
+
+            body[dir="rtl"] .hero-content {
+                right: 15px;
             }
 
             .hero-content h2 {
                 font-size: 10px;
-                letter-spacing: 1px;
-                text-align: left;
             }
 
             .hero-content h1 {
                 font-size: 26px;
-                text-align: left;
             }
 
-            .about-section {
+            .about-section,
+            .services-section {
                 padding: 40px 15px;
             }
 
@@ -542,24 +775,12 @@
                 font-size: 14px;
             }
 
-            .services-section {
-                padding: 40px 15px;
-            }
-
             .services-header h2 {
                 font-size: 28px;
             }
 
             .services-header p {
                 font-size: 14px;
-            }
-
-            .services-grid {
-                gap: 35px;
-            }
-
-            .service-icon {
-                font-size: 50px;
             }
 
             .service-content h3 {
@@ -572,23 +793,30 @@
         }
     </style>
 </head>
-<body>
+<body dir="ltr">
     <!-- Navigation -->
     <nav class="navbar">
         <a href="index.html" class="logo-nav">
             <img src="https://i.postimg.cc/k5RM67Nt/logo-(2).png" alt="EGO Express">
         </a>
-        <div class="nav-links">
-    <a href="index.html" class="active">Home</a> 
-    <a href="why-us.html">Why Us</a>
-    <a href="faq.html">FAQ</a>
-    <a href="booking.html">Book Shipment</a>
-    </div>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="index.html" class="active" data-en="Home" data-ar="الرئيسية">Home</a>
+                <a href="why-us.html" data-en="Why Us" data-ar="لماذا نحن">Why Us</a>
+                <a href="faq.html" data-en="FAQ" data-ar="الأسئلة">FAQ</a>
+				<a href="visit-us.html" data-en="Visit Us" data-ar="زورنا">Visit Us</a>
+                <a href="booking.html" data-en="Book Shipment" data-ar="احجز شحنة">Book Shipment</a>
+            </div>
+        </div>
     </nav>
+
+    <!-- Language Switcher Button -->
+    <div class="lang-switcher" onclick="toggleLanguage()">
+        <span class="lang-text" id="langText">EN</span>
+    </div>
 
     <!-- Hero Section with Vimeo Video Background -->
     <section class="hero-section">
-        <!-- Vimeo Background Video -->
         <div class="hero-video-container">
             <iframe 
                 src="https://player.vimeo.com/video/1152546989?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
@@ -600,20 +828,30 @@
         
         <div class="hero-overlay"></div>
         
-        <!-- Booking Button -->
-        <a href="booking.html" class="btn-booking">Book Your Shipment</a>
+        <a href="booking.html" class="btn-booking" data-en="Book Your Shipment" data-ar="احجز شحنتك">Book Your Shipment</a>
 
-        <!-- Logo -->
+        <!-- WhatsApp Floating Button -->
+        <a href="https://wa.me/20100066625?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20your%20services" 
+           class="whatsapp-float" 
+           target="_blank" 
+           rel="noopener noreferrer">
+            <span class="whatsapp-tooltip" data-en="Chat with us on WhatsApp" data-ar="تواصل معنا عبر واتساب">Chat with us on WhatsApp</span>
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.002 0C7.164 0 0 7.162 0 16c0 2.848.753 5.521 2.065 7.832L.088 31.61l8.056-2.112A15.892 15.892 0 0016.002 32C24.838 32 32 24.838 32 16S24.838 0 16.002 0zm9.385 22.604c-.393 1.109-1.952 2.032-3.193 2.297-.847.177-1.952.318-5.671-1.218-4.766-1.969-7.845-6.783-8.083-7.095-.233-.312-1.904-2.533-1.904-4.831 0-2.298 1.205-3.43 1.632-3.897.427-.467.932-.583 1.243-.583.311 0 .622.005.893.017.286.013.668-.109.945.721.285.853.972 2.372 1.057 2.543.085.171.142.371.028.583-.114.212-.171.342-.34.525-.171.184-.359.41-.514.55-.171.155-.349.322-.15.634.199.301.884 1.458 1.898 2.361 1.306 1.163 2.408 1.524 2.75 1.695.342.171.542.142.74-.086.198-.228.849-.99 1.076-1.332.227-.342.454-.285.766-.171.312.114 1.982.935 2.324 1.105.342.171.57.256.654.398.085.142.085.82-.308 1.929z"/>
+            </svg>
+        </a>
+
         <div class="logo">
             <img src="https://i.postimg.cc/k5RM67Nt/logo-(2).png" alt="EGO Express Logo">
         </div>
 
-        <!-- Hero Content -->
         <div class="hero-content">
-            <h2>SIMPLIFYING GLOBAL TRADE</h2>
+            <h2 data-en="SIMPLIFYING GLOBAL TRADE" data-ar="تبسيط التجارة العالمية">SIMPLIFYING GLOBAL TRADE</h2>
             <h1>
-                <span class="red">Your</span> <span class="black">Freight,</span><br>
-                <span class="black">Our</span> <span class="red">Focus</span>
+                <span class="red" data-en="Your" data-ar="شحنتك">Your</span> 
+                <span class="black" data-en="Freight," data-ar="،">Freight,</span><br>
+                <span class="black" data-en="Our" data-ar="هي">Our</span> 
+                <span class="red" data-en="Focus" data-ar="اولوياتنا">Focus</span>
             </h1>
         </div>
     </section>
@@ -622,10 +860,11 @@
     <section class="about-section">
         <div class="about-content">
             <div class="about-text">
-                <h2>Seamless<br>Global Logistics</h2>
+                <h2 data-en="Seamless<br>Global Logistics" data-ar="لوجستيات عالمية<br>متكاملة">Seamless<br>Global Logistics</h2>
             </div>
             <div class="about-description">
-                <p>We manage the complexity of international transport, offering reliable, end-to-end freight solutions across air, sea, and land. We are connecting the world, one shipment at a time.</p>
+                <p data-en="We manage the complexity of international transport, offering reliable, end-to-end freight solutions across air, sea, and land. We are connecting the world, one shipment at a time." 
+                   data-ar="نحن ندير تعقيدات النقل الدولي، ونقدم حلول شحن موثوقة من البداية إلى النهاية عبر الجو والبحر والبر. نحن نربط العالم، شحنة واحدة في كل مرة.">We manage the complexity of international transport, offering reliable, end-to-end freight solutions across air, sea, and land. We are connecting the world, one shipment at a time.</p>
             </div>
         </div>
     </section>
@@ -633,47 +872,104 @@
     <!-- Services Section -->
     <section class="services-section">
         <div class="services-header">
-            <h2>Services We Offer</h2>
-            <p>Our comprehensive logistics services integrate the best of global transport.</p>
+            <h2 data-en="Services We Offer" data-ar="خدماتنا">Services We Offer</h2>
+            <p data-en="Our comprehensive logistics services integrate the best of global transport." 
+               data-ar="خدماتنا اللوجستية الشاملة تدمج أفضل ما في النقل العالمي.">Our comprehensive logistics services integrate the best of global transport.</p>
         </div>
 
         <div class="services-grid">
-            <!-- Cargo Transport -->
             <div class="service-card">
                 <div class="service-icon">🚚</div>
                 <div class="service-content">
-                    <h3>CARGO TRANSPORT</h3>
-                    <p>We provide comprehensive, end-to-end movement for goods of any size and scale.</p>
+                    <h3 data-en="CARGO TRANSPORT" data-ar="نقل البضائع">CARGO TRANSPORT</h3>
+                    <p data-en="We provide comprehensive, end-to-end movement for goods of any size and scale." 
+                       data-ar="نقدم خدمة نقل شاملة من البداية إلى النهاية للبضائع بأي حجم ومقياس.">We provide comprehensive, end-to-end movement for goods of any size and scale.</p>
                 </div>
             </div>
 
-            <!-- Customs Brokerage -->
             <div class="service-card">
                 <div class="service-icon">📋</div>
                 <div class="service-content">
-                    <h3>CUSTOMS BROKERAGE</h3>
-                    <p>We offer proactive, technology-driven customs clearance solutions that reduce processing time.</p>
+                    <h3 data-en="CUSTOMS BROKERAGE" data-ar="التخليص الجمركي">CUSTOMS BROKERAGE</h3>
+                    <p data-en="We offer proactive, technology-driven customs clearance solutions that reduce processing time." 
+                       data-ar="نقدم حلول تخليص جمركي استباقية مدعومة بالتكنولوجيا تقلل من وقت المعالجة.">We offer proactive, technology-driven customs clearance solutions that reduce processing time.</p>
                 </div>
             </div>
 
-            <!-- Warehousing -->
             <div class="service-card">
                 <div class="service-icon">🏭</div>
                 <div class="service-content">
-                    <h3>WAREHOUSING</h3>
-                    <p>We provide secure, strategic, and scalable warehousing solutions worldwide.</p>
+                    <h3 data-en="WAREHOUSING" data-ar="التخزين">WAREHOUSING</h3>
+                    <p data-en="We provide secure, strategic, and scalable warehousing solutions worldwide." 
+                       data-ar="نقدم حلول تخزين آمنة واستراتيجية وقابلة للتوسع في جميع أنحاء العالم.">We provide secure, strategic, and scalable warehousing solutions worldwide.</p>
                 </div>
             </div>
 
-            <!-- Supply Chain Management -->
             <div class="service-card">
                 <div class="service-icon">📦</div>
                 <div class="service-content">
-                    <h3>SUPPLY CHAIN MANAGEMENT</h3>
-                    <p>We are dedicated to transforming your end-to-end global operations.</p>
+                    <h3 data-en="SUPPLY CHAIN MANAGEMENT" data-ar="إدارة سلسلة التوريد">SUPPLY CHAIN MANAGEMENT</h3>
+                    <p data-en="We are dedicated to transforming your end-to-end global operations." 
+                       data-ar="نحن ملتزمون بتحويل عملياتك العالمية من البداية إلى النهاية.">We are dedicated to transforming your end-to-end global operations.</p>
                 </div>
             </div>
         </div>
     </section>
+
+    <script>
+        let currentLang = 'en';
+
+        function toggleLanguage() {
+            if (currentLang === 'en') {
+                changeLang('ar');
+            } else {
+                changeLang('en');
+            }
+        }
+
+        function changeLang(lang) {
+            const body = document.body;
+            const langText = document.getElementById('langText');
+            
+            currentLang = lang;
+            
+            if (lang === 'ar') {
+                body.setAttribute('dir', 'rtl');
+                langText.textContent = 'AR';
+                
+                document.querySelectorAll('[data-ar]').forEach(function(el) {
+                    const arText = el.getAttribute('data-ar');
+                    if (arText) {
+                        if (el.tagName === 'H2' && arText.includes('<br>')) {
+                            el.innerHTML = arText;
+                        } else {
+                            el.textContent = arText;
+                        }
+                    }
+                });
+            } else {
+                body.setAttribute('dir', 'ltr');
+                langText.textContent = 'EN';
+                
+                document.querySelectorAll('[data-en]').forEach(function(el) {
+                    const enText = el.getAttribute('data-en');
+                    if (enText) {
+                        if (el.tagName === 'H2' && enText.includes('<br>')) {
+                            el.innerHTML = enText;
+                        } else {
+                            el.textContent = enText;
+                        }
+                    }
+                });
+            }
+        }
+
+        window.addEventListener('load', function() {
+            const savedLang = localStorage.getItem('preferred-lang');
+            if (savedLang === 'ar') {
+                changeLang('ar');
+            }
+        });
+    </script>
 </body>
 </html>
