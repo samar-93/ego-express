@@ -557,6 +557,7 @@
             const langText = document.getElementById('langText');
             
             currentLang = lang;
+            localStorage.setItem('preferred-lang', lang);
             
             if (lang === 'ar') {
                 body.setAttribute('dir', 'rtl');
@@ -565,7 +566,11 @@
                 document.querySelectorAll('[data-ar]').forEach(function(el) {
                     const arText = el.getAttribute('data-ar');
                     if (arText) {
-                        el.innerHTML = arText;
+                        if (el.tagName === 'H2' && arText.includes('<br>')) {
+                            el.innerHTML = arText;
+                        } else {
+                            el.textContent = arText;
+                        }
                     }
                 });
             } else {
@@ -575,12 +580,22 @@
                 document.querySelectorAll('[data-en]').forEach(function(el) {
                     const enText = el.getAttribute('data-en');
                     if (enText) {
-                        el.innerHTML = enText;
+                        if (el.tagName === 'H2' && enText.includes('<br>')) {
+                            el.innerHTML = enText;
+                        } else {
+                            el.textContent = enText;
+                        }
                     }
                 });
             }
         }
+
+        window.addEventListener('load', function() {
+            const savedLang = localStorage.getItem('preferred-lang');
+    if (savedLang) {  // ← الحل: شيل === 'ar'
+        changeLang(savedLang);
+    }
+});
     </script>
 </body>
 </html>
-
