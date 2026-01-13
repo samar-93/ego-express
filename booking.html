@@ -496,7 +496,7 @@
         <h1>
             <span class="red" data-en="Book" data-ar="احجز">Book</span> 
             <span class="black" data-en="Your" data-ar="شحنتك">Your</span><br>
-            <span class="black" data-en="Shipment" data-ar="">Shipment</span>
+            <span class="black" data-en="Shipment" data-ar="اليوم">Shipment</span>
         </h1>
         <p data-en="Simple, fast, and reliable freight forwarding" 
            data-ar="شحن بضائع بسيط وسريع وموثوق">Simple, fast, and reliable freight forwarding</p>
@@ -807,10 +807,22 @@
             const langText = document.getElementById('langText');
             
             currentLang = lang;
+            localStorage.setItem('preferred-lang', lang);
             
             if (lang === 'ar') {
                 body.setAttribute('dir', 'rtl');
                 langText.textContent = 'AR';
+                
+                document.querySelectorAll('[data-ar]').forEach(function(el) {
+                    const arText = el.getAttribute('data-ar');
+                    if (arText) {
+                        if (el.tagName === 'H2' && arText.includes('<br>')) {
+                            el.innerHTML = arText;
+                        } else {
+                            el.textContent = arText;
+                        }
+                    }
+                });
                 
                 // Update all text elements
                 document.querySelectorAll('[data-ar]').forEach(function(el) {
@@ -877,6 +889,12 @@
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+		window.addEventListener('load', function() {
+    const savedLang = localStorage.getItem('preferred-lang');
+    if (savedLang) {
+        changeLang(savedLang);
+    }
+});
     </script>
 </body>
 </html>
