@@ -1126,7 +1126,9 @@
             const langText = document.getElementById('langText');
             const searchInput = document.getElementById('searchInput');
             
-            currentLang = lang;
+currentLang = lang;  // ← المهم جداً!
+    localStorage.setItem('preferred-lang', lang);
+
             
             if (lang === 'ar') {
                 body.setAttribute('dir', 'rtl');
@@ -1218,6 +1220,12 @@
                 }
             });
         });
+        window.addEventListener('load', function() {
+            const savedLang = localStorage.getItem('preferred-lang');
+    if (savedLang) {  // ← الحل: شيل === 'ar'
+        changeLang(savedLang);
+    }
+});	
     </script>
 </body>
 </html>
