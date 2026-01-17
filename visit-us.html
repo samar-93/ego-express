@@ -4,7 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Visit Us - EGO Express</title>
-
+<script>
+  (function() {
+    const savedLang = localStorage.getItem('preferred-lang') || 'en';
+    document.documentElement.dir = savedLang === 'ar' ? 'rtl' : 'ltr';
+  })();
+</script>
 <style>
 *{
     margin:0;
@@ -138,56 +143,36 @@ body[dir="rtl"] .logo-nav{
 
 /* ================= HERO ================= */
 .hero{
-    height:420px;
-    background:linear-gradient(135deg,#ff2a2a,#d80000);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    color:#fff;
     margin-top:90px;
-    position:relative;
-    overflow:hidden;
-}
-
-.hero::before,
-.hero::after{
-    content:"";
-    position:absolute;
-    border-radius:50%;
-    background:rgba(255,255,255,0.08);
-}
-
-.hero::before{
-    width:450px;
-    height:450px;
-    left:-120px;
-    bottom:-120px;
-}
-
-.hero::after{
-    width:350px;
-    height:350px;
-    right:-100px;
-    top:-100px;
+    padding:60px 60px 40px;
+    background:linear-gradient(180deg,#f8f5f0 0%,#ffffff 100%);
+    text-align:center;
 }
 
 .hero-content{
     max-width:900px;
+    margin:0 auto;
     padding:0 20px;
-    z-index:1;
 }
 
 .hero h1{
-    font-size:64px;
+    font-size:72px;
     font-weight:900;
     margin-bottom:20px;
 }
 
+.hero h1 .red{
+    color:#FF3333;
+}
+
+.hero h1 .black{
+    color:#000;
+}
+
 .hero p{
-    font-size:20px;
-    line-height:1.7;
-    opacity:0.95;
+    font-size:22px;
+    color:#666;
+    margin-bottom:40px;
 }
 
 /* ================= MAIN ================= */
@@ -228,10 +213,15 @@ body[dir="rtl"] .logo-nav{
     display:flex;
     gap:20px;
     margin-bottom:30px;
+    align-items:flex-start;
 }
 
 body[dir="rtl"] .info-item{
     flex-direction:row-reverse;
+}
+
+.info-content{
+    flex:1;
 }
 
 .info-icon{
@@ -243,10 +233,29 @@ body[dir="rtl"] .info-item{
     margin-bottom:8px;
 }
 
+body[dir="rtl"] .info-content h3{
+    text-align:right;
+}
+
 .info-content p{
     font-size:16px;
     line-height:1.8;
     color:#666;
+}
+
+/* النصوص الإنجليزية تبدأ من الشمال دائماً */
+.ltr-content {
+    direction: ltr !important;
+}
+
+body[dir="rtl"] .info-content {
+    text-align: right;
+}
+
+body[dir="rtl"] .ltr-content {
+    display: inline-block;
+    text-align: left !important;
+    width: 100%;
 }
 
 .info-content a{
@@ -301,6 +310,10 @@ body[dir="rtl"] .info-item{
         cursor:pointer;
         padding:8px;
         margin-right:15px;
+    }
+    
+    .mobile-menu{
+        display:block;
     }
     
     .hamburger span{
@@ -385,12 +398,12 @@ body[dir="rtl"] .info-item{
     }
     
     .hero{
-        height:300px;
+        padding:60px 20px;
         margin-top:78px;
     }
     
     .hero h1{
-        font-size:36px;
+        font-size:42px;
     }
     
     .hero p{
@@ -449,11 +462,11 @@ body[dir="rtl"] .info-item{
     </div>
     
     <div class="mobile-controls">
-<div class="hamburger" id="hamburgerBtn">
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
+        <div class="hamburger" id="hamburgerBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         
         <div class="lang-switcher" onclick="toggleLanguage()">
             <span id="langText">EN</span>
@@ -486,9 +499,11 @@ body[dir="rtl"] .info-item{
 
 <section class="hero">
     <div class="hero-content">
-        <h1 data-en="Visit Us" data-ar="زورنا">Visit Us</h1>
-        <p class="hero-subtext"
-           data-en="You are always welcome to visit us and experience our logistics services firsthand."
+        <h1>
+            <span class="red" data-en="Visit" data-ar="زورنا">Visit</span> 
+            <span class="black" data-en="Us" data-ar="في">Us</span>
+        </h1>
+        <p data-en="You are always welcome to visit us and experience our logistics services firsthand."
            data-ar="يسعدنا دائماً زيارتكم والتعرف على خدماتنا اللوجستية عن قرب.">
             You are always welcome to visit us and experience our logistics services firsthand.
         </p>
@@ -501,16 +516,16 @@ body[dir="rtl"] .info-item{
             <h2 data-en="Our Office" data-ar="مكتبنا">Our Office</h2>
 
             <p class="visit-note"
-               data-en="You are always welcome to visit us and experience our logistics services firsthand."
-               data-ar="يسعدنا دائماً زيارتكم والتعرف على خدماتنا اللوجستية عن قرب.">
-                You are always welcome to visit us and experience our logistics services firsthand.
+               data-en="We look forward to welcoming you at our location. Feel free to drop by during business hours."
+               data-ar="نتطلع لاستقبالكم في موقعنا. لا تتردد في الزيارة خلال ساعات العمل.">
+                We look forward to welcoming you at our location. Feel free to drop by during business hours.
             </p>
 
             <div class="info-item">
                 <div class="info-icon">📍</div>
                 <div class="info-content">
                     <h3 data-en="Address" data-ar="العنوان">Address</h3>
-                    <p>
+                    <p class="ltr-content">
                         2nd Floor, Al Jawhara Tower<br>
                         Al Qibla, 26 Ali Al-Salem St<br>
                         Kuwait City, Kuwait
@@ -522,7 +537,7 @@ body[dir="rtl"] .info-item{
                 <div class="info-icon">📞</div>
                 <div class="info-content">
                     <h3 data-en="Phone" data-ar="الهاتف">Phone</h3>
-                    <p><a href="tel:+96522280742">+965 22280742</a></p>
+                    <p class="ltr-content"><a href="tel:+96522280742">+965 22280742</a></p>
                 </div>
             </div>
 
@@ -530,7 +545,7 @@ body[dir="rtl"] .info-item{
                 <div class="info-icon">✉️</div>
                 <div class="info-content">
                     <h3 data-en="Email" data-ar="البريد الإلكتروني">Email</h3>
-                    <p><a href="mailto:info@sailshipping.net">info@sailshipping.net</a></p>
+                    <p class="ltr-content"><a href="mailto:info@sailshipping.net">info@sailshipping.net</a></p>
                 </div>
             </div>
         </div>
@@ -543,11 +558,19 @@ body[dir="rtl"] .info-item{
 
 
 <script>
+// تطبيق اللغة المحفوظة فوراً
+(function() {
+  const savedLang = localStorage.getItem('preferred-lang') || 'en';
+  const dir = savedLang === 'ar' ? 'rtl' : 'ltr';
+  document.documentElement.setAttribute('dir', dir);
+  document.body.setAttribute('dir', dir);
+})();
+
 let currentLang = "en";
 
 // ======== TOGGLE MOBILE MENU ========
 function toggleMenu(e){
-  e.stopPropagation(); // يمنع document click من إغلاق المينيو فورًا
+  e.stopPropagation();
   const menu = document.getElementById('mobileMenu');
   const hamburger = document.getElementById('hamburgerBtn');
   menu.classList.toggle('active');
@@ -605,13 +628,10 @@ function changeLang(lang) {
 
 // load preferred language
 window.addEventListener("load", () => {
-    const savedLang = localStorage.getItem("preferred-lang");
-    if (savedLang) {
-        changeLang(savedLang);
-    }
+    const savedLang = localStorage.getItem("preferred-lang") || 'en';
+    changeLang(savedLang);
 });
 </script>
-
 
 </body>
 </html>
