@@ -49,24 +49,20 @@ body[dir="rtl"] .logo-nav{margin-right:40px;margin-left:0;}
   .lang-switcher{margin-left:0;}
 }
 
-/* Hero Section */
 .hero-section{margin-top:90px;padding:60px 60px 40px;text-align:center;} 
 .hero-section h1{font-size:72px;font-weight:900;margin-bottom:20px;} 
 .hero-section h1 .red{color:#FF3333;} 
 .hero-section h1 .black{color:#000;} 
 .hero-section p{font-size:22px;color:#666;margin-bottom:40px;}
 
-/* Divider */
 .divider-section{text-align:center;padding:40px 20px;position:relative;} 
 .divider-section::before{content:'';position:absolute;left:0;right:0;top:50%;height:2px;background:linear-gradient(90deg,transparent,#e0e0e0,transparent);} 
 .divider-text{position:relative;display:inline-block;padding:0 30px;background:#f8f5f0;font-size:18px;font-weight:700;color:#666;}
 
-/* Content Sections */
 .content-section{padding:60px 60px;max-width:1000px;margin:0 auto;text-align:center;} 
 .content-section h2{font-size:42px;font-weight:900;color:#2c2c2c;margin-bottom:20px;} 
 .content-section p{font-size:18px;color:#666;line-height:1.6;}
 
-/* NEW Sections from Image */
 .stats-section{padding:60px 20px;background:#fff;text-align:center;display:flex;justify-content:center;gap:40px;flex-wrap:wrap;}
 .stats-box{background:#fff;padding:20px 30px;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.05);min-width:140px;}
 .stats-box h3{font-size:32px;color:#ff3333;margin-bottom:5px;}
@@ -88,7 +84,8 @@ body[dir="rtl"] .logo-nav{margin-right:40px;margin-left:0;}
 .value-box p{font-size:14px;line-height:1.4;}
 </style>
 </head>
-<body dir="ltr">
+<body>
+
 <nav class="navbar">
 <a href="index.html" class="logo-nav"><img src="https://i.postimg.cc/k5RM67Nt/logo-(2).png" alt="EGO Express"></a>
 <div class="nav-center">
@@ -103,6 +100,7 @@ body[dir="rtl"] .logo-nav{margin-right:40px;margin-left:0;}
 <div class="lang-switcher" onclick="toggleLanguage()"><span id="langText">EN</span></div>
 </div>
 </nav>
+
 <div class="mobile-menu" id="mobileMenu">
 <a href="index.html"><span class="icon">🏠</span><span data-en="Home" data-ar="الرئيسية">Home</span></a>
 <a href="why-us.html" class="active"><span class="icon">⭐</span><span data-en="Why Us" data-ar="لماذا نحن">Why Us</span></a>
@@ -116,7 +114,6 @@ body[dir="rtl"] .logo-nav{margin-right:40px;margin-left:0;}
 <p data-en="We're more than a logistics company — we're your trusted partner in global trade, committed to delivering excellence every step of the way." data-ar="نحن أكثر من شركة لوجستية — نحن شريكك الموثوق في التجارة العالمية، ملتزمون بتقديم التميز في كل خطوة.">We're more than a logistics company — we're your trusted partner in global trade, committed to delivering excellence every step of the way.</p>
 </section>
 
-<!-- Stats Section -->
 <section class="stats-section">
 <div class="stats-box">
 <h3>99%</h3>
@@ -136,7 +133,6 @@ body[dir="rtl"] .logo-nav{margin-right:40px;margin-left:0;}
 </div>
 </section>
 
-<!-- Features Section -->
 <section class="features-section">
 <div class="feature-box">
 <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&q=80" alt="Speed & Efficiency"/>
@@ -169,8 +165,6 @@ body[dir="rtl"] .logo-nav{margin-right:40px;margin-left:0;}
 <p data-en="With partners in 50+ countries, we ensure smooth shipments worldwide." data-ar="مع شركاء في أكثر من 50 دولة، نضمن شحنات سلسة عالميًا.">With partners in 50+ countries, we ensure smooth shipments worldwide.</p>
 </div>
 </section>
-
-<!-- Values Section -->
 <section class="values-section">
 <div class="values-wrapper">
 <div class="value-box">
@@ -216,7 +210,6 @@ body[dir="rtl"] .logo-nav{margin-right:40px;margin-left:0;}
 </div>
 </section>
 
-<!-- Original Content Section -->
 <section class="content-section">
 <h2 data-en="Reliable & Efficient" data-ar="موثوق وفعال">Reliable & Efficient</h2>
 <p data-en="We provide end-to-end logistics solutions with exceptional customer service and transparent pricing." data-ar="نقدم حلول لوجستية شاملة مع خدمة عملاء استثنائية وتسعير شفاف.">We provide end-to-end logistics solutions with exceptional customer service and transparent pricing.</p>
@@ -227,13 +220,21 @@ body[dir="rtl"] .logo-nav{margin-right:40px;margin-left:0;}
 </section>
 
 <script>
-let currentLang='en'; 
+// تطبيق اللغة المحفوظة فوراً قبل تحميل الصفحة
+(function() {
+  const savedLang = localStorage.getItem('preferred-lang') || 'en';
+  const dir = savedLang === 'ar' ? 'rtl' : 'ltr';
+  document.documentElement.setAttribute('dir', dir);
+  document.body.setAttribute('dir', dir);
+})();
+
 function toggleMenu(){
   const menu=document.getElementById('mobileMenu');
   const hamburger=document.getElementById('hamburgerBtn');
   menu.classList.toggle('active');
   hamburger.classList.toggle('active');
 } 
+
 document.addEventListener('click',function(event){
   const menu=document.getElementById('mobileMenu');
   const hamburger=document.getElementById('hamburgerBtn');
@@ -243,17 +244,54 @@ document.addEventListener('click',function(event){
     hamburger.classList.remove('active');
   }
 }); 
+
 const hamburgerBtn=document.getElementById('hamburgerBtn');
-if(hamburgerBtn){hamburgerBtn.addEventListener('click',toggleMenu);} 
-function toggleLanguage(){
-  currentLang=currentLang==='en'?'ar':'en';
-  document.documentElement.dir=currentLang==='ar'?'rtl':'ltr';
-  document.querySelectorAll('[data-en]').forEach(el=>{
-    el.innerText=currentLang==='en'?el.dataset.en:el.dataset.ar
-  });
-  document.getElementById('langText').innerText=currentLang==='en'?'EN':'AR';
+if(hamburgerBtn){hamburgerBtn.addEventListener('click',toggleMenu);}
+
+function toggleLanguage() {
+    const lang = localStorage.getItem('preferred-lang') === 'ar' ? 'en' : 'ar';
+    changeLang(lang);
 }
+
+function changeLang(lang) {
+    const body = document.body;
+    const html = document.documentElement;
+    const langText = document.getElementById('langText');
+    
+    localStorage.setItem('preferred-lang', lang);
+    
+    const dir = lang === 'ar' ? 'rtl' : 'ltr';
+    const langDisplay = lang === 'ar' ? 'AR' : 'EN';
+    
+    html.setAttribute('dir', dir);
+    body.setAttribute('dir', dir);
+    if(langText) langText.textContent = langDisplay;
+    
+    document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+        const text = el.getAttribute('data-' + lang);
+        if (text) el.textContent = text;
+    });
+}
+
+function toggleFAQ(element) {
+    const wasActive = element.classList.contains('active');
+    document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('active'));
+    if (!wasActive) element.classList.add('active');
+}
+
+function showCategory(category) {
+    document.querySelectorAll('.category-card').forEach(card => card.classList.remove('active'));
+    event.target.closest('.category-card').classList.add('active');
+    document.querySelectorAll('.faq-category').forEach(cat => cat.style.display = 'none');
+    document.getElementById(category).style.display = 'block';
+}
+
+// تحميل اللغة عند فتح الصفحة
+window.addEventListener('DOMContentLoaded', function() {
+    const savedLang = localStorage.getItem('preferred-lang') || 'en';
+    changeLang(savedLang);
+});
 </script>
+
 </body>
 </html>
-
