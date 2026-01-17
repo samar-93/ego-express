@@ -5,778 +5,202 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ - EGO Express</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; overflow-x: hidden; background: #ffffff; transition: all 0.3s ease; }
+        body[dir="rtl"] { font-family: 'Arial', 'Tajawal', sans-serif; }
 
-        body {
-            font-family: 'Arial', sans-serif;
-            overflow-x: hidden;
-            background: #ffffff;
-            transition: all 0.3s ease;
-        }
-
-        body[dir="rtl"] {
-            font-family: 'Arial', 'Tajawal', sans-serif;
-        }
-
-        /* Navigation Bar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 2000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
-        }
-
-        .navbar .logo-link {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        .navbar .logo-link img {
-            height: 50px;
-            width: auto;
-            transition: transform 0.3s;
-        }
-
-        .navbar .logo-link:hover img {
-            transform: scale(1.05);
-        }
-
-        .navbar .nav-links {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .navbar .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 600;
-            font-size: 16px;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .navbar .nav-links a:hover {
-            color: #FF3333;
-        }
-
-        .navbar .nav-links a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: #FF3333;
-        }
-
-        /* Language Switcher */
-        .lang-switcher {
-            position: fixed;
-            top: 100px;
-            right: 30px;
-            z-index: 3000;
-            width: 50px;
-            height: 50px;
-            background: #FF3333;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(255, 51, 51, 0.4);
-        }
-
-        .lang-switcher:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(255, 51, 51, 0.6);
-        }
-
-        .lang-text {
-            font-weight: 900;
-            font-size: 16px;
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* WhatsApp Float Button */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1500;
-            width: 65px;
-            height: 65px;
-            background: #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
-            transition: all 0.3s;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1) translateY(-3px);
-            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
-        }
-
-        .whatsapp-float svg {
-            width: 38px;
-            height: 38px;
-            fill: white;
+        /* Navbar */
+        .navbar{position:fixed;top:0;width:100%;padding:18px 50px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.98);backdrop-filter:blur(20px);z-index:2000;box-shadow:0 2px 25px rgba(0,0,0,0.08);transition:all 0.3s ease;direction:ltr !important;} 
+        body[dir="rtl"] .navbar{direction:ltr !important;}
+        .logo-nav{flex-shrink:0;margin-right:40px;} 
+        body[dir="rtl"] .logo-nav{margin-right:40px;margin-left:0;} 
+        .logo-nav img{height:55px;display:block;transition:transform 0.3s ease;} 
+        .logo-nav:hover img{transform:scale(1.05);}
+        .nav-center{display:flex;align-items:center;gap:35px;flex:1;white-space:nowrap;} 
+        .nav-center a{text-decoration:none;color:#2c2c2c;font-weight:600;font-size:15px;position:relative;padding:8px 0;transition:all 0.3s ease;white-space:nowrap;} 
+        .nav-center a::after{content:"";position:absolute;bottom:0;left:0;width:0;height:3px;background:linear-gradient(90deg,#ff3333,#ff6666);transition:width 0.3s ease;} 
+        .nav-center a:hover{color:#ff3333;} 
+        .nav-center a:hover::after{width:100%;} 
+        .nav-center a.active{color:#ff3333;} 
+        .nav-center a.active::after{width:100%;}
+        .lang-switcher:hover{transform:scale(1.1);box-shadow:0 6px 25px rgba(255,51,51,0.5);} 
+        .lang-switcher{width:50px;height:50px;background:#ff3333;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:14px;cursor:pointer;box-shadow:0 4px 20px rgba(255,51,51,0.3);transition:all 0.3s ease;flex-shrink:0;}
+        .hamburger,.mobile-menu{display:none;}
+        @media (max-width:1024px){
+          .navbar{padding:15px 25px;} 
+          .logo-nav{margin-right:0;} 
+          body[dir="rtl"] .logo-nav{margin-right:0;} 
+          .logo-nav img{height:48px;} 
+          .nav-center{display:none;} 
+          .hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:8px;margin-right:15px;} 
+          .mobile-menu{display:block;} 
+          .hamburger span{width:28px;height:3px;background:#2c2c2c;border-radius:2px;transition:all 0.3s ease;} 
+          .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(8px,8px);background:#ff3333;} 
+          .hamburger.active span:nth-child(2){opacity:0;} 
+          .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(8px,-8px);background:#ff3333;} 
+          .mobile-menu{position:fixed;top:78px;left:0;right:0;background:#fff;box-shadow:0 10px 40px rgba(0,0,0,0.15);max-height:0;overflow:hidden;transition:max-height 0.4s ease,opacity 0.3s ease;opacity:0;z-index:1999;} 
+          .mobile-menu.active{max-height:400px;opacity:1;} 
+          .mobile-menu a{display:flex;align-items:center;gap:15px;padding:18px 25px;text-decoration:none;color:#2c2c2c;font-weight:600;font-size:16px;border-bottom:1px solid #f0f0f0;transition:all 0.3s ease;} 
+          .mobile-menu a:last-child{border-bottom:none;} 
+          .mobile-menu a .icon{font-size:22px;} 
+          .mobile-menu a:hover,.mobile-menu a.active{background:linear-gradient(90deg,#fff5f5,#fff);color:#ff3333;padding-left:30px;} 
+          body[dir="rtl"] .mobile-menu a:hover, body[dir="rtl"] .mobile-menu a.active{padding-left:25px;padding-right:30px;} 
+          .mobile-controls{display:flex;align-items:center;gap:0;} 
+          .lang-switcher{margin-left:0;}
         }
 
         /* Hero Section */
-        .hero-section {
-            margin-top: 90px;
-            padding: 80px 60px;
-            background: linear-gradient(135deg, #FF3333 0%, #cc0000 100%);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-section::before {
-            content: '?';
-            position: absolute;
-            top: -20px;
-            right: 10%;
-            font-size: 300px;
-            font-weight: 900;
-            color: rgba(255, 255, 255, 0.05);
-        }
-
-        .hero-section::after {
-            content: '?';
-            position: absolute;
-            bottom: -50px;
-            left: 5%;
-            font-size: 250px;
-            font-weight: 900;
-            color: rgba(0, 0, 0, 0.05);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .hero-content h1 {
-            font-size: 72px;
-            font-weight: 900;
-            color: white;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .hero-content p {
-            font-size: 22px;
-            color: white;
-            opacity: 0.95;
-            max-width: 700px;
-            margin: 0 auto;
-        }
+        .hero-section { margin-top: 90px; padding: 60px 60px 40px; background: linear-gradient(180deg, #f8f5f0 0%, #ffffff 100%); text-align: center; }
+        .hero-content { max-width: 900px; margin: 0 auto; }
+        .hero-content h1 { font-size: 72px; font-weight: 900; margin-bottom: 20px; line-height: 1.2; }
+        .hero-content h1 .red { color: #FF3333; }
+        .hero-content h1 .black { color: #000; }
+        .hero-content p { font-size: 22px; color: #666; max-width: 700px; margin: 0 auto; margin-bottom: 40px; }
 
         /* Search Box */
-        .search-section {
-            padding: 0 60px;
-            margin-top: -40px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .search-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 60px;
-            padding: 10px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .search-icon {
-            font-size: 24px;
-            color: #FF3333;
-            margin-left: 20px;
-        }
-
-        body[dir="rtl"] .search-icon {
-            margin-left: 0;
-            margin-right: 20px;
-        }
-
-        .search-input {
-            flex: 1;
-            border: none;
-            outline: none;
-            font-size: 18px;
-            padding: 15px 10px;
-            font-family: inherit;
-        }
-
-        .search-input::placeholder {
-            color: #999;
-        }
+        .search-section { padding: 0 60px; margin-top: -40px; position: relative; z-index: 10; }
+        .search-container { max-width: 800px; margin: 0 auto; background: white; border-radius: 60px; padding: 10px; box-shadow: 0 15px 50px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 15px; direction: ltr !important; }
+        .search-icon { font-size: 24px; color: #FF3333; margin-left: 20px !important; margin-right: 0 !important; }
+        .search-input { flex: 1; border: none; outline: none; font-size: 18px; padding: 15px 10px; font-family: inherit; direction: ltr !important; text-align: left !important; }
+        body[dir="rtl"] .search-input { direction: ltr !important; text-align: left !important; }
+        .search-input::placeholder { color: #999; }
 
         /* Categories */
-        .categories-section {
-            padding: 80px 60px 40px;
-            background: linear-gradient(180deg, #f8f5f0 0%, #ffffff 100%);
-        }
-
-        .categories-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .category-card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
-
-        .category-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(255, 51, 51, 0.15);
-        }
-
-        .category-card.active {
-            background: #FF3333;
-        }
-
-        .category-icon {
-            font-size: 50px;
-            margin-bottom: 15px;
-        }
-
-        .category-card.active .category-icon {
-            filter: brightness(0) invert(1);
-        }
-
-        .category-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #333;
-        }
-
-        .category-card.active .category-title {
-            color: white;
-        }
-
-        .category-count {
-            font-size: 14px;
-            color: #666;
-            margin-top: 5px;
-        }
-
-        .category-card.active .category-count {
-            color: rgba(255, 255, 255, 0.9);
-        }
+.categories-section { padding: 80px 60px 40px; background: linear-gradient(180deg, #f8f5f0 0%, #ffffff 100%); }
+.categories-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 60px; }
+.category-card { background: white; padding: 0; border-radius: 15px; text-align: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 5px 20px rgba(0,0,0,0.08); overflow: hidden; position: relative; border: 3px solid transparent; }
+.category-card:hover { transform: translateY(-8px); box-shadow: 0 10px 30px rgba(255, 51, 51, 0.15); }
+.category-card.active { border-color: #FF3333; }
+.category-icon { width: 100%; height: 180px; object-fit: cover; display: block; transition: transform 0.3s; }
+.category-card:hover .category-icon { transform: scale(1.05); }
+.category-card.active .category-icon { filter: brightness(0.7); }
+.category-info { padding: 20px; background: white; position: relative; z-index: 2; }
+.category-title { font-size: 20px; font-weight: 700; color: #333; }
+.category-card.active .category-title { color: #FF3333; }
+.category-count { font-size: 14px; color: #666; margin-top: 5px; }
+.category-card.active .category-count { color: #FF3333; }
 
         /* FAQ Section */
-        .faq-section {
-            padding: 0 60px 80px;
-            background: white;
-        }
-
-        .faq-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .faq-category-title {
-            font-size: 36px;
-            font-weight: 900;
-            color: #FF3333;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
-        .faq-item {
-            background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-
-        .faq-item:hover {
-            border-color: #FF3333;
-        }
-
-        .faq-item.active {
-            border-color: #FF3333;
-            box-shadow: 0 5px 20px rgba(255, 51, 51, 0.1);
-        }
-
-        .faq-question {
-            padding: 25px 30px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-            transition: background 0.3s;
-        }
-
-        body[dir="rtl"] .faq-question {
-            flex-direction: row-reverse;
-        }
-
-        .faq-item:hover .faq-question {
-            background: #fff5f5;
-        }
-
-        .faq-question h3 {
-            font-size: 20px;
-            font-weight: 700;
-            color: #333;
-            flex: 1;
-            text-align: left;
-        }
-
-        body[dir="rtl"] .faq-question h3 {
-            text-align: right;
-        }
-
-        .faq-icon {
-            font-size: 24px;
-            color: #FF3333;
-            font-weight: 900;
-            transition: transform 0.3s;
-        }
-
-        .faq-item.active .faq-icon {
-            transform: rotate(45deg);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 500px;
-            padding: 0 30px 25px;
-        }
-
-        .faq-answer p {
-            font-size: 17px;
-            color: #666;
-            line-height: 1.7;
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        body[dir="rtl"] .faq-answer p {
-            text-align: right;
-        }
-
-        .faq-answer p:last-child {
-            margin-bottom: 0;
-        }
-
-        .faq-answer ul {
-            margin: 15px 0 15px 20px;
-        }
-
-        body[dir="rtl"] .faq-answer ul {
-            margin: 15px 20px 15px 0;
-        }
-
-        .faq-answer li {
-            font-size: 17px;
-            color: #666;
-            line-height: 1.7;
-            margin-bottom: 8px;
-            text-align: left;
-        }
-
-        body[dir="rtl"] .faq-answer li {
-            text-align: right;
-        }
+        .faq-section { padding: 0 60px 80px; background: white; }
+        .faq-container { max-width: 900px; margin: 0 auto; }
+        .faq-category-title { font-size: 36px; font-weight: 900; color: #2c2c2c; margin-bottom: 40px; text-align: center; }
+        .faq-category-title .red { color: #FF3333; }
+        .faq-item { background: white; border: 2px solid #e0e0e0; border-radius: 15px; margin-bottom: 20px; overflow: hidden; transition: all 0.3s; transform-origin: top; }
+        .faq-item:hover { border-color: #FF3333; }
+        .faq-item.active { border-color: #FF3333; box-shadow: 0 5px 20px rgba(255, 51, 51, 0.1); animation: expandFAQ 0.3s ease; }
+        @keyframes expandFAQ { 0% { transform: scale(0.98); } 50% { transform: scale(1.01); } 100% { transform: scale(1); } }
+        .faq-question { padding: 25px 30px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px; transition: background 0.3s; }
+        body[dir="rtl"] .faq-question { flex-direction: row-reverse; }
+        .faq-item:hover .faq-question { background: #fff5f5; }
+        .faq-question h3 { font-size: 20px; font-weight: 700; color: #333; flex: 1; text-align: left; }
+        body[dir="rtl"] .faq-question h3 { text-align: right; }
+        .faq-icon { font-size: 24px; color: #FF3333; font-weight: 900; transition: transform 0.3s; }
+        .faq-item.active .faq-icon { transform: rotate(45deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+        .faq-item.active .faq-answer { max-height: 500px; padding: 0 30px 25px; }
+        .faq-answer p { font-size: 17px; color: #666; line-height: 1.7; margin-bottom: 15px; text-align: left; }
+        body[dir="rtl"] .faq-answer p { text-align: right; }
+        .faq-answer p:last-child { margin-bottom: 0; }
 
         /* CTA Section */
-        .cta-section {
-            padding: 80px 60px;
-            background: linear-gradient(180deg, #f8f5f0 0%, #ffffff 100%);
-            text-align: center;
-        }
-
-        .cta-content {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 60px 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-        }
-
-        .cta-content h2 {
-            font-size: 42px;
-            font-weight: 900;
-            color: #333;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .cta-content h2 .red {
-            color: #FF3333;
-        }
-
-        .cta-content p {
-            font-size: 18px;
-            color: #666;
-            margin-bottom: 35px;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-cta {
-            display: inline-block;
-            padding: 16px 40px;
-            background: linear-gradient(135deg, #FF3333 0%, #cc0000 100%);
-            color: white;
-            font-weight: 700;
-            font-size: 18px;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: all 0.3s;
-            box-shadow: 0 5px 20px rgba(255, 51, 51, 0.3);
-        }
-
-        .btn-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 51, 51, 0.4);
-        }
-
-        .btn-secondary {
-            display: inline-block;
-            padding: 16px 40px;
-            background: white;
-            color: #333;
-            font-weight: 700;
-            font-size: 18px;
-            text-decoration: none;
-            border-radius: 50px;
-            border: 2px solid #e0e0e0;
-            transition: all 0.3s;
-        }
-
-        .btn-secondary:hover {
-            border-color: #FF3333;
-            color: #FF3333;
-            transform: translateY(-3px);
-        }
+        .cta-section { padding: 80px 60px; background: linear-gradient(180deg, #f8f5f0 0%, #ffffff 100%); text-align: center; }
+        .cta-content { max-width: 800px; margin: 0 auto; background: white; padding: 60px 40px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
+        .cta-content h2 { font-size: 42px; font-weight: 900; color: #333; margin-bottom: 20px; line-height: 1.2; }
+        .cta-content h2 .red { color: #FF3333; }
+        .cta-content p { font-size: 18px; color: #666; margin-bottom: 35px; }
+        .cta-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        .btn-cta { display: inline-block; padding: 16px 40px; background: linear-gradient(135deg, #FF3333 0%, #cc0000 100%); color: white; font-weight: 700; font-size: 18px; text-decoration: none; border-radius: 50px; transition: all 0.3s; box-shadow: 0 5px 20px rgba(255, 51, 51, 0.3); }
+        .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255, 51, 51, 0.4); }
+        .btn-secondary { display: inline-block; padding: 16px 40px; background: white; color: #333; font-weight: 700; font-size: 18px; text-decoration: none; border-radius: 50px; border: 2px solid #e0e0e0; transition: all 0.3s; }
+        .btn-secondary:hover { border-color: #FF3333; color: #FF3333; transform: translateY(-3px); }
 
         /* Responsive */
-        @media (max-width: 1024px) {
-            .lang-switcher {
-                top: 85px;
-                right: 25px;
-                width: 45px;
-                height: 45px;
-            }
-
-            .lang-text {
-                font-size: 14px;
-            }
-        }
-
         @media (max-width: 768px) {
-            .navbar {
-                padding: 15px 20px;
-            }
-
-            .navbar .logo-link img {
-                height: 40px;
-            }
-
-            .navbar .nav-links {
-                gap: 15px;
-            }
-
-            .navbar .nav-links a {
-                font-size: 13px;
-            }
-
-            .lang-switcher {
-                top: 75px;
-                right: 15px;
-                width: 40px;
-                height: 40px;
-            }
-
-            .lang-text {
-                font-size: 13px;
-            }
-
-            .whatsapp-float {
-                width: 55px;
-                height: 55px;
-                bottom: 20px;
-                right: 20px;
-            }
-
-            .whatsapp-float svg {
-                width: 32px;
-                height: 32px;
-            }
-
-            .hero-section {
-                padding: 60px 20px;
-                margin-top: 70px;
-            }
-
-            .hero-content h1 {
-                font-size: 38px;
-            }
-
-            .hero-content p {
-                font-size: 16px;
-            }
-
-            .search-section {
-                padding: 0 20px;
-                margin-top: -30px;
-            }
-
-            .search-container {
-                border-radius: 50px;
-                padding: 8px;
-            }
-
-            .search-input {
-                font-size: 16px;
-                padding: 12px 8px;
-            }
-
-            .categories-section,
-            .faq-section,
-            .cta-section {
-                padding: 50px 20px;
-            }
-
-            .categories-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-
-            .category-card {
-                padding: 20px 15px;
-            }
-
-            .category-icon {
-                font-size: 40px;
-            }
-
-            .category-title {
-                font-size: 16px;
-            }
-
-            .category-count {
-                font-size: 12px;
-            }
-
-            .faq-category-title {
-                font-size: 28px;
-            }
-
-            .faq-question {
-                padding: 20px 20px;
-            }
-
-            .faq-question h3 {
-                font-size: 17px;
-            }
-
-            .faq-icon {
-                font-size: 20px;
-            }
-
-            .faq-item.active .faq-answer {
-                padding: 0 20px 20px;
-            }
-
-            .faq-answer p,
-            .faq-answer li {
-                font-size: 15px;
-            }
-
-            .cta-content {
-                padding: 40px 25px;
-            }
-
-            .cta-content h2 {
-                font-size: 32px;
-            }
-
-            .cta-content p {
-                font-size: 16px;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .btn-cta,
-            .btn-secondary {
-                width: 100%;
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .lang-switcher {
-                top: 70px;
-                right: 12px;
-                width: 38px;
-                height: 38px;
-            }
-
-            .lang-text {
-                font-size: 12px;
-            }
-
-            .hero-content h1 {
-                font-size: 32px;
-            }
-
-            .categories-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .faq-category-title {
-                font-size: 24px;
-            }
-
-            .cta-content h2 {
-                font-size: 28px;
-            }
+            .hero-section { padding: 60px 20px; margin-top: 70px; }
+            .hero-content h1 { font-size: 38px; }
+            .hero-content p { font-size: 16px; }
+            .search-section { padding: 0 20px; margin-top: -30px; }
+            .categories-section, .faq-section, .cta-section { padding: 50px 20px; }
+            .categories-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .faq-category-title { font-size: 28px; }
+            .faq-question h3 { font-size: 17px; }
+            .cta-content h2 { font-size: 32px; }
         }
     </style>
 </head>
 <body dir="ltr">
-    <!-- Navigation -->
     <nav class="navbar">
-        <a href="index.html" class="logo-link">
-            <img src="https://i.postimg.cc/k5RM67Nt/logo-(2).png" alt="EGO Express">
-        </a>
-        <div class="nav-links">
+        <a href="index.html" class="logo-nav"><img src="https://i.postimg.cc/k5RM67Nt/logo-(2).png" alt="EGO Express"></a>
+        <div class="nav-center">
             <a href="index.html" data-en="Home" data-ar="الرئيسية">Home</a>
             <a href="why-us.html" data-en="Why Us" data-ar="لماذا نحن">Why Us</a>
-            <a href="faq.html" class="active" data-en="FAQ" data-ar="الأسئلة">FAQ</a>
+            <a href="faq.html" class="active" data-en="FAQ" data-ar="الأسئلة الشائعة">FAQ</a>
             <a href="visit-us.html" data-en="Visit Us" data-ar="زورنا">Visit Us</a>
             <a href="booking.html" data-en="Book Shipment" data-ar="احجز شحنة">Book Shipment</a>
         </div>
+        <div class="mobile-controls">
+            <div class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></div>
+            <div class="lang-switcher" onclick="toggleLanguage()"><span id="langText">EN</span></div>
+        </div>
     </nav>
-
-    <!-- Language Switcher Button -->
-    <div class="lang-switcher" onclick="toggleLanguage()">
-        <span class="lang-text" id="langText">EN</span>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html"><span class="icon">🏠</span><span data-en="Home" data-ar="الرئيسية">Home</span></a>
+        <a href="why-us.html"><span class="icon">⭐</span><span data-en="Why Us" data-ar="لماذا نحن">Why Us</span></a>
+        <a href="faq.html" class="active"><span class="icon">❓</span><span data-en="FAQ" data-ar="الأسئلة الشائعة">FAQ</span></a>
+        <a href="visit-us.html"><span class="icon">📍</span><span data-en="Visit Us" data-ar="زورنا">Visit Us</a>
+        <a href="booking.html"><span class="icon">📦</span><span data-en="Book Shipment" data-ar="احجز شحنة">Book Shipment</a>
     </div>
 
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/20100066625?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20your%20services" 
-       class="whatsapp-float" 
-       target="_blank" 
-       rel="noopener noreferrer">
-        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.002 0C7.164 0 0 7.162 0 16c0 2.848.753 5.521 2.065 7.832L.088 31.61l8.056-2.112A15.892 15.892 0 0016.002 32C24.838 32 32 24.838 32 16S24.838 0 16.002 0zm9.385 22.604c-.393 1.109-1.952 2.032-3.193 2.297-.847.177-1.952.318-5.671-1.218-4.766-1.969-7.845-6.783-8.083-7.095-.233-.312-1.904-2.533-1.904-4.831 0-2.298 1.205-3.43 1.632-3.897.427-.467.932-.583 1.243-.583.311 0 .622.005.893.017.286.013.668-.109.945.721.285.853.972 2.372 1.057 2.543.085.171.142.371.028.583-.114.212-.171.342-.34.525-.171.184-.359.41-.514.55-.171.155-.349.322-.15.634.199.301.884 1.458 1.898 2.361 1.306 1.163 2.408 1.524 2.75 1.695.342.171.542.142.74-.086.198-.228.849-.99 1.076-1.332.227-.342.454-.285.766-.171.312.114 1.982.935 2.324 1.105.342.171.57.256.654.398.085.142.085.82-.308 1.929z"/>
-        </svg>
-    </a>
-
-    <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-content">
-            <h1 data-en="Frequently Asked Questions" data-ar="الأسئلة الشائعة">Frequently Asked Questions</h1>
-            <p data-en="Find quick answers to common questions about shipping, pricing, and our services." 
-               data-ar="ابحث عن إجابات سريعة للأسئلة الشائعة حول الشحن والأسعار وخدماتنا.">Find quick answers to common questions about shipping, pricing, and our services.</p>
+            <h1><span class="red" data-en="Frequently Asked" data-ar="الأسئلة">Frequently Asked</span> <span class="black" data-en="Questions" data-ar="الشائعة">Questions</span></h1>
+            <p data-en="Find quick answers to common questions about shipping, pricing, and our services." data-ar="ابحث عن إجابات سريعة للأسئلة الشائعة حول الشحن والأسعار وخدماتنا.">Find quick answers to common questions about shipping, pricing, and our services.</p>
         </div>
     </section>
 
-    <!-- Search Section -->
     <section class="search-section">
         <div class="search-container">
             <span class="search-icon">🔍</span>
-            <input type="text" class="search-input" id="searchInput" 
-                   data-placeholder-en="Search for answers..." 
-                   data-placeholder-ar="ابحث عن إجابات..."
-                   placeholder="Search for answers...">
+            <input type="text" class="search-input" id="searchInput" data-placeholder-en="Search for answers..." data-placeholder-ar="ابحث عن إجابات..." placeholder="Search for answers...">
         </div>
     </section>
 
-    <!-- Categories Section -->
-    <section class="categories-section">
-        <div class="categories-grid">
-            <div class="category-card active" onclick="showCategory('general')">
-                <div class="category-icon">📦</div>
+<section class="categories-section">
+    <div class="categories-grid">
+        <div class="category-card active" onclick="showCategory('general')">
+            <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=500&h=300&fit=crop" alt="General" class="category-icon">
+            <div class="category-info">
                 <div class="category-title" data-en="General" data-ar="عام">General</div>
-                <div class="category-count" data-en="8 questions" data-ar="8 أسئلة">8 questions</div>
+                <div class="category-count" data-en="5 questions" data-ar="5 أسئلة">5 questions</div>
             </div>
-            <div class="category-card" onclick="showCategory('shipping')">
-                <div class="category-icon">🚚</div>
+        </div>
+        <div class="category-card" onclick="showCategory('shipping')">
+            <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=500&h=300&fit=crop" alt="Shipping" class="category-icon">
+            <div class="category-info">
                 <div class="category-title" data-en="Shipping" data-ar="الشحن">Shipping</div>
-                <div class="category-count" data-en="6 questions" data-ar="6 أسئلة">6 questions</div>
+                <div class="category-count" data-en="5 questions" data-ar="5 أسئلة">5 questions</div>
             </div>
-            <div class="category-card" onclick="showCategory('pricing')">
-                <div class="category-icon">💰</div>
+        </div>
+        <div class="category-card" onclick="showCategory('pricing')">
+            <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=500&h=300&fit=crop" alt="Pricing" class="category-icon">
+            <div class="category-info">
                 <div class="category-title" data-en="Pricing" data-ar="الأسعار">Pricing</div>
                 <div class="category-count" data-en="5 questions" data-ar="5 أسئلة">5 questions</div>
             </div>
-            <div class="category-card" onclick="showCategory('customs')">
-                <div class="category-icon">📋</div>
+        </div>
+        <div class="category-card" onclick="showCategory('customs')">
+            <img src="https://i.pinimg.com/1200x/02/a7/3f/02a73f0def2b2d117becdf7c7b75bc78.jpg" alt="Customs" class="category-icon">
+            <div class="category-info">
                 <div class="category-title" data-en="Customs" data-ar="الجمارك">Customs</div>
-                <div class="category-count" data-en="4 questions" data-ar="4 أسئلة">4 questions</div>
+                <div class="category-count" data-en="5 questions" data-ar="5 أسئلة">5 questions</div>
             </div>
         </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq-section">
+    </div>
+</section>
+	<section class="faq-section">
         <div class="faq-container">
-            <!-- General Category -->
             <div class="faq-category" id="general">
-                <h2 class="faq-category-title" data-en="General Questions" data-ar="أسئلة عامة">General Questions</h2>
+                <h2 class="faq-category-title"><span class="red" data-en="General" data-ar="عامة">General</span> <span data-en="Questions" data-ar="أسئلة">Questions</span></h2>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
@@ -784,77 +208,7 @@
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p data-en="EGO Express is a premier freight forwarding and logistics company specializing in door-to-door cargo transport between the UAE, Kuwait, and expanding to other regions. We handle everything from small packages to large commercial shipments with complete care and professionalism." 
-                           data-ar="إيجو إكسبريس هي شركة رائدة في مجال الشحن واللوجستيات متخصصة في نقل البضائع من الباب إلى الباب بين الإمارات والكويت، ونتوسع إلى مناطق أخرى. نتعامل مع كل شيء من الطرود الصغيرة إلى الشحنات التجارية الكبيرة بعناية واحترافية كاملة.">EGO Express is a premier freight forwarding and logistics company specializing in door-to-door cargo transport between the UAE, Kuwait, and expanding to other regions. We handle everything from small packages to large commercial shipments with complete care and professionalism.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item" onclick="toggleFAQ(this)">
-                    <div class="faq-question">
-                        <h3 data-en="What areas do you serve?" data-ar="ما هي المناطق التي تخدمونها؟">What areas do you serve?</h3>
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p data-en="Currently, we offer services between:" data-ar="حالياً، نقدم خدمات بين:">Currently, we offer services between:</p>
-                        <ul>
-                            <li data-en="All Emirates in the UAE (Dubai, Abu Dhabi, Sharjah, Ajman, RAK, Fujairah, UAQ)" 
-                                data-ar="جميع إمارات الإمارات (دبي، أبوظبي، الشارقة، عجمان، رأس الخيمة، الفجيرة، أم القيوين)">All Emirates in the UAE (Dubai, Abu Dhabi, Sharjah, Ajman, RAK, Fujairah, UAQ)</li>
-                            <li data-en="Kuwait" data-ar="الكويت">Kuwait</li>
-                            <li data-en="Saudi Arabia (Coming Soon)" data-ar="السعودية (قريباً)">Saudi Arabia (Coming Soon)</li>
-                        </ul>
-                        <p data-en="We're continuously expanding our network to serve more destinations." 
-                           data-ar="نحن نوسع شبكتنا باستمرار لخدمة المزيد من الوجهات.">We're continuously expanding our network to serve more destinations.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item" onclick="toggleFAQ(this)">
-                    <div class="faq-question">
-                        <h3 data-en="How do I book a shipment?" data-ar="كيف أحجز شحنة؟">How do I book a shipment?</h3>
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p data-en="Booking is simple! Just visit our booking page, fill in your shipment details including origin, destination, cargo information, and upload photos. Our team will review your request and send you a customized quote within 1 hour." 
-                           data-ar="الحجز بسيط! فقط قم بزيارة صفحة الحجز، املأ تفاصيل شحنتك بما في ذلك المنشأ والوجهة ومعلومات البضائع، وقم بتحميل الصور. سيقوم فريقنا بمراجعة طلبك وإرسال عرض أسعار مخصص خلال ساعة واحدة.">Booking is simple! Just visit our booking page, fill in your shipment details including origin, destination, cargo information, and upload photos. Our team will review your request and send you a customized quote within 1 hour.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item" onclick="toggleFAQ(this)">
-                    <div class="faq-question">
-                        <h3 data-en="How quickly can you pick up my cargo?" data-ar="كم من الوقت يستغرق استلام بضاعتي؟">How quickly can you pick up my cargo?</h3>
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p data-en="Once you confirm your booking, we can typically arrange pickup within 24-48 hours. For urgent shipments, same-day pickup may be available in select areas - please contact us to check availability." 
-                           data-ar="بمجرد تأكيد حجزك، يمكننا عادة ترتيب الاستلام خلال 24-48 ساعة. للشحنات العاجلة، قد يكون الاستلام في نفس اليوم متاحاً في مناطق مختارة - يرجى الاتصال بنا للتحقق من التوفر.">Once you confirm your booking, we can typically arrange pickup within 24-48 hours. For urgent shipments, same-day pickup may be available in select areas - please contact us to check availability.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item" onclick="toggleFAQ(this)">
-                    <div class="faq-question">
-                        <h3 data-en="Do you provide packaging materials?" data-ar="هل توفرون مواد التغليف؟">Do you provide packaging materials?</h3>
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p data-en="Yes! We offer professional packaging services including:" data-ar="نعم! نحن نقدم خدمات التغليف المهنية بما في ذلك:">Yes! We offer professional packaging services including:</p>
-                        <ul>
-                            <li data-en="Standard packaging (included free)" data-ar="التغليف القياسي (مجاناً)">Standard packaging (included free)</li>
-                            <li data-en="Reinforced plastic wrap for extra protection" data-ar="غلاف بلاستيكي معزز للحماية الإضافية">Reinforced plastic wrap for extra protection</li>
-                            <li data-en="Wooden crates for fragile or valuable items" data-ar="صناديق خشبية للأشياء الهشة أو القيمة">Wooden crates for fragile or valuable items</li>
-                            <li data-en="Bubble wrap and cushioning materials" data-ar="فقاعات الهواء ومواد التبطين">Bubble wrap and cushioning materials</li>
-                        </ul>
-                        <p data-en="Our team will recommend the best packaging solution for your specific cargo." 
-                           data-ar="سيوصي فريقنا بأفضل حل تغليف لبضاعتك المحددة.">Our team will recommend the best packaging solution for your specific cargo.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item" onclick="toggleFAQ(this)">
-                    <div class="faq-question">
-                        <h3 data-en="Is my cargo insured?" data-ar="هل بضاعتي مؤمنة؟">Is my cargo insured?</h3>
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p data-en="Absolutely! All shipments are fully insured from pickup to delivery. We offer comprehensive coverage to protect your cargo against loss, damage, or theft during transit. Additional insurance options are available for high-value items." 
-                           data-ar="بالتأكيد! جميع الشحنات مؤمنة بالكامل من الاستلام إلى التسليم. نحن نقدم تغطية شاملة لحماية بضاعتك ضد الفقدان أو التلف أو السرقة أثناء النقل. خيارات التأمين الإضافية متاحة للعناصر عالية القيمة.">Absolutely! All shipments are fully insured from pickup to delivery. We offer comprehensive coverage to protect your cargo against loss, damage, or theft during transit. Additional insurance options are available for high-value items.</p>
+                        <p data-en="EGO Express is a premier freight forwarding and logistics company specializing in door-to-door cargo transport between the UAE, Kuwait, and expanding to other regions." data-ar="إيجو إكسبريس هي شركة رائدة في مجال الشحن واللوجستيات متخصصة في نقل البضائع من الباب إلى الباب بين الإمارات والكويت.">EGO Express is a premier freight forwarding and logistics company specializing in door-to-door cargo transport between the UAE, Kuwait, and expanding to other regions.</p>
                     </div>
                 </div>
 
@@ -864,111 +218,97 @@
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p data-en="Yes! You'll receive a tracking number once your shipment is picked up. You can track your cargo in real-time and receive updates via SMS and email at every major milestone of the journey." 
-                           data-ar="نعم! ستتلقى رقم تتبع بمجرد استلام شحنتك. يمكنك تتبع بضاعتك في الوقت الفعلي وتلقي التحديثات عبر الرسائل النصية والبريد الإلكتروني في كل مرحلة رئيسية من الرحلة.">Yes! You'll receive a tracking number once your shipment is picked up. You can track your cargo in real-time and receive updates via SMS and email at every major milestone of the journey.</p>
+                        <p data-en="Yes! You'll receive a tracking number once your shipment is picked up. You can track your cargo in real-time through our system." data-ar="نعم! ستتلقى رقم تتبع بمجرد استلام شحنتك. يمكنك تتبع بضاعتك في الوقت الفعلي من خلال نظامنا.">Yes! You'll receive a tracking number once your shipment is picked up. You can track your cargo in real-time through our system.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3 data-en="What if I need to change my delivery address?" data-ar="ماذا لو احتجت لتغيير عنوان التسليم؟">What if I need to change my delivery address?</h3>
+                        <h3 data-en="What areas do you serve?" data-ar="ما هي المناطق التي تخدمونها؟">What areas do you serve?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p data-en="Please contact us as soon as possible. Address changes can usually be accommodated if the shipment hasn't reached the final destination. Additional fees may apply depending on the new location and current shipment status." 
-                           data-ar="يرجى الاتصال بنا في أقرب وقت ممكن. يمكن عادة استيعاب تغييرات العنوان إذا لم تصل الشحنة إلى الوجهة النهائية. قد يتم تطبيق رسوم إضافية اعتماداً على الموقع الجديد وحالة الشحنة الحالية.">Please contact us as soon as possible. Address changes can usually be accommodated if the shipment hasn't reached the final destination. Additional fees may apply depending on the new location and current shipment status.</p>
+                        <p data-en="We currently serve UAE and Kuwait with door-to-door services, and we're expanding to additional Gulf countries and international destinations." data-ar="نقدم حاليًا خدمات من الباب إلى الباب في الإمارات والكويت، ونتوسع إلى دول خليجية إضافية ووجهات دولية.">We currently serve UAE and Kuwait with door-to-door services, and we're expanding to additional Gulf countries and international destinations.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3 data-en="What types of cargo do you handle?" data-ar="ما هي أنواع البضائع التي تتعاملون معها؟">What types of cargo do you handle?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-en="We handle various types of cargo including personal effects, commercial goods, electronics, furniture, and more. Some items may have restrictions or require special handling." data-ar="نتعامل مع أنواع مختلفة من البضائع بما في ذلك المتعلقات الشخصية والبضائع التجارية والإلكترونيات والأثاث والمزيد. قد يكون لبعض العناصر قيود أو تتطلب معالجة خاصة.">We handle various types of cargo including personal effects, commercial goods, electronics, furniture, and more. Some items may have restrictions or require special handling.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3 data-en="How can I contact customer support?" data-ar="كيف يمكنني الاتصال بخدمة العملاء؟">How can I contact customer support?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-en="You can reach our customer support team via phone, email, or WhatsApp. Visit our 'Contact Us' page for all contact details and business hours." data-ar="يمكنك التواصل مع فريق خدمة العملاء عبر الهاتف أو البريد الإلكتروني أو واتساب. قم بزيارة صفحة 'اتصل بنا' للحصول على جميع تفاصيل الاتصال وساعات العمل.">You can reach our customer support team via phone, email, or WhatsApp. Visit our 'Contact Us' page for all contact details and business hours.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Shipping Category -->
-            <div class="faq-category" id="shipping" style="display: none;">
-                <h2 class="faq-category-title" data-en="Shipping Questions" data-ar="أسئلة الشحن">Shipping Questions</h2>
+            <div class="faq-category" id="shipping" style="display:none;">
+                <h2 class="faq-category-title"><span class="red" data-en="Shipping" data-ar="الشحن">Shipping</span> <span data-en="Questions" data-ar="أسئلة">Questions</span></h2>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3 data-en="How long does shipping take?" data-ar="كم من الوقت يستغرق الشحن؟">How long does shipping take?</h3>
+                        <h3 data-en="How long does shipping take?" data-ar="كم تستغرق عملية الشحن؟">How long does shipping take?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p data-en="Delivery times vary by route:" data-ar="تختلف أوقات التسليم حسب المسار:">Delivery times vary by route:</p>
-                        <ul>
-                            <li data-en="UAE to Kuwait: 5-7 business days" data-ar="من الإمارات إلى الكويت: 5-7 أيام عمل">UAE to Kuwait: 5-7 business days</li>
-                            <li data-en="Within UAE: 2-3 business days" data-ar="داخل الإمارات: 2-3 أيام عمل">Within UAE: 2-3 business days</li>
-                            <li data-en="Express service: Available for urgent shipments" data-ar="الخدمة السريعة: متاحة للشحنات العاجلة">Express service: Available for urgent shipments</li>
-                        </ul>
-                        <p data-en="Actual delivery time depends on customs clearance and destination accessibility." 
-                           data-ar="يعتمد وقت التسليم الفعلي على التخليص الجمركي وإمكانية الوصول إلى الوجهة.">Actual delivery time depends on customs clearance and destination accessibility.</p>
+                        <p data-en="Delivery times vary by destination. Typically, UAE to Kuwait takes 3-5 business days. We'll provide an estimated delivery date when you book your shipment." data-ar="تختلف أوقات التسليم حسب الوجهة. عادة، يستغرق الشحن من الإمارات إلى الكويت من 3 إلى 5 أيام عمل. سنوفر تاريخ تسليم تقديري عند حجز شحنتك.">Delivery times vary by destination. Typically, UAE to Kuwait takes 3-5 business days. We'll provide an estimated delivery date when you book your shipment.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3 data-en="What items cannot be shipped?" data-ar="ما هي العناصر التي لا يمكن شحنها؟">What items cannot be shipped?</h3>
+                        <h3 data-en="Do you offer pickup services?" data-ar="هل تقدمون خدمات الاستلام؟">Do you offer pickup services?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p data-en="We cannot ship prohibited items including:" data-ar="لا يمكننا شحن العناصر المحظورة بما في ذلك:">We cannot ship prohibited items including:</p>
-                        <ul>
-                            <li data-en="Illegal substances or contraband" data-ar="المواد غير القانونية أو المحظورات">Illegal substances or contraband</li>
-                            <li data-en="Weapons and ammunition" data-ar="الأسلحة والذخيرة">Weapons and ammunition</li>
-                            <li data-en="Hazardous materials (without proper documentation)" data-ar="المواد الخطرة (بدون التوثيق المناسب)">Hazardous materials (without proper documentation)</li>
-                            <li data-en="Perishable food items (case by case)" data-ar="المواد الغذائية القابلة للتلف (حالة بحالة)">Perishable food items (case by case)</li>
-                            <li data-en="Live animals" data-ar="الحيوانات الحية">Live animals</li>
-                        </ul>
-                        <p data-en="If you're unsure about an item, please contact us before booking." 
-                           data-ar="إذا لم تكن متأكداً من عنصر ما، يرجى الاتصال بنا قبل الحجز.">If you're unsure about an item, please contact us before booking.</p>
+                        <p data-en="Yes! We offer door-to-door service including pickup from your location and delivery to the destination address. Schedule a pickup when booking your shipment." data-ar="نعم! نقدم خدمة من الباب إلى الباب بما في ذلك الاستلام من موقعك والتسليم إلى عنوان الوجهة. حدد موعد الاستلام عند حجز شحنتك.">Yes! We offer door-to-door service including pickup from your location and delivery to the destination address. Schedule a pickup when booking your shipment.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3 data-en="Do you handle fragile items?" data-ar="هل تتعاملون مع الأشياء الهشة؟">Do you handle fragile items?</h3>
+                        <h3 data-en="What packaging is required?" data-ar="ما هي متطلبات التغليف؟">What packaging is required?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p data-en="Yes! We specialize in handling fragile and valuable items. Simply mark your shipment as fragile when booking, and we'll ensure special care including reinforced packaging, careful loading, and priority handling throughout transit." 
-                           data-ar="نعم! نحن متخصصون في التعامل مع الأشياء الهشة والقيمة. ببساطة قم بتمييز شحنتك على أنها هشة عند الحجز، وسنضمن عناية خاصة بما في ذلك التغليف المعزز والتحميل الدقيق والمعالجة ذات الأولوية طوال النقل.">Yes! We specialize in handling fragile and valuable items. Simply mark your shipment as fragile when booking, and we'll ensure special care including reinforced packaging, careful loading, and priority handling throughout transit.</p>
+                        <p data-en="Items should be properly packed in sturdy boxes with adequate cushioning. We also offer professional packing services if needed. Fragile items require special packaging." data-ar="يجب تعبئة العناصر بشكل صحيح في صناديق متينة مع توسيد كافٍ. نقدم أيضًا خدمات تعبئة احترافية إذا لزم الأمر. تتطلب العناصر الهشة تغليفًا خاصًا.">Items should be properly packed in sturdy boxes with adequate cushioning. We also offer professional packing services if needed. Fragile items require special packaging.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3 data-en="Is there a weight or size limit?" data-ar="هل هناك حد للوزن أو الحجم؟">Is there a weight or size limit?</h3>
+                        <h3 data-en="What are the weight and size limits?" data-ar="ما هي حدود الوزن والحجم؟">What are the weight and size limits?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p data-en="We can handle shipments of virtually any size! From small packages to large commercial cargo, furniture, and vehicles. For oversized or extremely heavy items, please provide detailed dimensions when booking so we can arrange appropriate equipment." 
-                           data-ar="يمكننا التعامل مع شحنات من أي حجم تقريباً! من الطرود الصغيرة إلى البضائع التجارية الكبيرة والأثاث والمركبات. للعناصر كبيرة الحجم أو الثقيلة للغاية، يرجى تقديم الأبعاد التفصيلية عند الحجز حتى نتمكن من ترتيب المعدات المناسبة.">We can handle shipments of virtually any size! From small packages to large commercial cargo, furniture, and vehicles. For oversized or extremely heavy items, please provide detailed dimensions when booking so we can arrange appropriate equipment.</p>
+                        <p data-en="We can handle shipments of various sizes. For oversized or overweight cargo, please contact us for a custom quote and special handling arrangements." data-ar="يمكننا التعامل مع الشحنات بأحجام مختلفة. للبضائع كبيرة الحجم أو الوزن الزائد، يرجى الاتصال بنا للحصول على عرض أسعار مخصص وترتيبات معالجة خاصة.">We can handle shipments of various sizes. For oversized or overweight cargo, please contact us for a custom quote and special handling arrangements.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3 data-en="Do you offer door-to-door service?" data-ar="هل تقدمون خدمة من الباب إلى الباب؟">Do you offer door-to-door service?</h3>
+                        <h3 data-en="Can I ship fragile items?" data-ar="هل يمكنني شحن العناصر الهشة؟">Can I ship fragile items?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p data-en="Yes! Complete door-to-door service is our specialty. We pick up from your location and deliver directly to the recipient's address. No need to visit depots or warehouses - we handle everything." 
-                           data-ar="نعم! الخدمة الكاملة من الباب إلى الباب هي تخصصنا. نقوم بالاستلام من موقعك والتسليم مباشرة إلى عنوان المستلم. لا حاجة لزيارة المستودعات أو المخازن - نحن نتعامل مع كل شيء.">Yes! Complete door-to-door service is our specialty. We pick up from your location and deliver directly to the recipient's address. No need to visit depots or warehouses - we handle everything.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item" onclick="toggleFAQ(this)">
-                    <div class="faq-question">
-                        <h3 data-en="Can I ship to a P.O. Box?" data-ar="هل يمكنني الشحن إلى صندوق بريد؟">Can I ship to a P.O. Box?</h3>
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p data-en="For large cargo shipments, we require a physical address for delivery. However, for smaller packages and documents, P.O. Box delivery may be available in certain areas. Please specify when booking." 
-                           data-ar="بالنسبة لشحنات البضائع الكبيرة، نحتاج إلى عنوان فعلي للتسليم. ومع ذلك، بالنسبة للطرود الصغيرة والمستندات، قد يكون التسليم إلى صندوق البريد متاحاً في مناطق معينة. يرجى التحديد عند الحجز.">For large cargo shipments, we require a physical address for delivery. However, for smaller packages and documents, P.O. Box delivery may be available in certain areas. Please specify when booking.</p>
+                        <p data-en="Yes, we handle fragile items with special care. Make sure to label them clearly as 'Fragile' and use appropriate packaging. Additional insurance is recommended for valuable fragile items." data-ar="نعم، نتعامل مع العناصر الهشة بعناية خاصة. تأكد من تصنيفها بوضوح على أنها 'هشة' واستخدم التغليف المناسب. يوصى بالتأمين الإضافي للعناصر الهشة القيمة.">Yes, we handle fragile items with special care. Make sure to label them clearly as 'Fragile' and use appropriate packaging. Additional insurance is recommended for valuable fragile items.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Pricing Category -->
-            <div class="faq-category" id="pricing" style="display: none;">
-                <h2 class="faq-category-title" data-en="Pricing Questions" data-ar="أسئلة الأسعار">Pricing Questions</h2>
+            <div class="faq-category" id="pricing" style="display:none;">
+                <h2 class="faq-category-title"><span class="red" data-en="Pricing" data-ar="الأسعار">Pricing</span> <span data-en="Questions" data-ar="أسئلة">Questions</span></h2>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
@@ -976,54 +316,27 @@
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p data-en="Shipping costs are based on several factors:" data-ar="تعتمد تكاليف الشحن على عدة عوامل:">Shipping costs are based on several factors:</p>
-                        <ul>
-                            <li data-en="Weight and volume of cargo" data-ar="وزن وحجم البضائع">Weight and volume of cargo</li>
-                            <li data-en="Origin and destination locations" data-ar="مواقع المنشأ والوجهة">Origin and destination locations</li>
-                            <li data-en="Type of goods being shipped" data-ar="نوع البضائع التي يتم شحنها">Type of goods being shipped</li>
-                            <li data-en="Packaging requirements" data-ar="متطلبات التغليف">Packaging requirements</li>
-                            <li data-en="Speed of delivery (standard or express)" data-ar="سرعة التسليم (قياسية أو سريعة)">Speed of delivery (standard or express)</li>
-                        </ul>
-                        <p data-en="We provide transparent, detailed quotes with no hidden fees." 
-                           data-ar="نحن نقدم عروض أسعار شفافة ومفصلة بدون رسوم مخفية.">We provide transparent, detailed quotes with no hidden fees.</p>
+                        <p data-en="Shipping costs are based on weight, dimensions, destination, and service type. You can get an instant quote through our booking page by entering your shipment details." data-ar="تعتمد تكاليف الشحن على الوزن والأبعاد والوجهة ونوع الخدمة. يمكنك الحصول على عرض أسعار فوري من خلال صفحة الحجز عن طريق إدخال تفاصيل شحنتك.">Shipping costs are based on weight, dimensions, destination, and service type. You can get an instant quote through our booking page by entering your shipment details.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3 data-en="Are there any hidden fees?" data-ar="هل هناك أي رسوم مخفية؟">Are there any hidden fees?</h3>
+                        <h3 data-en="What payment methods do you accept?" data-ar="ما هي طرق الدفع المقبولة؟">What payment methods do you accept?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p data-en="Never! We believe in complete transparency. Your quote includes all costs: pickup, transport, packaging, insurance, and delivery. The only additional charges would be for optional services you choose or unexpected customs duties." 
-                           data-ar="أبداً! نحن نؤمن بالشفافية الكاملة. عرض الأسعار الخاص بك يشمل جميع التكاليف: الاستلام والنقل والتغليف والتأمين والتسليم. الرسوم الإضافية الوحيدة ستكون للخدمات الاختيارية التي تختارها أو الرسوم الجمركية غير المتوقعة.">Never! We believe in complete transparency. Your quote includes all costs: pickup, transport, packaging, insurance, and delivery. The only additional charges would be for optional services you choose or unexpected customs duties.</p>
+                        <p data-en="We accept cash, bank transfers, credit/debit cards, and digital payment methods. Payment is required before shipment pickup or upon booking confirmation." data-ar="نقبل النقد والتحويلات البنكية وبطاقات الائتمان/الخصم وطرق الدفع الرقمية. الدفع مطلوب قبل استلام الشحنة أو عند تأكيد الحجز.">We accept cash, bank transfers, credit/debit cards, and digital payment methods. Payment is required before shipment pickup or upon booking confirmation.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3 data-en="Do I pay before or after shipping?" data-ar="هل أدفع قبل أو بعد الشحن؟">Do I pay before or after shipping?</h3>
+                        <h3 data-en="Are there any hidden fees?" data-ar="هل هناك رسوم مخفية؟">Are there any hidden fees?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p data-en="Payment terms are flexible. Typically, we require 50% deposit upon booking confirmation and the remaining 50% before final delivery. For regular corporate clients, we offer credit terms. Cash on delivery options may be available." 
-                           data-ar="شروط الدفع مرنة. عادة، نطلب إيداع 50٪ عند تأكيد الحجز والـ 50٪ المتبقية قبل التسليم النهائي. بالنسبة للعملاء المؤسسيين المنتظمين، نقدم شروط ائتمانية. قد تكون خيارات الدفع عند الاستلام متاحة.">Payment terms are flexible. Typically, we require 50% deposit upon booking confirmation and the remaining 50% before final delivery. For regular corporate clients, we offer credit terms. Cash on delivery options may be available.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item" onclick="toggleFAQ(this)">
-                    <div class="faq-question">
-                        <h3 data-en="What payment methods do you accept?" data-ar="ما هي طرق الدفع التي تقبلونها؟">What payment methods do you accept?</h3>
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p data-en="We accept various payment methods for your convenience:" data-ar="نحن نقبل طرق دفع مختلفة لراحتك:">We accept various payment methods for your convenience:</p>
-                        <ul>
-                            <li data-en="Bank transfers" data-ar="التحويلات البنكية">Bank transfers</li>
-                            <li data-en="Credit/Debit cards" data-ar="بطاقات الائتمان/الخصم">Credit/Debit cards</li>
-                            <li data-en="Cash payments" data-ar="الدفع نقداً">Cash payments</li>
-                            <li data-en="Online payment platforms" data-ar="منصات الدفع عبر الإنترنت">Online payment platforms</li>
-                        </ul>
+                        <p data-en="No, we provide transparent pricing. All costs including customs duties (if applicable) will be clearly communicated before you confirm your booking." data-ar="لا، نوفر أسعارًا شفافة. سيتم توضيح جميع التكاليف بما في ذلك الرسوم الجمركية (إن وجدت) بوضوح قبل تأكيد حجزك.">No, we provide transparent pricing. All costs including customs duties (if applicable) will be clearly communicated before you confirm your booking.</p>
                     </div>
                 </div>
 
@@ -1033,76 +346,81 @@
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p data-en="Yes! We offer competitive rates for regular customers and bulk shipments. If you ship frequently or have large volume requirements, contact us to discuss customized pricing packages tailored to your needs." 
-                           data-ar="نعم! نحن نقدم أسعاراً تنافسية للعملاء المنتظمين والشحنات الكبيرة. إذا كنت تشحن بشكل متكرر أو لديك متطلبات حجم كبيرة، اتصل بنا لمناقشة حزم التسعير المخصصة التي تناسب احتياجاتك.">Yes! We offer competitive rates for regular customers and bulk shipments. If you ship frequently or have large volume requirements, contact us to discuss customized pricing packages tailored to your needs.</p>
+                        <p data-en="Yes, we offer special rates for regular customers and bulk shipments. Contact our sales team to discuss volume discounts and corporate packages." data-ar="نعم، نقدم أسعارًا خاصة للعملاء المنتظمين والشحنات الكبيرة. اتصل بفريق المبيعات لدينا لمناقشة خصومات الحجم والحزم المؤسسية.">Yes, we offer special rates for regular customers and bulk shipments. Contact our sales team to discuss volume discounts and corporate packages.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3 data-en="Is insurance included in the price?" data-ar="هل التأمين مشمول في السعر؟">Is insurance included in the price?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-en="Basic coverage is included, but we recommend purchasing additional insurance for high-value items. Insurance options will be presented during the booking process." data-ar="التغطية الأساسية مشمولة، لكننا نوصي بشراء تأمين إضافي للعناصر عالية القيمة. سيتم عرض خيارات التأمين أثناء عملية الحجز.">Basic coverage is included, but we recommend purchasing additional insurance for high-value items. Insurance options will be presented during the booking process.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Customs Category -->
-            <div class="faq-category" id="customs" style="display: none;">
-                <h2 class="faq-category-title" data-en="Customs & Documentation" data-ar="الجمارك والمستندات">Customs & Documentation</h2>
+            <div class="faq-category" id="customs" style="display:none;">
+                <h2 class="faq-category-title"><span class="red" data-en="Customs" data-ar="الجمارك">Customs</span> <span data-en="Questions" data-ar="أسئلة">Questions</span></h2>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3 data-en="Do you handle customs clearance?" data-ar="هل تتولون التخليص الجمركي؟">Do you handle customs clearance?</h3>
+                        <h3 data-en="Do you handle customs clearance?" data-ar="هل تتعاملون مع التخليص الجمركي؟">Do you handle customs clearance?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p data-en="Absolutely! Our experienced customs brokerage team handles all customs documentation and clearance procedures. We ensure your shipment complies with all regulations and moves through customs smoothly and quickly." 
-                           data-ar="بالتأكيد! يتولى فريق الوساطة الجمركية ذو الخبرة لدينا جميع وثائق الجمارك وإجراءات التخليص. نحن نضمن أن شحنتك تتوافق مع جميع اللوائح وتتحرك عبر الجمارك بسلاسة وسرعة.">Absolutely! Our experienced customs brokerage team handles all customs documentation and clearance procedures. We ensure your shipment complies with all regulations and moves through customs smoothly and quickly.</p>
+                        <p data-en="Yes, we handle all customs documentation and clearance procedures on your behalf. Our team ensures smooth processing and compliance with all regulations." data-ar="نعم، نتعامل مع جميع الوثائق الجمركية وإجراءات التخليص نيابة عنك. يضمن فريقنا المعالجة السلسة والامتثال لجميع اللوائح.">Yes, we handle all customs documentation and clearance procedures on your behalf. Our team ensures smooth processing and compliance with all regulations.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3 data-en="What documents do I need to provide?" data-ar="ما هي المستندات التي أحتاج إلى تقديمها؟">What documents do I need to provide?</h3>
+                        <h3 data-en="What documents are required for customs?" data-ar="ما هي المستندات المطلوبة للجمارك؟">What documents are required for customs?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p data-en="Common documents required include:" data-ar="تشمل المستندات الشائعة المطلوبة:">Common documents required include:</p>
-                        <ul>
-                            <li data-en="Commercial Invoice (for commercial goods)" data-ar="الفاتورة التجارية (للبضائع التجارية)">Commercial Invoice (for commercial goods)</li>
-                            <li data-en="Packing List" data-ar="قائمة التعبئة">Packing List</li>
-                            <li data-en="Certificate of Origin (if applicable)" data-ar="شهادة المنشأ (إذا كانت قابلة للتطبيق)">Certificate of Origin (if applicable)</li>
-                            <li data-en="Copy of passport/Emirates ID" data-ar="نسخة من جواز السفر/الهوية الإماراتية">Copy of passport/Emirates ID</li>
-                        </ul>
-                        <p data-en="Our team will guide you on specific requirements based on your shipment type." 
-                           data-ar="سيوجهك فريقنا بشأن المتطلبات المحددة بناءً على نوع شحنتك.">Our team will guide you on specific requirements based on your shipment type.</p>
+                        <p data-en="Typically, you'll need a commercial invoice, packing list, and identification documents. Our team will guide you through the specific requirements for your shipment." data-ar="عادةً، ستحتاج إلى فاتورة تجارية وقائمة تعبئة ووثائق تعريفية. سيرشدك فريقنا خلال المتطلبات المحددة لشحنتك.">Typically, you'll need a commercial invoice, packing list, and identification documents. Our team will guide you through the specific requirements for your shipment.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3 data-en="Who pays customs duties?" data-ar="من يدفع الرسوم الجمركية؟">Who pays customs duties?</h3>
+                        <h3 data-en="Are there items prohibited from shipping?" data-ar="هل هناك عناصر محظورة من الشحن؟">Are there items prohibited from shipping?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p data-en="Customs duties are typically paid by the recipient unless otherwise arranged. We'll inform you of estimated duties during the quote process. You can choose to pay duties upfront or have the recipient pay upon delivery." 
-                           data-ar="عادة ما يدفع المستلم الرسوم الجمركية ما لم يتم الترتيب بخلاف ذلك. سنبلغك بالرسوم المقدرة أثناء عملية عرض الأسعار. يمكنك اختيار دفع الرسوم مقدماً أو جعل المستلم يدفع عند التسليم.">Customs duties are typically paid by the recipient unless otherwise arranged. We'll inform you of estimated duties during the quote process. You can choose to pay duties upfront or have the recipient pay upon delivery.</p>
+                        <p data-en="Yes, certain items like hazardous materials, weapons, illegal substances, and perishables cannot be shipped. Contact us for a complete list of prohibited items." data-ar="نعم، لا يمكن شحن عناصر معينة مثل المواد الخطرة والأسلحة والمواد غير القانونية والمواد القابلة للتلف. اتصل بنا للحصول على قائمة كاملة بالعناصر المحظورة.">Yes, certain items like hazardous materials, weapons, illegal substances, and perishables cannot be shipped. Contact us for a complete list of prohibited items.</p>
                     </div>
                 </div>
 
                 <div class="faq-item" onclick="toggleFAQ(this)">
                     <div class="faq-question">
-                        <h3 data-en="How long does customs clearance take?" data-ar="كم من الوقت يستغرق التخليص الجمركي؟">How long does customs clearance take?</h3>
+                        <h3 data-en="Who pays customs duties and taxes?" data-ar="من يدفع الرسوم الجمركية والضرائب؟">Who pays customs duties and taxes?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p data-en="With proper documentation, customs clearance typically takes 1-3 business days. However, this can vary based on the type of goods, destination country regulations, and customs inspection requirements. We monitor the process closely and keep you updated." 
-                           data-ar="مع التوثيق المناسب، يستغرق التخليص الجمركي عادةً 1-3 أيام عمل. ومع ذلك، يمكن أن يختلف هذا بناءً على نوع البضائع ولوائح بلد الوجهة ومتطلبات التفتيش الجمركي. نحن نراقب العملية عن كثب ونبقيك على اطلاع.">With proper documentation, customs clearance typically takes 1-3 business days. However, this can vary based on the type of goods, destination country regulations, and customs inspection requirements. We monitor the process closely and keep you updated.</p>
+                        <p data-en="Customs duties and taxes are typically paid by the recipient. We'll inform you of any applicable charges before delivery. Some shipments may be exempt based on value or type." data-ar="عادة ما يدفع المستلم الرسوم الجمركية والضرائب. سنبلغك بأي رسوم مطبقة قبل التسليم. قد تكون بعض الشحنات معفاة بناءً على القيمة أو النوع.">Customs duties and taxes are typically paid by the recipient. We'll inform you of any applicable charges before delivery. Some shipments may be exempt based on value or type.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <h3 data-en="What happens if my shipment is held at customs?" data-ar="ماذا يحدث إذا تم احتجاز شحنتي في الجمارك؟">What happens if my shipment is held at customs?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-en="If your shipment is held, we'll contact you immediately with the reason and required action. Our customs team will assist you in resolving any issues quickly." data-ar="إذا تم احتجاز شحنتك، سنتصل بك فورًا مع السبب والإجراء المطلوب. سيساعدك فريق الجمارك لدينا في حل أي مشاكل بسرعة.">If your shipment is held, we'll contact you immediately with the reason and required action. Our customs team will assist you in resolving any issues quickly.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
     <section class="cta-section">
         <div class="cta-content">
-            <h2 data-en="Still Have Questions?" data-ar="لا تزال لديك أسئلة؟">Still Have <span class="red" data-en="Questions?" data-ar="أسئلة؟">Questions?</span></h2>
-            <p data-en="Our customer support team is ready to help you with any questions or concerns." 
-               data-ar="فريق دعم العملاء لدينا جاهز لمساعدتك في أي أسئلة أو مخاوف.">Our customer support team is ready to help you with any questions or concerns.</p>
+            <h2><span data-en="Still Have " data-ar="لا تزال لديك ">Still Have </span><span class="red" data-en="Questions?" data-ar="أسئلة؟">Questions?</span></h2>
+            <p data-en="Our customer support team is ready to help you with any questions or concerns." data-ar="فريق دعم العملاء لدينا جاهز لمساعدتك في أي أسئلة أو مخاوف.">Our customer support team is ready to help you with any questions or concerns.</p>
             <div class="cta-buttons">
                 <a href="booking.html" class="btn-cta" data-en="Book Your Shipment" data-ar="احجز شحنتك">Book Your Shipment</a>
                 <a href="why-us.html" class="btn-secondary" data-en="Learn More About Us" data-ar="تعرف علينا أكثر">Learn More About Us</a>
@@ -1113,12 +431,27 @@
     <script>
         let currentLang = 'en';
 
+        function toggleMenu(){
+          const menu=document.getElementById('mobileMenu');
+          const hamburger=document.getElementById('hamburgerBtn');
+          menu.classList.toggle('active');
+          hamburger.classList.toggle('active');
+        } 
+        document.addEventListener('click',function(event){
+          const menu=document.getElementById('mobileMenu');
+          const hamburger=document.getElementById('hamburgerBtn');
+          const navbar=document.querySelector('.navbar');
+          if(!navbar.contains(event.target)&&menu.classList.contains('active')){
+            menu.classList.remove('active');
+            hamburger.classList.remove('active');
+          }
+        }); 
+        const hamburgerBtn=document.getElementById('hamburgerBtn');
+        if(hamburgerBtn){hamburgerBtn.addEventListener('click',toggleMenu);}
+
         function toggleLanguage() {
-            if (currentLang === 'en') {
-                changeLang('ar');
-            } else {
-                changeLang('en');
-            }
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            changeLang(currentLang);
         }
 
         function changeLang(lang) {
@@ -1126,106 +459,42 @@
             const langText = document.getElementById('langText');
             const searchInput = document.getElementById('searchInput');
             
-currentLang = lang;  // ← المهم جداً!
-    localStorage.setItem('preferred-lang', lang);
-
+            currentLang = lang;
+            localStorage.setItem('preferred-lang', lang);
             
             if (lang === 'ar') {
                 body.setAttribute('dir', 'rtl');
                 langText.textContent = 'AR';
                 searchInput.placeholder = searchInput.getAttribute('data-placeholder-ar');
-                
-                document.querySelectorAll('[data-ar]').forEach(function(el) {
-                    const arText = el.getAttribute('data-ar');
-                    if (arText) {
-                        if (el.innerHTML.includes('<span')) {
-                            // For elements with nested spans
-                            const tempDiv = document.createElement('div');
-                            tempDiv.innerHTML = arText;
-                            el.innerHTML = arText;
-                        } else {
-                            el.innerHTML = arText;
-                        }
-                    }
-                });
             } else {
                 body.setAttribute('dir', 'ltr');
                 langText.textContent = 'EN';
                 searchInput.placeholder = searchInput.getAttribute('data-placeholder-en');
-                
-                document.querySelectorAll('[data-en]').forEach(function(el) {
-                    const enText = el.getAttribute('data-en');
-                    if (enText) {
-                        if (el.innerHTML.includes('<span')) {
-                            el.innerHTML = enText;
-                        } else {
-                            el.innerHTML = enText;
-                        }
-                    }
-                });
             }
+            
+            document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+                const text = el.getAttribute('data-' + lang);
+                if (text) el.textContent = text;
+            });
         }
 
         function toggleFAQ(element) {
             const wasActive = element.classList.contains('active');
-            
-            document.querySelectorAll('.faq-item').forEach(function(item) {
-                item.classList.remove('active');
-            });
-            
-            if (!wasActive) {
-                element.classList.add('active');
-            }
+            document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('active'));
+            if (!wasActive) element.classList.add('active');
         }
 
         function showCategory(category) {
-            document.querySelectorAll('.category-card').forEach(function(card) {
-                card.classList.remove('active');
-            });
-            
+            document.querySelectorAll('.category-card').forEach(card => card.classList.remove('active'));
             event.target.closest('.category-card').classList.add('active');
-            
-            document.querySelectorAll('.faq-category').forEach(function(cat) {
-                cat.style.display = 'none';
-            });
-            
+            document.querySelectorAll('.faq-category').forEach(cat => cat.style.display = 'none');
             document.getElementById(category).style.display = 'block';
-            
-            window.scrollTo({
-                top: document.querySelector('.faq-section').offsetTop - 100,
-                behavior: 'smooth'
-            });
         }
 
-        document.getElementById('searchInput').addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            const allFaqItems = document.querySelectorAll('.faq-item');
-            
-            if (searchTerm === '') {
-                allFaqItems.forEach(function(item) {
-                    item.style.display = 'block';
-                });
-                return;
-            }
-            
-            allFaqItems.forEach(function(item) {
-                const question = item.querySelector('.faq-question h3').textContent.toLowerCase();
-                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
-                
-                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
-                    item.style.display = 'block';
-                    item.closest('.faq-category').style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        });
         window.addEventListener('load', function() {
             const savedLang = localStorage.getItem('preferred-lang');
-    if (savedLang) {  // ← الحل: شيل === 'ar'
-        changeLang(savedLang);
-    }
-});	
+            if (savedLang) changeLang(savedLang);
+        });
     </script>
 </body>
 </html>
