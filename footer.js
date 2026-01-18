@@ -49,7 +49,7 @@
             textAr: 'جميع الحقوق محفوظة',
             poweredByEn: 'Powered by',
             poweredByAr: 'مدعوم من',
-            developer: 'Bassem',
+            developer: 'Mr. Marwan Taterli',
             developerUrl: 'https://samar-93.github.io/ego-express/index.html'
         }
     };
@@ -464,4 +464,5 @@ body[dir="rtl"] .footer-links a:hover {
     }
 
     window.updateFooterLanguage = updateFooterLanguage;
+
 })();
