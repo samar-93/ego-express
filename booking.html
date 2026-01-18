@@ -184,15 +184,9 @@
         <p data-en="Choose your preferred way to reach us - We're here to help!" data-ar="اختر الطريقة المناسبة للتواصل معنا - نحن هنا لمساعدتك!">Choose your preferred way to reach us - We're here to help!</p>
     </section>
 
-    <div class="divider-section">
-        <span class="divider-text" data-en="EXPLORE OUR SERVICES" data-ar="تصفح خدماتنا">EXPLORE OUR SERVICES</span>
-    </div>
 
     <section class="services-grid-section">
-        <div class="services-header">
-            <h2 data-en="Our Services" data-ar="خدماتنا">Our Services</h2>
-            <p data-en="Click to learn more about each service" data-ar="اضغط لمعرفة المزيد عن كل خدمة">Click to learn more about each service</p>
-        </div>
+        
         <div class="services-grid">
             <div class="service-card" onclick="openModal('transport')">
                 <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800&q=80');"><div class="card-overlay"></div></div>
@@ -259,11 +253,11 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label data-en="Your Name" data-ar="اسمك">Your Name <span class="required">*</span></label>
-                        <input type="text" id="fullName" required placeholder="John Doe">
+                        <input type="text" id="fullName" required placeholder="Bassem Fouad">
                     </div>
                     <div class="form-group">
                         <label data-en="Mobile Number" data-ar="رقم الهاتف">Mobile Number <span class="required">*</span></label>
-                        <input type="tel" id="mobile" placeholder="+20 XXX XXX XXXX" required>
+                        <input type="tel" id="mobile" placeholder="+971XXXXXX" required>
                     </div>
                 </div>
 
@@ -497,5 +491,91 @@
             }
         });
     </script>
+	<script>
+// Handle scroll from service cards
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('scrollTo') === 'booking-form') {
+    setTimeout(function() {
+        const nameField = document.getElementById('fullName');
+        if (nameField) {
+            const yOffset = -100;
+            const y = nameField.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+            setTimeout(function() {
+                nameField.focus();
+            }, 800);
+        }
+    }, 500);
+}
+</script>
+<script>
+// Auto-fill service and scroll to form when coming from service cards
+window.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    if (urlParams.get('scrollTo') === 'booking-form') {
+        setTimeout(function() {
+            // Scroll to name field
+            const nameField = document.getElementById('fullName');
+            if (nameField) {
+                const yOffset = -100;
+                const y = nameField.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+                
+                setTimeout(function() { 
+                    nameField.focus(); 
+                }, 800);
+            }
+            
+            // Auto-fill service dropdown
+            const selectedService = urlParams.get('service');
+            if (selectedService) {
+                const serviceDropdown = document.getElementById('service');
+                if (serviceDropdown) {
+                    // Service mapping for better matching
+                    const serviceMap = {
+                        'Ocean Freight': 'Ocean Freight',
+                        'Air Freight': 'Air Freight',
+                        'Land Transport': 'Land Transport',
+                        'Multimodal Transport': 'Land Transport',
+                        'Customs Clearance': 'Customs Clearance',
+                        'Warehousing': 'Warehousing',
+                        'Door to Door': 'Door to Door',
+                        'Express Delivery': 'Door to Door',
+                        'E-commerce Logistics': 'Door to Door',
+                        'Supply Chain': 'Warehousing',
+                        'Value Added Services': 'Warehousing',
+                        'Packaging Services': 'Warehousing',
+                        'Reverse Logistics': 'Door to Door',
+                        'Tracking Services': 'Door to Door',
+                        'Insurance Services': 'Customs Clearance',
+                        'Cold Chain': 'Ocean Freight',
+                        'Project Cargo': 'Ocean Freight'
+                    };
+                    
+                    // Get the mapped service or use original
+                    const mappedService = serviceMap[selectedService] || selectedService;
+                    
+                    // Set the dropdown value
+                    const options = serviceDropdown.options;
+                    for (let i = 0; i < options.length; i++) {
+                        if (options[i].value === mappedService) {
+                            serviceDropdown.selectedIndex = i;
+                            serviceDropdown.dispatchEvent(new Event('change'));
+                            
+                            // Visual feedback - highlight the field briefly
+                            serviceDropdown.style.background = '#fff3cd';
+                            setTimeout(function() {
+                                serviceDropdown.style.background = '';
+                            }, 2000);
+                            break;
+                        }
+                    }
+                }
+            }
+        }, 600);
+    }
+});
+</script>
 </body>
 </html>
