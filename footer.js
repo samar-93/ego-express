@@ -49,7 +49,7 @@
             textAr: 'جميع الحقوق محفوظة',
             poweredByEn: 'Powered by',
             poweredByAr: 'مدعوم من',
-            developer: 'Mr. Marwan Taterli',
+            developer: 'Marwan Taterli',
             developerUrl: 'https://samar-93.github.io/ego-express/index.html'
         }
     };
@@ -348,12 +348,12 @@ body[dir="rtl"] .footer-links a:hover {
                                 <span dir="ltr">${footerData.contact.email}</span>
                             </a>
 
-                            <div class="footer-contact-item">
-                                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                                <span data-en="${footerData.contact.address.en}" data-ar="${footerData.contact.address.ar}">
-                                    ${isArabic ? footerData.contact.address.ar : footerData.contact.address.en}
-                                </span>
-                            </div>
+<a href="https://maps.app.goo.gl/xNVZK44neQ1KwYAVA" target="_blank" rel="noopener noreferrer" class="footer-contact-item">
+    <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+    <span data-en="${footerData.contact.address.en}" data-ar="${footerData.contact.address.ar}">
+        ${isArabic ? footerData.contact.address.ar : footerData.contact.address.en}
+    </span>
+</a>
                         </div>
 
                         <!-- Quick Links -->
@@ -464,5 +464,4 @@ body[dir="rtl"] .footer-links a:hover {
     }
 
     window.updateFooterLanguage = updateFooterLanguage;
-
 })();
