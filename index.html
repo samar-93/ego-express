@@ -42,7 +42,6 @@
             direction:ltr !important;
         }
 
-        /* Logo - ثابت في أقصى اليسار دائماً */
         .logo-nav{
             flex-shrink:0;
             margin-right:40px;
@@ -63,7 +62,6 @@
             transform:scale(1.05);
         }
 
-        /* Navigation Links Container */
         .nav-center{
             display:flex;
             align-items:center;
@@ -110,7 +108,6 @@
             width:100%;
         }
 
-        /* Language Switcher - ثابت في أقصى اليمين دائماً */
         .lang-switcher{
             width:50px;
             height:50px;
@@ -132,8 +129,6 @@
             transform:scale(1.1);
             box-shadow:0 6px 25px rgba(255,51,51,0.5);
         }
-
-       
 
         .btn-booking {
             position: fixed;
@@ -177,11 +172,6 @@
             box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
             transition: all 0.3s;
             text-decoration: none;
-        }
-
-        body[dir="rtl"] .whatsapp-float {
-            right: auto;
-            left: 30px;
         }
 
         .whatsapp-float:hover {
@@ -315,6 +305,92 @@
             color: #000;
         }
 
+        /* ================= TRACK SHIPMENT SECTION ================= */
+        .track-section {
+            position: relative;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            padding: 80px 60px;
+            z-index: 10;
+        }
+
+        .track-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .track-container h2 {
+            font-size: 56px;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .track-container p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+        }
+
+        .track-form {
+            display: flex;
+            gap: 15px;
+            max-width: 700px;
+            margin: 0 auto;
+            align-items: stretch;
+        }
+
+        .track-input-wrapper {
+            position: relative;
+            flex: 1;
+        }
+
+        .track-input {
+            width: 100%;
+            padding: 22px 25px;
+            font-size: 16px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .track-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .track-input:focus {
+            border-color: #FF3333;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 30px rgba(255, 51, 51, 0.3);
+        }
+
+        .track-btn {
+            padding: 22px 45px;
+            background: #FF3333;
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 51, 51, 0.4);
+            white-space: nowrap;
+        }
+
+        .track-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(255, 51, 51, 0.6);
+        }
+
+        .track-btn:active {
+            transform: scale(0.98);
+        }
+
         .about-section {
             position: relative;
             background: linear-gradient(180deg, #f8f5f0 0%, #ffffff 100%);
@@ -388,6 +464,9 @@
             transform: translateY(50px);
             animation: cardSlideUp 0.8s ease-out forwards;
             text-align: center;
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
 
         @keyframes cardSlideUp {
@@ -494,12 +573,10 @@
                 height:48px;
             }
             
-            /* إخفاء القائمة العادية */
             .nav-center{
                 display:none;
             }
             
-            /* إظهار Hamburger Menu */
             .hamburger{
                 display:flex;
                 flex-direction:column;
@@ -531,7 +608,6 @@
                 background:#ff3333;
             }
             
-            /* Mobile Menu */
             .mobile-menu{
                 position:fixed;
                 top:78px;
@@ -585,7 +661,6 @@
                 padding-right:30px;
             }
             
-            /* Mobile Controls Container */
             .mobile-controls{
                 display:flex;
                 align-items:center;
@@ -627,6 +702,36 @@
                 font-size: 32px;
             }
 
+            /* Track Section Mobile */
+            .track-section {
+                padding: 60px 20px;
+            }
+
+            .track-container h2 {
+                font-size: 32px;
+                margin-bottom: 15px;
+            }
+
+            .track-container p {
+                font-size: 15px;
+                margin-bottom: 30px;
+            }
+
+            .track-form {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .track-input {
+                padding: 18px 20px;
+                font-size: 15px;
+            }
+
+            .track-btn {
+                padding: 18px 35px;
+                width: 100%;
+            }
+
             .about-content {
                 grid-template-columns: 1fr;
                 gap: 40px;
@@ -659,7 +764,6 @@
             }
         }
 
-        /* Tablet Adjustments */
         @media (min-width:768px) and (max-width:1024px){
             .nav-center{
                 gap:25px;
@@ -672,14 +776,11 @@
     </style>
 </head>
 <body dir="ltr">
-    <!-- PROFESSIONAL HEADER -->
     <nav class="navbar">
-        <!-- Logo - أقصى اليسار دائماً -->
         <a href="index.html" class="logo-nav">
             <img src="https://i.postimg.cc/k5RM67Nt/logo-(2).png" alt="EGO Express">
         </a>
         
-        <!-- Desktop Navigation - في المنتصف -->
         <div class="nav-center">
             <a href="index.html" class="active" data-en="Home" data-ar="الرئيسية">Home</a>
             <a href="why-us.html" data-en="Why Us" data-ar="لماذا نحن">Why Us</a>
@@ -688,7 +789,6 @@
             <a href="booking.html" data-en="Book Shipment" data-ar="احجز شحنة">Book Shipment</a>
         </div>
         
-        <!-- Mobile Controls -->
         <div class="mobile-controls">
             <div class="hamburger" onclick="toggleMenu()">
                 <span></span>
@@ -696,14 +796,12 @@
                 <span></span>
             </div>
             
-            <!-- Language Switcher - أقصى اليمين دائماً -->
             <div class="lang-switcher" onclick="toggleLanguage()">
                 <span id="langText">EN</span>
             </div>
         </div>
     </nav>
 
-    <!-- Mobile Dropdown Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <a href="index.html" class="active">
             <span class="icon">🏠</span>
@@ -764,6 +862,10 @@
         </div>
     </section>
 
+    <!-- TRACK SHIPMENT SECTION -->
+
+
+
     <section class="about-section">
         <div class="about-content">
             <div class="about-text">
@@ -784,228 +886,227 @@
         </div>
 
         <div class="services-grid">
-            <div class="service-card">
+            <a href="booking.html?scrollTo=booking-form&service=Ocean Freight" class="service-card">
                 <div class="service-icon">🚢</div>
                 <div class="service-content">
                     <h3 data-en="OCEAN FREIGHT" data-ar="الشحن البحري">OCEAN FREIGHT</h3>
                     <p data-en="Global sea freight solutions for your cargo needs" 
                        data-ar="حلول الشحن البحري العالمية لاحتياجات البضائع">Global sea freight solutions for your cargo needs</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="service-card">
+            <a href="booking.html?scrollTo=booking-form&service=Air Freight" class="service-card">
                 <div class="service-icon">✈️</div>
                 <div class="service-content">
                     <h3 data-en="AIR FREIGHT" data-ar="الشحن الجوي">AIR FREIGHT</h3>
                     <p data-en="Fast and reliable air cargo services worldwide" 
                        data-ar="خدمات شحن جوي سريعة وموثوقة">Fast and reliable air cargo services worldwide</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="service-card">
+            <a href="booking.html?scrollTo=booking-form&service=Land Transport" class="service-card">
                 <div class="service-icon">🚚</div>
                 <div class="service-content">
                     <h3 data-en="OVERLAND TRANSPORTATION" data-ar="النقل البري">OVERLAND TRANSPORTATION</h3>
                     <p data-en="Comprehensive land transport across continents" 
                        data-ar="نقل بري شامل عبر القارات">Comprehensive land transport across continents</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="service-card">
+            <a href="booking.html?scrollTo=booking-form&service=Multimodal Transport" class="service-card">
                 <div class="service-icon">🔄</div>
                 <div class="service-content">
                     <h3 data-en="MULTIMODAL TRANSPORTATION" data-ar="النقل متعدد الوسائط">MULTIMODAL TRANSPORTATION</h3>
                     <p data-en="Integrated transport solutions combining air, sea, and land" 
                        data-ar="حلول نقل متكاملة بين الجو والبحر والبر">Integrated transport solutions combining air, sea, and land</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="service-card">
+            <a href="booking.html?scrollTo=booking-form&service=Ocean Freight" class="service-card">
                 <div class="service-icon">📦</div>
                 <div class="service-content">
                     <h3 data-en="FULL CONTAINER LOAD (FCL)" data-ar="حاوية كاملة">FULL CONTAINER LOAD (FCL)</h3>
                     <p data-en="Dedicated container shipping for your full loads" 
                        data-ar="شحن حاويات مخصصة للشحنات الكاملة">Dedicated container shipping for your full loads</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="service-card">
+            <a href="booking.html?scrollTo=booking-form&service=Ocean Freight" class="service-card">
                 <div class="service-icon">📋</div>
                 <div class="service-content">
                     <h3 data-en="LESS THAN CONTAINER LOAD (LCL)" data-ar="شحن جزئي">LESS THAN CONTAINER LOAD (LCL)</h3>
                     <p data-en="Cost-effective shipping for smaller cargo volumes" 
                        data-ar="شحن فعال لأحجام البضائع الأصغر">Cost-effective shipping for smaller cargo volumes</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="service-card">
+            <a href="booking.html?scrollTo=booking-form&service=Customs Clearance" class="service-card">
                 <div class="service-icon">📄</div>
                 <div class="service-content">
                     <h3 data-en="CUSTOMS CLEARANCE" data-ar="التخليص الجمركي">CUSTOMS CLEARANCE</h3>
                     <p data-en="Expert customs documentation and clearance services" 
                        data-ar="خدمات توثيق وتخليص جمركي متخصصة">Expert customs documentation and clearance services</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="service-card">
+            <a href="booking.html?scrollTo=booking-form&service=Warehousing" class="service-card">
                 <div class="service-icon">🏢</div>
                 <div class="service-content">
                     <h3 data-en="CUSTOMS BONDED WAREHOUSING" data-ar="مستودعات جمركية">CUSTOMS BONDED WAREHOUSING</h3>
                     <p data-en="Secure bonded storage facilities for duty-free goods" 
                        data-ar="مرافق تخزين محمية للبضائع المعفاة">Secure bonded storage facilities for duty-free goods</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="service-card">
+            <a href="booking.html?scrollTo=booking-form&service=Warehousing" class="service-card">
                 <div class="service-icon">🏭</div>
                 <div class="service-content">
                     <h3 data-en="WAREHOUSING SERVICES" data-ar="خدمات التخزين">WAREHOUSING SERVICES</h3>
                     <p data-en="State-of-the-art storage solutions for your inventory" 
                        data-ar="حلول تخزين حديثة لمخزونك">State-of-the-art storage solutions for your inventory</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="service-card">
+            <a href="booking.html?scrollTo=booking-form&service=Warehousing" class="service-card">
                 <div class="service-icon">🔀</div>
                 <div class="service-content">
                     <h3 data-en="WAREHOUSING & DISTRIBUTION" data-ar="التخزين والتوزيع">WAREHOUSING & DISTRIBUTION</h3>
                     <p data-en="Complete warehousing and distribution network" 
                        data-ar="شبكة كاملة للتخزين والتوزيع">Complete warehousing and distribution network</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="service-card">
+            <a href="booking.html?scrollTo=booking-form&service=Warehousing" class="service-card">
                 <div class="service-icon">📊</div>
                 <div class="service-content">
                     <h3 data-en="INVENTORY MANAGEMENT" data-ar="إدارة المخزون">INVENTORY MANAGEMENT</h3>
                     <p data-en="Advanced inventory tracking and management systems" 
                        data-ar="أنظمة متقدمة لتتبع وإدارة المخزون">Advanced inventory tracking and management systems</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="service-card">
+            <a href="booking.html?scrollTo=booking-form&service=Door to Door" class="service-card">
                 <div class="service-icon">🏠</div>
                 <div class="service-content">
                     <h3 data-en="LAST MILE DELIVERY" data-ar="التوصيل للميل الأخير">LAST MILE DELIVERY</h3>
                     <p data-en="Efficient final delivery to your customers' doorsteps" 
                        data-ar="توصيل نهائي فعال لعتبات عملائك">Efficient final delivery to your customers' doorsteps</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="service-card">
+            <a href="booking.html?scrollTo=booking-form&service=Express Delivery" class="service-card">
                 <div class="service-icon">⚡</div>
                 <div class="service-content">
                     <h3 data-en="COURIER & EXPRESS LOGISTICS" data-ar="الخدمات السريعة">COURIER & EXPRESS LOGISTICS</h3>
                     <p data-en="Urgent delivery services for time-sensitive shipments" 
                        data-ar="خدمات توصيل عاجلة للشحنات الحساسة">Urgent delivery services for time-sensitive shipments</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="service-card">
+            <a href="booking.html?scrollTo=booking-form&service=E-commerce Logistics" class="service-card">
                 <div class="service-icon">🛒</div>
                 <div class="service-content">
                     <h3 data-en="E-COMMERCE LOGISTICS" data-ar="لوجستيات التجارة الإلكترونية">E-COMMERCE LOGISTICS</h3>
                     <p data-en="Specialized logistics solutions for online businesses" 
                        data-ar="حلول لوجستية متخصصة للأعمال عبر الإنترنت">Specialized logistics solutions for online businesses</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="service-card">
+            <a href="booking.html?scrollTo=booking-form&service=Supply Chain" class="service-card">
                 <div class="service-icon">🔗</div>
                 <div class="service-content">
                     <h3 data-en="SUPPLY CHAIN MANAGEMENT" data-ar="إدارة سلسلة التوريد">SUPPLY CHAIN MANAGEMENT</h3>
                     <p data-en="End-to-end supply chain optimization and management" 
                        data-ar="تحسين وإدارة سلسلة التوريد">End-to-end supply chain optimization and management</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="service-card">
+            <a href="booking.html?scrollTo=booking-form&service=Value Added Services" class="service-card">
                 <div class="service-icon">⭐</div>
                 <div class="service-content">
                     <h3 data-en="VALUE-ADDED SERVICES" data-ar="خدمات ذات قيمة مضافة">VALUE-ADDED SERVICES</h3>
                     <p data-en="Custom solutions to enhance your logistics operations" 
                        data-ar="حلول مخصصة لتعزيز عملياتك">Custom solutions to enhance your logistics operations</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="service-card">
+            <a href="booking.html?scrollTo=booking-form&service=Packaging Services" class="service-card">
                 <div class="service-icon">📦</div>
                 <div class="service-content">
                     <h3 data-en="PACKING & REPACKING" data-ar="التعبئة وإعادة التعبئة">PACKING & REPACKING</h3>
                     <p data-en="Professional packaging services for safe transport" 
                        data-ar="خدمات تعبئة احترافية للنقل الآمن">Professional packaging services for safe transport</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="service-card">
+            <a href="booking.html?scrollTo=booking-form&service=Reverse Logistics" class="service-card">
                 <div class="service-icon">🔙</div>
                 <div class="service-content">
                     <h3 data-en="REVERSE LOGISTICS" data-ar="اللوجستيات العكسية">REVERSE LOGISTICS</h3>
                     <p data-en="Efficient returns and reverse supply chain management" 
                        data-ar="إدارة فعالة للمرتجعات وسلسلة التوريد">Efficient returns and reverse supply chain management</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="service-card">
+            <a href="booking.html?scrollTo=booking-form&service=Tracking Services" class="service-card">
                 <div class="service-icon">📍</div>
                 <div class="service-content">
                     <h3 data-en="SHIPMENT TRACKING" data-ar="تتبع الشحنات">SHIPMENT TRACKING</h3>
                     <p data-en="Real-time tracking and visibility for your cargo" 
                        data-ar="تتبع ورؤية في الوقت الفعلي لبضائعك">Real-time tracking and visibility for your cargo</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="service-card">
+            <a href="booking.html?scrollTo=booking-form&service=Insurance Services" class="service-card">
                 <div class="service-icon">🛡️</div>
                 <div class="service-content">
                     <h3 data-en="CARGO INSURANCE" data-ar="تأمين البضائع">CARGO INSURANCE</h3>
                     <p data-en="Comprehensive insurance coverage for your shipments" 
                        data-ar="تغطية تأمينية شاملة لشحناتك">Comprehensive insurance coverage for your shipments</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="service-card">
+            <a href="booking.html?scrollTo=booking-form&service=Cold Chain" class="service-card">
                 <div class="service-icon">❄️</div>
                 <div class="service-content">
                     <h3 data-en="COLD CHAIN LOGISTICS" data-ar="سلسلة التبريد">COLD CHAIN LOGISTICS</h3>
                     <p data-en="Temperature-controlled transport for sensitive goods" 
                        data-ar="نقل محكوم بدرجة الحرارة للبضائع الحساسة">Temperature-controlled transport for sensitive goods</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="service-card">
+            <a href="booking.html?scrollTo=booking-form&service=Project Cargo" class="service-card">
                 <div class="service-icon">🏗️</div>
                 <div class="service-content">
                     <h3 data-en="PROJECT & HEAVY LIFT" data-ar="المشاريع والرفع الثقيل">PROJECT & HEAVY LIFT</h3>
                     <p data-en="Specialized handling for oversized and heavy cargo" 
                        data-ar="معالجة متخصصة للبضائع كبيرة الحجم">Specialized handling for oversized and heavy cargo</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="service-card">
+            <a href="booking.html?scrollTo=booking-form&service=Customs Clearance" class="service-card">
                 <div class="service-icon">✅</div>
                 <div class="service-content">
                     <h3 data-en="PRE-CLEARANCE SERVICES" data-ar="خدمات التخليص المسبق">PRE-CLEARANCE SERVICES</h3>
                     <p data-en="Advance customs processing for faster delivery" 
                        data-ar="معالجة جمركية مسبقة لتسليم أسرع">Advance customs processing for faster delivery</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="service-card">
+            <a href="booking.html?scrollTo=booking-form&service=Express Delivery" class="service-card">
                 <div class="service-icon">🚀</div>
                 <div class="service-content">
                     <h3 data-en="SAME-DAY / NEXT-DAY" data-ar="التوصيل في نفس اليوم">SAME-DAY / NEXT-DAY</h3>
                     <p data-en="Express delivery for your most urgent shipments" 
                        data-ar="توصيل سريع لشحناتك العاجلة">Express delivery for your most urgent shipments</p>
                 </div>
-            </div>
+            </a>
         </div>
     </section>
 
     <script>
         let currentLang = 'en';
 
-        // Toggle Mobile Menu
         function toggleMenu() {
             const menu = document.getElementById('mobileMenu');
             const hamburger = document.querySelector('.hamburger');
@@ -1014,7 +1115,6 @@
             hamburger.classList.toggle('active');
         }
 
-        // Close menu when clicking outside
         document.addEventListener('click', function(event) {
             const menu = document.getElementById('mobileMenu');
             const hamburger = document.querySelector('.hamburger');
@@ -1037,6 +1137,7 @@
         function changeLang(lang) {
             const body = document.body;
             const langText = document.getElementById('langText');
+            const trackingInput = document.getElementById('trackingNumber');
             
             currentLang = lang;
             localStorage.setItem('preferred-lang', lang);
@@ -1044,6 +1145,10 @@
             if (lang === 'ar') {
                 body.setAttribute('dir', 'rtl');
                 langText.textContent = 'AR';
+                
+                if (trackingInput) {
+                    trackingInput.placeholder = trackingInput.getAttribute('data-placeholder-ar');
+                }
                 
                 document.querySelectorAll('[data-ar]').forEach(function(el) {
                     const arText = el.getAttribute('data-ar');
@@ -1059,6 +1164,10 @@
                 body.setAttribute('dir', 'ltr');
                 langText.textContent = 'EN';
                 
+                if (trackingInput) {
+                    trackingInput.placeholder = trackingInput.getAttribute('data-placeholder-en');
+                }
+                
                 document.querySelectorAll('[data-en]').forEach(function(el) {
                     const enText = el.getAttribute('data-en');
                     if (enText) {
@@ -1072,6 +1181,63 @@
             }
         }
 
+        function trackShipment(event) {
+            event.preventDefault();
+            const trackingNumber = document.getElementById('trackingNumber').value;
+            
+            if (trackingNumber.trim()) {
+                window.location.href = `tracking.html?number=${encodeURIComponent(trackingNumber)}`;
+            }
+        }
+
+        // Handle service card clicks - scroll to booking form and auto-fill service
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            if (urlParams.get('scrollTo') === 'booking-form') {
+                setTimeout(function() {
+                    // Find the fullName input field
+                    const nameField = document.getElementById('fullName');
+                    
+                    if (nameField) {
+                        // Scroll to the field smoothly with some offset
+                        const yOffset = -100;
+                        const y = nameField.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                        
+                        window.scrollTo({
+                            top: y,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Focus on the field after scroll completes
+                        setTimeout(function() {
+                            nameField.focus();
+                        }, 800);
+                    }
+                    
+                    // Auto-fill service dropdown if service parameter exists
+                    const selectedService = urlParams.get('service');
+                    if (selectedService) {
+                        const serviceDropdown = document.getElementById('service');
+                        if (serviceDropdown) {
+                            // Try to match the service value
+                            const options = serviceDropdown.options;
+                            for (let i = 0; i < options.length; i++) {
+                                if (options[i].value === selectedService || 
+                                    options[i].text.includes(selectedService) ||
+                                    selectedService.includes(options[i].value)) {
+                                    serviceDropdown.selectedIndex = i;
+                                    // Trigger change event in case there are listeners
+                                    serviceDropdown.dispatchEvent(new Event('change'));
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }, 500);
+            }
+        });
+
         window.addEventListener('load', function() {
             const savedLang = localStorage.getItem('preferred-lang');
             if (savedLang === 'ar') {
@@ -1079,8 +1245,6 @@
             }
         });
     </script>
-    <script src="footer.js"></script>
+	<script src="footer.js"></script>
 </body>
-</html
-
-
+</html>
