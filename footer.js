@@ -14,7 +14,7 @@
             sloganAr: 'تبسيط التجارة العالمية'
         },
         contact: {
-            phone: '+965 22280742',
+            phone: '+96550504886',
             email: 'info@egokw.com',
             whatsapp: '+96550504886',
             address: {
@@ -465,4 +465,5 @@ body[dir="rtl"] .footer-links a:hover {
 
     window.updateFooterLanguage = updateFooterLanguage;
 })();
+
 
