@@ -470,6 +470,7 @@ You are always welcome to visit us and experience our logistics services firstha
 <div class="location-dots">
 <div class="dot active" onclick="goToLocation(0)"></div>
 <div class="dot" onclick="goToLocation(1)"></div>
+<div class="dot" onclick="goToLocation(2)"></div>
 </div>
 </div>
 </section>
@@ -538,6 +539,37 @@ Doha, Kuwait
 </div>
 </div>
 </div>
+<div class="location-slide" id="ajmanSlide">
+<h2 data-en="UAE Warehouse" data-ar="مخزن الإمارات">UAE Warehouse</h2>
+<p class="visit-note" data-en="Visit our office in Ajman for shipping and logistics services in the UAE." data-ar="قم بزيارة مكتبنا في عجمان لخدمات الشحن والخدمات اللوجستية في الإمارات.">
+Visit our office in Ajman for shipping and logistics services in the UAE.
+</p>
+<div class="info-item">
+<div class="info-icon">📍</div>
+<div class="info-content">
+<h3 data-en="Address" data-ar="العنوان">Address</h3>
+<p class="ltr-content">
+Al Nuaimiya Area<br>
+Sheikh Khalifa Bin Zayed St<br>
+Ajman, United Arab Emirates
+</p>
+</div>
+</div>
+<div class="info-item">
+<div class="info-icon">📞</div>
+<div class="info-content">
+<h3 data-en="Phone" data-ar="الهاتف">Phone</h3>
+<p class="ltr-content"><a href="tel:+96550504886">+96550504886</a></p>
+</div>
+</div>
+<div class="info-item">
+<div class="info-icon">✉️</div>
+<div class="info-content">
+<h3 data-en="Email" data-ar="البريد الإلكتروني">Email</h3>
+<p class="ltr-content"><a href="mailto:info@egokw.com">info@egokw.com</a></p>
+</div>
+</div>
+</div>
 </div>
 <div class="map-container">
 <iframe id="mapFrame" src="https://www.google.com/maps?q=Al+Jawhara+Tower+Kuwait&output=embed" loading="lazy"></iframe>
@@ -555,114 +587,90 @@ mapUrl: "https://www.google.com/maps?q=Al+Jawhara+Tower+Kuwait&output=embed"
 {
 name: "warehouse",
 mapUrl: "https://www.google.com/maps?q=29.355572,47.8039132&output=embed"
+},
+{
+name: "ajman",
+mapUrl: "https://www.google.com/maps?q=Ajman+UAE&output=embed"
 }
 ];
 function switchLocation() {
-    const officeSlide = document.getElementById('officeSlide');
-    const warehouseSlide = document.getElementById('warehouseSlide');
-    const mapFrame = document.getElementById('mapFrame');
-    const dots = document.querySelectorAll('.dot');
-    currentLocation = (currentLocation + 1) % 2;
-    if (currentLocation === 0) {
-        officeSlide.classList.add('active');
-        warehouseSlide.classList.remove('active');
-        mapFrame.src = locations[0].mapUrl;
-        dots[0].classList.add('active');
-        dots[1].classList.remove('active');
-    } else {
-        officeSlide.classList.remove('active');
-        warehouseSlide.classList.add('active');
-        mapFrame.src = locations[1].mapUrl;
-        dots[0].classList.remove('active');
-        dots[1].classList.add('active');
-    }
+const officeSlide = document.getElementById('officeSlide');
+const warehouseSlide = document.getElementById('warehouseSlide');
+const ajmanSlide = document.getElementById('ajmanSlide');
+const mapFrame = document.getElementById('mapFrame');
+const dots = document.querySelectorAll('.dot');
+currentLocation = (currentLocation + 1) % 3;
+officeSlide.classList.remove('active');
+warehouseSlide.classList.remove('active');
+ajmanSlide.classList.remove('active');
+dots.forEach(dot => dot.classList.remove('active'));
+if (currentLocation === 0) {
+officeSlide.classList.add('active');
+mapFrame.src = locations[0].mapUrl;
+dots[0].classList.add('active');
+} else if (currentLocation === 1) {
+warehouseSlide.classList.add('active');
+mapFrame.src = locations[1].mapUrl;
+dots[1].classList.add('active');
+} else {
+ajmanSlide.classList.add('active');
+mapFrame.src = locations[2].mapUrl;
+dots[2].classList.add('active');
+}
 }
 function goToLocation(index) {
-    currentLocation = index;
-    switchLocation();
-    currentLocation = index;
+currentLocation = index;
+switchLocation();
+currentLocation = index;
 }
 setInterval(switchLocation, 10000);
-function
-toggleMenu(e)
-{
+function toggleMenu(e) {
 e.stopPropagation();
-const
-menu = document.getElementById('mobileMenu');
-const
-hamburger = document.getElementById('hamburgerBtn');
+const menu = document.getElementById('mobileMenu');
+const hamburger = document.getElementById('hamburgerBtn');
 menu.classList.toggle('active');
 hamburger.classList.toggle('active');
 }
-const
-hamburgerBtn = document.getElementById('hamburgerBtn');
-if
-(hamburgerBtn)
-{
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+if (hamburgerBtn) {
 hamburgerBtn.addEventListener('click', toggleMenu);
 }
-const
-mobileMenu = document.getElementById('mobileMenu');
-if
-(mobileMenu)
-{
-mobileMenu.addEventListener('click', function(e)
-{
+const mobileMenu = document.getElementById('mobileMenu');
+if (mobileMenu) {
+mobileMenu.addEventListener('click', function(e) {
 e.stopPropagation();
 });
 }
-document.addEventListener('click', function()
-{
-const
-menu = document.getElementById('mobileMenu');
-const
-hamburger = document.getElementById('hamburgerBtn');
-if
-(menu.classList.contains('active'))
-{
+document.addEventListener('click', function() {
+const menu = document.getElementById('mobileMenu');
+const hamburger = document.getElementById('hamburgerBtn');
+if (menu.classList.contains('active')) {
 menu.classList.remove('active');
 hamburger.classList.remove('active');
 }
 });
-function
-toggleLanguage()
-{
+function toggleLanguage() {
 changeLang(currentLang === "en" ? "ar" : "en");
 }
-function
-changeLang(lang)
-{
+function changeLang(lang) {
 currentLang = lang;
 document.body.dir = lang === "ar" ? "rtl" : "ltr";
 document.getElementById("langText").innerText = lang.toUpperCase();
-document.querySelectorAll('[data-' + lang + ']').forEach(el =>
-{
-const
-text = el.getAttribute('data-' + lang);
-if
-(text)
-{
-if
-(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA')
-{
-if
-(el.placeholder)
-el.placeholder = text;
-}
-else
-{
+document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+const text = el.getAttribute('data-' + lang);
+if (text) {
+if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+if (el.placeholder) el.placeholder = text;
+} else {
 el.textContent = text;
 }
 }
 });
 }
-window.addEventListener("load", () =>
-{
+window.addEventListener("load", () => {
 changeLang("en");
 });
 </script>
 <script src="footer.js"></script>
 </body>
 </html>
-
-
