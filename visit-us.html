@@ -140,7 +140,30 @@ color:#000;
 .hero p{
 font-size:22px;
 color:#666;
+margin-bottom:20px;
+}
+.location-dots{
+display:flex;
+gap:12px;
+justify-content:center;
 margin-bottom:40px;
+}
+.dot{
+width:12px;
+height:12px;
+border-radius:50%;
+background:#ddd;
+cursor:pointer;
+transition:all 0.3s ease;
+}
+.dot:hover{
+background:#ff9999;
+transform:scale(1.2);
+}
+.dot.active{
+background:#ff3333;
+width:30px;
+border-radius:6px;
 }
 .visit-container{
 max-width:1400px;
@@ -444,6 +467,10 @@ font-size:14px;
 <p data-en="You are always welcome to visit us and experience our logistics services firsthand." data-ar="يسعدنا دائماً زيارتكم والتعرف على خدماتنا اللوجستية عن قرب.">
 You are always welcome to visit us and experience our logistics services firsthand.
 </p>
+<div class="location-dots">
+<div class="dot active" onclick="goToLocation(0)"></div>
+<div class="dot" onclick="goToLocation(1)"></div>
+</div>
 </div>
 </section>
 <div class="visit-container">
@@ -530,29 +557,30 @@ name: "warehouse",
 mapUrl: "https://www.google.com/maps?q=29.355572,47.8039132&output=embed"
 }
 ];
-function
-switchLocation()
-{
-const
-officeSlide = document.getElementById('officeSlide');
-const
-warehouseSlide = document.getElementById('warehouseSlide');
-const
-mapFrame = document.getElementById('mapFrame');
-currentLocation = (currentLocation + 1) % 2;
-if
-(currentLocation === 0)
-{
-officeSlide.classList.add('active');
-warehouseSlide.classList.remove('active');
-mapFrame.src = locations[0].mapUrl;
+function switchLocation() {
+    const officeSlide = document.getElementById('officeSlide');
+    const warehouseSlide = document.getElementById('warehouseSlide');
+    const mapFrame = document.getElementById('mapFrame');
+    const dots = document.querySelectorAll('.dot');
+    currentLocation = (currentLocation + 1) % 2;
+    if (currentLocation === 0) {
+        officeSlide.classList.add('active');
+        warehouseSlide.classList.remove('active');
+        mapFrame.src = locations[0].mapUrl;
+        dots[0].classList.add('active');
+        dots[1].classList.remove('active');
+    } else {
+        officeSlide.classList.remove('active');
+        warehouseSlide.classList.add('active');
+        mapFrame.src = locations[1].mapUrl;
+        dots[0].classList.remove('active');
+        dots[1].classList.add('active');
+    }
 }
-else
-{
-officeSlide.classList.remove('active');
-warehouseSlide.classList.add('active');
-mapFrame.src = locations[1].mapUrl;
-}
+function goToLocation(index) {
+    currentLocation = index;
+    switchLocation();
+    currentLocation = index;
 }
 setInterval(switchLocation, 10000);
 function
