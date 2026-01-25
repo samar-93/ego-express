@@ -15,8 +15,8 @@
         },
         contact: {
             phone: '+965 22280742',
-            email: 'info@sailshipping.net',
-            whatsapp: '+201200066625',
+            email: 'info@egokw.com',
+            whatsapp: '+96550504886',
             address: {
                 en: '2nd Floor, Al Jawhara Tower, Al Qibla, Kuwait City',
                 ar: 'الطابق الثاني، برج الجوهرة، القبلة، مدينة الكويت'
@@ -465,3 +465,4 @@ body[dir="rtl"] .footer-links a:hover {
 
     window.updateFooterLanguage = updateFooterLanguage;
 })();
+
