@@ -29,6 +29,11 @@ body[dir="rtl"] .logo-nav{margin-right:40px;margin-left:0;}
 .hero-section h1{font-size:72px;font-weight:900;margin-bottom:20px;} 
 .hero-section h1 .red{color:#FF3333;} 
 .hero-section h1 .black{color:#000;} 
+ @media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 38px;
+    }
+} 
 .hero-section p{font-size:22px;color:#666;margin-bottom:40px;}
 .divider-section{text-align:center;padding:40px 20px;position:relative;} 
 .divider-section::before{content:'';position:absolute;left:0;right:0;top:50%;height:2px;background:linear-gradient(90deg,transparent,#e0e0e0,transparent);} 
@@ -343,5 +348,6 @@ window.addEventListener('DOMContentLoaded', function() {
 <script src="footer.js"></script>
 </body>
 </html>
+
 
 
