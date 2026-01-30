@@ -1,8 +1,4 @@
-// partners-carousel.js - شريط شركاء النجاح
-// استخدام: أضف <script src="partners-carousel.js"></script> قبل إغلاق </body>
-
 (function() {
-    // بيانات الشركاء - استبدل الروابط باللوجوهات الحقيقية
     const partners = [
         { name: 'Aspire Freight Forwarding', logo: 'assets/logos/aspire.png' },
         { name: 'ENKAY EXPRESS', logo: 'assets/logos/enkay.png' },
@@ -45,6 +41,11 @@
         { name: 'SENATOR INTERNATIONAL', logo: 'assets/logos/senator.png' }
     ];
 
+    // متغيرات التحكم في الحركة
+    let currentIndex = 0;
+    let autoScrollInterval = null;
+    let isRTL = false;
+
     // إنشاء HTML للشريط
     function createPartnersSection() {
         const section = document.createElement('section');
@@ -70,8 +71,6 @@
                     <div class="partners-track-container">
                         <div class="partners-track">
                             ${generatePartnerCards()}
-                            ${generatePartnerCards()}
-                            ${generatePartnerCards()} <!-- نسخة ثالثة لملء الفراغات -->
                         </div>
                     </div>
                     
@@ -80,6 +79,10 @@
                             <polyline points="9 18 15 12 9 6"></polyline>
                         </svg>
                     </button>
+                </div>
+                
+                <div class="partners-dots">
+                    ${generateDots()}
                 </div>
             </div>
         `;
@@ -103,13 +106,20 @@
         `).join('');
     }
 
+    // إنشاء النقاط المؤشرة
+    function generateDots() {
+        return partners.map((_, index) => 
+            `<span class="partner-dot ${index === 0 ? 'active' : ''}" data-index="${index}"></span>`
+        ).join('');
+    }
+
     // إضافة CSS
     function injectStyles() {
         const style = document.createElement('style');
         style.textContent = `
             .partners-section {
                 background: #ffffff;
-                padding: 50px 40px;
+                padding: 60px 40px;
                 position: relative;
                 overflow: hidden;
                 z-index: 50;
@@ -135,7 +145,7 @@
                 text-align: center;
                 font-size: 16px;
                 color: #666;
-                margin-bottom: 35px;
+                margin-bottom: 40px;
                 position: relative;
                 z-index: 100;
             }
@@ -158,21 +168,8 @@
             .partners-track {
                 display: flex;
                 gap: 40px;
-                animation: scroll-partners 80s linear infinite;
+                transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
                 width: fit-content;
-            }
-
-            .partners-track:hover {
-                animation-play-state: paused;
-            }
-
-            @keyframes scroll-partners {
-                0% {
-                    transform: translateX(0);
-                }
-                100% {
-                    transform: translateX(calc(-100% / 3));
-                }
             }
 
             .partner-card {
@@ -180,17 +177,26 @@
                 width: 280px;
                 height: 140px;
                 background: transparent;
-                border-radius: 0;
+                border-radius: 12px;
                 padding: 20px;
-                box-shadow: none;
-                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                opacity: 0.7;
+            }
+
+            .partner-card.active {
+                opacity: 1;
+                transform: scale(1.05);
+                box-shadow: 0 8px 25px rgba(255, 51, 51, 0.15);
             }
 
             .partner-card:hover {
                 transform: translateY(-5px) scale(1.05);
+                opacity: 1;
+                box-shadow: 0 8px 25px rgba(255, 51, 51, 0.2);
             }
 
             .partner-logo-wrapper {
@@ -207,14 +213,9 @@
                 width: auto;
                 height: auto;
                 object-fit: contain;
-                filter: none;
+                filter: grayscale(0%);
                 opacity: 1;
                 transition: all 0.3s ease;
-            }
-
-            .partner-card:hover .partner-logo-wrapper img {
-                transform: scale(1.1);
-                opacity: 1;
             }
 
             .partners-nav {
@@ -249,18 +250,41 @@
                 pointer-events: none;
             }
 
-            /* RTL Support */
-            body[dir="rtl"] .partners-track {
-                animation: scroll-partners-rtl 60s linear infinite;
+            /* نقاط المؤشرات */
+            .partners-dots {
+                display: flex;
+                justify-content: center;
+                gap: 8px;
+                margin-top: 30px;
+                flex-wrap: wrap;
             }
 
-            @keyframes scroll-partners-rtl {
-                0% {
-                    transform: translateX(0);
-                }
-                100% {
-                    transform: translateX(calc(100% / 3));
-                }
+            .partner-dot {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: #ddd;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .partner-dot.active {
+                background: #FF3333;
+                transform: scale(1.3);
+            }
+
+            .partner-dot:hover {
+                background: #FF6666;
+                transform: scale(1.2);
+            }
+
+            /* RTL Support - عكس اتجاه الأسهم */
+            body[dir="rtl"] .partners-nav-prev svg {
+                transform: scaleX(-1);
+            }
+
+            body[dir="rtl"] .partners-nav-next svg {
+                transform: scaleX(-1);
             }
 
             /* Mobile Responsive */
@@ -285,13 +309,12 @@
 
                 .partners-track {
                     gap: 20px;
-                    animation-duration: 40s;
                 }
 
                 .partner-card {
-                    width: 120px;
-                    height: 65px;
-                    padding: 8px;
+                    width: 200px;
+                    height: 100px;
+                    padding: 15px;
                 }
 
                 .partners-nav {
@@ -303,20 +326,22 @@
                     width: 18px;
                     height: 18px;
                 }
+
+                .partners-dots {
+                    margin-top: 20px;
+                }
+
+                .partner-dot {
+                    width: 6px;
+                    height: 6px;
+                }
             }
 
             @media (max-width: 480px) {
-                .partners-nav {
-                    display: none;
-                }
-
-                .partners-carousel-wrapper {
-                    gap: 0;
-                }
-
                 .partner-card {
-                    width: 110px;
-                    height: 60px;
+                    width: 160px;
+                    height: 80px;
+                    padding: 10px;
                 }
 
                 .partners-section {
@@ -327,60 +352,113 @@
         document.head.appendChild(style);
     }
 
+    // الانتقال إلى شريحة معينة
+    function goToSlide(index) {
+        const track = document.querySelector('.partners-track');
+        const cards = document.querySelectorAll('.partner-card');
+        const dots = document.querySelectorAll('.partner-dot');
+        
+        if (!track || !cards.length) return;
+
+        // تحديث الفهرس
+        currentIndex = index;
+        if (currentIndex < 0) currentIndex = partners.length - 1;
+        if (currentIndex >= partners.length) currentIndex = 0;
+
+        // حساب المسافة
+        const cardWidth = cards[0].offsetWidth;
+        const gap = 40;
+        const containerWidth = document.querySelector('.partners-track-container').offsetWidth;
+        const centerOffset = (containerWidth - cardWidth) / 2;
+        
+        const moveDistance = isRTL 
+            ? (currentIndex * (cardWidth + gap)) - centerOffset
+            : -(currentIndex * (cardWidth + gap)) + centerOffset;
+
+        track.style.transform = `translateX(${moveDistance}px)`;
+
+        // تحديث الكروت النشطة
+        cards.forEach((card, i) => {
+            card.classList.toggle('active', i === currentIndex);
+        });
+
+        // تحديث النقاط
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentIndex);
+        });
+    }
+
+    // الانتقال التلقائي
+    function startAutoScroll() {
+        stopAutoScroll();
+        autoScrollInterval = setInterval(() => {
+            goToSlide(currentIndex + 1);
+        }, 5000); // 5 ثوان لكل شعار
+    }
+
+    function stopAutoScroll() {
+        if (autoScrollInterval) {
+            clearInterval(autoScrollInterval);
+            autoScrollInterval = null;
+        }
+    }
+
     // التحكم بالأزرار
     function initializeControls() {
-        const track = document.querySelector('.partners-track');
         const prevBtn = document.querySelector('.partners-nav-prev');
         const nextBtn = document.querySelector('.partners-nav-next');
+        const dots = document.querySelectorAll('.partner-dot');
+        const trackContainer = document.querySelector('.partners-track-container');
         
-        if (!track || !prevBtn || !nextBtn) return;
+        if (!prevBtn || !nextBtn) return;
 
-        let isAnimating = false;
-
+        // زر السابق
         prevBtn.addEventListener('click', () => {
-            if (isAnimating) return;
-            isAnimating = true;
-
-            track.style.animation = 'none';
-            const currentTransform = window.getComputedStyle(track).transform;
-            const matrix = new DOMMatrix(currentTransform);
-            const currentX = matrix.m41;
-            
-            track.style.transform = `translateX(${currentX + 200}px)`;
-            
-            setTimeout(() => {
-                track.style.animation = '';
-                isAnimating = false;
-            }, 300);
+            stopAutoScroll();
+            goToSlide(currentIndex - 1);
+            setTimeout(startAutoScroll, 3000);
         });
 
+        // زر التالي
         nextBtn.addEventListener('click', () => {
-            if (isAnimating) return;
-            isAnimating = true;
-
-            track.style.animation = 'none';
-            const currentTransform = window.getComputedStyle(track).transform;
-            const matrix = new DOMMatrix(currentTransform);
-            const currentX = matrix.m41;
-            
-            track.style.transform = `translateX(${currentX - 200}px)`;
-            
-            setTimeout(() => {
-                track.style.animation = '';
-                isAnimating = false;
-            }, 300);
+            stopAutoScroll();
+            goToSlide(currentIndex + 1);
+            setTimeout(startAutoScroll, 3000);
         });
+
+        // النقاط
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                stopAutoScroll();
+                goToSlide(parseInt(dot.dataset.index));
+                setTimeout(startAutoScroll, 3000);
+            });
+        });
+
+        // إيقاف عند التمرير
+        trackContainer.addEventListener('mouseenter', stopAutoScroll);
+        trackContainer.addEventListener('mouseleave', startAutoScroll);
+
+        // بدء الحركة التلقائية
+        setTimeout(() => {
+            goToSlide(0);
+            startAutoScroll();
+        }, 100);
     }
 
     // تحديث النصوص حسب اللغة
     function updateLanguage() {
-        const currentLang = document.body.getAttribute('dir') === 'rtl' ? 'ar' : 'en';
+        isRTL = document.body.getAttribute('dir') === 'rtl';
+        const currentLang = isRTL ? 'ar' : 'en';
         const elements = document.querySelectorAll('.partners-section [data-en]');
         
         elements.forEach(el => {
             const text = currentLang === 'ar' ? el.getAttribute('data-ar') : el.getAttribute('data-en');
             if (text) el.textContent = text;
         });
+
+        // إعادة ضبط الموقع عند تغيير الاتجاه
+        goToSlide(currentIndex);
     }
 
     // تهيئة عند تحميل الصفحة
@@ -415,4 +493,5 @@
     } else {
         init();
     }
+
 })();
