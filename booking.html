@@ -259,10 +259,19 @@
    Share your shipment details — we’ll handle the rest professionally
 </p>
                 <div class="form-row">
-                    <div class="form-group">
-                        <label data-en="Your Name" data-ar="اسمك">Your Name <span class="required">*</span></label>
-                        <input type="text" id="fullName" required placeholder="Bassem Fouad">
-                    </div>
+<div class="form-group">
+    <label data-en="Full Name" data-ar="الاسم الكامل">
+        Full Name <span class="required">*</span>
+    </label>
+
+    <input type="text"
+           id="fullName"
+           required
+           placeholder="Example: Fouad Ahmed"
+           data-en="Example: Bassem Fouad"
+           data-ar="مثال: باسم فؤاد">
+</div>
+
                     <div class="form-group">
                         <label data-en="Mobile Number" data-ar="رقم الهاتف">Mobile Number <span class="required">*</span></label>
                         <input type="tel" id="mobile" placeholder="+971XXXXXX" required>
@@ -588,6 +597,7 @@ window.addEventListener('DOMContentLoaded', function() {
 <script src="footer.js"></script>
 </body>
 </html>
+
 
 
 
