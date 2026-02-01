@@ -57,28 +57,35 @@
         .hero-content h1 .black { color: #000; }
         .hero-content p { font-size: 22px; color: #666; max-width: 700px; margin: 0 auto; margin-bottom: 40px; }
 
-        /* Search Box */
-        .search-section { padding: 0 60px; margin-top: -40px; position: relative; z-index: 10; }
+        /* Categories */
+        .categories-section { padding: 40px 60px 40px; background: linear-gradient(180deg, #f8f5f0 0%, #ffffff 100%); }
+        .categories-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 40px; }
+        .category-card { background: white; padding: 0; border-radius: 15px; text-align: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 5px 20px rgba(0,0,0,0.08); overflow: hidden; position: relative; border: 3px solid transparent; }
+        .category-card:hover { transform: translateY(-8px); box-shadow: 0 10px 30px rgba(255, 51, 51, 0.15); }
+        .category-card.active { border-color: #FF3333; }
+        .category-icon { width: 100%; height: 180px; object-fit: cover; display: block; transition: transform 0.3s; }
+        .category-card:hover .category-icon { transform: scale(1.05); }
+        .category-card.active .category-icon { filter: brightness(0.7); }
+        .category-info { padding: 20px; background: white; position: relative; z-index: 2; }
+        .category-title { font-size: 20px; font-weight: 700; color: #333; }
+        .category-card.active .category-title { color: #FF3333; }
+        .category-count { font-size: 14px; color: #666; margin-top: 5px; }
+        .category-card.active .category-count { color: #FF3333; }
+
+        /* Search Box - تحت التصنيفات مباشرة */
+        .search-section { padding: 0 60px 30px; background: linear-gradient(180deg, #f8f5f0 0%, #ffffff 100%); }
         .search-container { max-width: 800px; margin: 0 auto; background: white; border-radius: 60px; padding: 10px; box-shadow: 0 15px 50px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 15px; direction: ltr !important; }
         .search-icon { font-size: 24px; color: #FF3333; margin-left: 20px !important; margin-right: 0 !important; }
         .search-input { flex: 1; border: none; outline: none; font-size: 18px; padding: 15px 10px; font-family: inherit; direction: ltr !important; text-align: left !important; }
         body[dir="rtl"] .search-input { direction: ltr !important; text-align: left !important; }
         .search-input::placeholder { color: #999; }
 
-        /* Categories */
-.categories-section { padding: 80px 60px 40px; background: linear-gradient(180deg, #f8f5f0 0%, #ffffff 100%); }
-.categories-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 60px; }
-.category-card { background: white; padding: 0; border-radius: 15px; text-align: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 5px 20px rgba(0,0,0,0.08); overflow: hidden; position: relative; border: 3px solid transparent; }
-.category-card:hover { transform: translateY(-8px); box-shadow: 0 10px 30px rgba(255, 51, 51, 0.15); }
-.category-card.active { border-color: #FF3333; }
-.category-icon { width: 100%; height: 180px; object-fit: cover; display: block; transition: transform 0.3s; }
-.category-card:hover .category-icon { transform: scale(1.05); }
-.category-card.active .category-icon { filter: brightness(0.7); }
-.category-info { padding: 20px; background: white; position: relative; z-index: 2; }
-.category-title { font-size: 20px; font-weight: 700; color: #333; }
-.category-card.active .category-title { color: #FF3333; }
-.category-count { font-size: 14px; color: #666; margin-top: 5px; }
-.category-card.active .category-count { color: #FF3333; }
+        /* Search Results Message */
+        .search-message { max-width: 900px; margin: 20px auto; padding: 20px; background: #fff5f5; border-left: 4px solid #FF3333; border-radius: 10px; display: none; }
+        body[dir="rtl"] .search-message { border-left: none; border-right: 4px solid #FF3333; }
+        .search-message.active { display: block; animation: slideDown 0.3s ease; }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .search-message p { color: #FF3333; font-weight: 600; font-size: 16px; margin: 0; }
 
         /* FAQ Section */
         .faq-section { padding: 0 60px 80px; background: white; }
@@ -86,6 +93,9 @@
         .faq-category-title { font-size: 36px; font-weight: 900; color: #2c2c2c; margin-bottom: 40px; text-align: center; }
         .faq-category-title .red { color: #FF3333; }
         .faq-item { background: white; border: 2px solid #e0e0e0; border-radius: 15px; margin-bottom: 20px; overflow: hidden; transition: all 0.3s; transform-origin: top; }
+        .faq-item.hidden { display: none; }
+        .faq-item.highlight { border-color: #FF3333; background: #fff5f5; animation: highlightPulse 0.5s ease; }
+        @keyframes highlightPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
         .faq-item:hover { border-color: #FF3333; }
         .faq-item.active { border-color: #FF3333; box-shadow: 0 5px 20px rgba(255, 51, 51, 0.1); animation: expandFAQ 0.3s ease; }
         @keyframes expandFAQ { 0% { transform: scale(0.98); } 50% { transform: scale(1.01); } 100% { transform: scale(1); } }
@@ -119,7 +129,7 @@
             .hero-section { padding: 60px 20px; margin-top: 70px; }
             .hero-content h1 { font-size: 38px; }
             .hero-content p { font-size: 16px; }
-            .search-section { padding: 0 20px; margin-top: -30px; }
+            .search-section { padding: 0 20px 20px; }
             .categories-section, .faq-section, .cta-section { padding: 50px 20px; }
             .categories-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
             .faq-category-title { font-size: 28px; }
@@ -158,51 +168,55 @@
         </div>
     </section>
 
+    <section class="categories-section">
+        <div class="categories-grid">
+            <div class="category-card active" onclick="showCategory('general')">
+                <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=500&h=300&fit=crop" alt="General" class="category-icon">
+                <div class="category-info">
+                    <div class="category-title" data-en="General" data-ar="عام">General</div>
+                    <div class="category-count" data-en="5 questions" data-ar="5 أسئلة">5 questions</div>
+                </div>
+            </div>
+            <div class="category-card" onclick="showCategory('shipping')">
+                <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=500&h=300&fit=crop" alt="Shipping" class="category-icon">
+                <div class="category-info">
+                    <div class="category-title" data-en="Shipping" data-ar="الشحن">Shipping</div>
+                    <div class="category-count" data-en="5 questions" data-ar="5 أسئلة">5 questions</div>
+                </div>
+            </div>
+            <div class="category-card" onclick="showCategory('pricing')">
+                <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=500&h=300&fit=crop" alt="Pricing" class="category-icon">
+                <div class="category-info">
+                    <div class="category-title" data-en="Pricing" data-ar="الأسعار">Pricing</div>
+                    <div class="category-count" data-en="5 questions" data-ar="5 أسئلة">5 questions</div>
+                </div>
+            </div>
+            <div class="category-card" onclick="showCategory('customs')">
+                <img src="https://i.pinimg.com/1200x/02/a7/3f/02a73f0def2b2d117becdf7c7b75bc78.jpg" alt="Customs" class="category-icon">
+                <div class="category-info">
+                    <div class="category-title" data-en="Customs" data-ar="الجمارك">Customs</div>
+                    <div class="category-count" data-en="5 questions" data-ar="5 أسئلة">5 questions</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="search-section">
         <div class="search-container">
             <span class="search-icon">🔍</span>
             <input type="text" class="search-input" id="searchInput" data-placeholder-en="Search for answers..." data-placeholder-ar="ابحث عن إجابات..." placeholder="Search for answers...">
         </div>
+        <div class="search-message" id="searchMessage">
+            <p id="searchMessageText"></p>
+        </div>
     </section>
 
-<section class="categories-section">
-    <div class="categories-grid">
-        <div class="category-card active" onclick="showCategory('general')">
-            <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=500&h=300&fit=crop" alt="General" class="category-icon">
-            <div class="category-info">
-                <div class="category-title" data-en="General" data-ar="عام">General</div>
-                <div class="category-count" data-en="5 questions" data-ar="5 أسئلة">5 questions</div>
-            </div>
-        </div>
-        <div class="category-card" onclick="showCategory('shipping')">
-            <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=500&h=300&fit=crop" alt="Shipping" class="category-icon">
-            <div class="category-info">
-                <div class="category-title" data-en="Shipping" data-ar="الشحن">Shipping</div>
-                <div class="category-count" data-en="5 questions" data-ar="5 أسئلة">5 questions</div>
-            </div>
-        </div>
-        <div class="category-card" onclick="showCategory('pricing')">
-            <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=500&h=300&fit=crop" alt="Pricing" class="category-icon">
-            <div class="category-info">
-                <div class="category-title" data-en="Pricing" data-ar="الأسعار">Pricing</div>
-                <div class="category-count" data-en="5 questions" data-ar="5 أسئلة">5 questions</div>
-            </div>
-        </div>
-        <div class="category-card" onclick="showCategory('customs')">
-            <img src="https://i.pinimg.com/1200x/02/a7/3f/02a73f0def2b2d117becdf7c7b75bc78.jpg" alt="Customs" class="category-icon">
-            <div class="category-info">
-                <div class="category-title" data-en="Customs" data-ar="الجمارك">Customs</div>
-                <div class="category-count" data-en="5 questions" data-ar="5 أسئلة">5 questions</div>
-            </div>
-        </div>
-    </div>
-</section>
-	<section class="faq-section">
+    <section class="faq-section">
         <div class="faq-container">
             <div class="faq-category" id="general">
                 <h2 class="faq-category-title"><span class="red" data-en="General" data-ar="عامة">General</span> <span data-en="Questions" data-ar="أسئلة">Questions</span></h2>
 
-                <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-item" onclick="toggleFAQ(this)" data-keywords="ego express company about what is freight forwarding logistics door-to-door">
                     <div class="faq-question">
                         <h3 data-en="What is EGO Express?" data-ar="ما هو إيجو إكسبريس؟">What is EGO Express?</h3>
                         <span class="faq-icon">+</span>
@@ -212,7 +226,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-item" onclick="toggleFAQ(this)" data-keywords="track tracking shipment cargo number real-time follow monitor">
                     <div class="faq-question">
                         <h3 data-en="Can I track my shipment?" data-ar="هل يمكنني تتبع شحنتي؟">Can I track my shipment?</h3>
                         <span class="faq-icon">+</span>
@@ -222,7 +236,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-item" onclick="toggleFAQ(this)" data-keywords="areas serve countries locations cities uae kuwait dubai">
                     <div class="faq-question">
                         <h3 data-en="What areas do you serve?" data-ar="ما هي المناطق التي تخدمونها؟">What areas do you serve?</h3>
                         <span class="faq-icon">+</span>
@@ -232,7 +246,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-item" onclick="toggleFAQ(this)" data-keywords="types cargo goods items personal commercial electronics furniture">
                     <div class="faq-question">
                         <h3 data-en="What types of cargo do you handle?" data-ar="ما هي أنواع البضائع التي تتعاملون معها؟">What types of cargo do you handle?</h3>
                         <span class="faq-icon">+</span>
@@ -242,7 +256,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-item" onclick="toggleFAQ(this)" data-keywords="contact support customer service phone email whatsapp help">
                     <div class="faq-question">
                         <h3 data-en="How can I contact customer support?" data-ar="كيف يمكنني الاتصال بخدمة العملاء؟">How can I contact customer support?</h3>
                         <span class="faq-icon">+</span>
@@ -256,7 +270,7 @@
             <div class="faq-category" id="shipping" style="display:none;">
                 <h2 class="faq-category-title"><span class="red" data-en="Shipping" data-ar="الشحن">Shipping</span> <span data-en="Questions" data-ar="أسئلة">Questions</span></h2>
 
-                <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-item" onclick="toggleFAQ(this)" data-keywords="delivery time duration how long take days shipping speed">
                     <div class="faq-question">
                         <h3 data-en="How long does shipping take?" data-ar="كم تستغرق عملية الشحن؟">How long does shipping take?</h3>
                         <span class="faq-icon">+</span>
@@ -266,7 +280,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-item" onclick="toggleFAQ(this)" data-keywords="pickup collection door schedule collect from home">
                     <div class="faq-question">
                         <h3 data-en="Do you offer pickup services?" data-ar="هل تقدمون خدمات الاستلام؟">Do you offer pickup services?</h3>
                         <span class="faq-icon">+</span>
@@ -276,7 +290,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-item" onclick="toggleFAQ(this)" data-keywords="packaging packing box boxes wrap protect bubble required">
                     <div class="faq-question">
                         <h3 data-en="What packaging is required?" data-ar="ما هي متطلبات التغليف؟">What packaging is required?</h3>
                         <span class="faq-icon">+</span>
@@ -286,7 +300,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-item" onclick="toggleFAQ(this)" data-keywords="weight size limits dimensions maximum heavy oversize large">
                     <div class="faq-question">
                         <h3 data-en="What are the weight and size limits?" data-ar="ما هي حدود الوزن والحجم؟">What are the weight and size limits?</h3>
                         <span class="faq-icon">+</span>
@@ -296,7 +310,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-item" onclick="toggleFAQ(this)" data-keywords="fragile breakable delicate glass protect care handle">
                     <div class="faq-question">
                         <h3 data-en="Can I ship fragile items?" data-ar="هل يمكنني شحن العناصر الهشة؟">Can I ship fragile items?</h3>
                         <span class="faq-icon">+</span>
@@ -310,7 +324,7 @@
             <div class="faq-category" id="pricing" style="display:none;">
                 <h2 class="faq-category-title"><span class="red" data-en="Pricing" data-ar="الأسعار">Pricing</span> <span data-en="Questions" data-ar="أسئلة">Questions</span></h2>
 
-                <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-item" onclick="toggleFAQ(this)" data-keywords="cost price calculate shipping quote rate how much">
                     <div class="faq-question">
                         <h3 data-en="How is shipping cost calculated?" data-ar="كيف يتم حساب تكلفة الشحن؟">How is shipping cost calculated?</h3>
                         <span class="faq-icon">+</span>
@@ -320,7 +334,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-item" onclick="toggleFAQ(this)" data-keywords="payment methods pay cash card transfer credit debit">
                     <div class="faq-question">
                         <h3 data-en="What payment methods do you accept?" data-ar="ما هي طرق الدفع المقبولة؟">What payment methods do you accept?</h3>
                         <span class="faq-icon">+</span>
@@ -330,7 +344,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-item" onclick="toggleFAQ(this)" data-keywords="hidden fees charges transparent extra additional">
                     <div class="faq-question">
                         <h3 data-en="Are there any hidden fees?" data-ar="هل هناك رسوم مخفية؟">Are there any hidden fees?</h3>
                         <span class="faq-icon">+</span>
@@ -340,7 +354,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-item" onclick="toggleFAQ(this)" data-keywords="discount bulk volume wholesale corporate business special rates">
                     <div class="faq-question">
                         <h3 data-en="Do you offer discounts for bulk shipments?" data-ar="هل تقدمون خصومات للشحنات الكبيرة؟">Do you offer discounts for bulk shipments?</h3>
                         <span class="faq-icon">+</span>
@@ -350,7 +364,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-item" onclick="toggleFAQ(this)" data-keywords="insurance coverage protection value included extra">
                     <div class="faq-question">
                         <h3 data-en="Is insurance included in the price?" data-ar="هل التأمين مشمول في السعر؟">Is insurance included in the price?</h3>
                         <span class="faq-icon">+</span>
@@ -364,7 +378,7 @@
             <div class="faq-category" id="customs" style="display:none;">
                 <h2 class="faq-category-title"><span class="red" data-en="Customs" data-ar="الجمارك">Customs</span> <span data-en="Questions" data-ar="أسئلة">Questions</span></h2>
 
-                <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-item" onclick="toggleFAQ(this)" data-keywords="customs clearance documentation procedures handle process">
                     <div class="faq-question">
                         <h3 data-en="Do you handle customs clearance?" data-ar="هل تتعاملون مع التخليص الجمركي؟">Do you handle customs clearance?</h3>
                         <span class="faq-icon">+</span>
@@ -374,7 +388,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-item" onclick="toggleFAQ(this)" data-keywords="documents required papers invoice packing list identification">
                     <div class="faq-question">
                         <h3 data-en="What documents are required for customs?" data-ar="ما هي المستندات المطلوبة للجمارك؟">What documents are required for customs?</h3>
                         <span class="faq-icon">+</span>
@@ -384,7 +398,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-item" onclick="toggleFAQ(this)" data-keywords="prohibited restricted banned items cannot ship illegal dangerous">
                     <div class="faq-question">
                         <h3 data-en="Are there items prohibited from shipping?" data-ar="هل هناك عناصر محظورة من الشحن؟">Are there items prohibited from shipping?</h3>
                         <span class="faq-icon">+</span>
@@ -394,7 +408,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-item" onclick="toggleFAQ(this)" data-keywords="duties taxes who pays charges fees recipient">
                     <div class="faq-question">
                         <h3 data-en="Who pays customs duties and taxes?" data-ar="من يدفع الرسوم الجمركية والضرائب؟">Who pays customs duties and taxes?</h3>
                         <span class="faq-icon">+</span>
@@ -404,7 +418,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-item" onclick="toggleFAQ(this)" data-keywords="held detained stuck customs delay problem issue resolve">
                     <div class="faq-question">
                         <h3 data-en="What happens if my shipment is held at customs?" data-ar="ماذا يحدث إذا تم احتجاز شحنتي في الجمارك؟">What happens if my shipment is held at customs?</h3>
                         <span class="faq-icon">+</span>
@@ -422,11 +436,13 @@
             <h2><span data-en="Still Have " data-ar="لا تزال لديك ">Still Have </span><span class="red" data-en="Questions?" data-ar="أسئلة؟">Questions?</span></h2>
             <p data-en="Our customer support team is ready to help you with any questions or concerns." data-ar="فريق دعم العملاء لدينا جاهز لمساعدتك في أي أسئلة أو مخاوف.">Our customer support team is ready to help you with any questions or concerns.</p>
             <div class="cta-buttons">
-                <a href="booking.html" class="btn-cta" data-en="Book Your Shipment" data-ar="احجز شحنتك">Book Your Shipment</a>
+                <a href="booking.html" class="btn-cta" data-en="Talk to a Specialist" data-ar="تحدث مع متخصص">Talk to a Specialist</a>
                 <a href="why-us.html" class="btn-secondary" data-en="Learn More About Us" data-ar="تعرف علينا أكثر">Learn More About Us</a>
             </div>
         </div>
     </section>
+
+</section>
 
     <script>
         let currentLang = 'en';
@@ -484,11 +500,166 @@
             if (!wasActive) element.classList.add('active');
         }
 
-        function showCategory(category) {
+function showCategory(category) {
+            // مسح حقل البحث عند تغيير القسم
+            const searchInput = document.getElementById('searchInput');
+            searchInput.value = '';
+            
+            const searchMessage = document.getElementById('searchMessage');
+            searchMessage.classList.remove('active');
+            
+            // إزالة التمييز من جميع الأسئلة
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('highlight', 'hidden');
+            });
+            
             document.querySelectorAll('.category-card').forEach(card => card.classList.remove('active'));
             event.target.closest('.category-card').classList.add('active');
             document.querySelectorAll('.faq-category').forEach(cat => cat.style.display = 'none');
             document.getElementById(category).style.display = 'block';
+        }
+
+        // وظيفة البحث الذكية المحسّنة
+// وظيفة البحث الذكية المحسّنة - تبحث في كل الأقسام
+        function searchFAQs() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            const searchMessage = document.getElementById('searchMessage');
+            const searchMessageText = document.getElementById('searchMessageText');
+            const faqItems = document.querySelectorAll('.faq-item');
+            const faqCategories = document.querySelectorAll('.faq-category');
+            
+            // إزالة أي تمييز سابق
+            faqItems.forEach(item => {
+                item.classList.remove('highlight', 'hidden');
+            });
+            
+            if (searchTerm === '') {
+                searchMessage.classList.remove('active');
+                
+                // إعادة عرض القسم النشط فقط
+                faqCategories.forEach(category => {
+                    const activeCard = document.querySelector('.category-card.active');
+                    if (activeCard) {
+                        const activeCategoryId = activeCard.getAttribute('onclick').match(/'([^']+)'/)[1];
+                        if (category.id === activeCategoryId) {
+                            category.style.display = 'block';
+                        } else {
+                            category.style.display = 'none';
+                        }
+                    }
+                });
+                
+                faqItems.forEach(item => item.classList.remove('hidden'));
+                return;
+            }
+            
+            // عند البحث، إظهار جميع الأقسام
+            faqCategories.forEach(category => {
+                category.style.display = 'block';
+            });
+            
+            let foundCount = 0;
+            let firstMatch = null;
+            let matchesByCategory = {};
+            
+            faqItems.forEach(item => {
+                const keywords = item.getAttribute('data-keywords').toLowerCase();
+                const question = item.querySelector('h3').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer p').textContent.toLowerCase();
+                
+                // البحث الذكي: يبحث في الكلمات المفتاحية، السؤال، والإجابة
+                const searchWords = searchTerm.split(' ').filter(word => word.length > 0);
+                let matchScore = 0;
+                
+                searchWords.forEach(word => {
+                    if (keywords.includes(word)) matchScore += 3; // أعلى أولوية للكلمات المفتاحية
+                    if (question.includes(word)) matchScore += 2; // أولوية متوسطة للسؤال
+                    if (answer.includes(word)) matchScore += 1;   // أولوية أقل للإجابة
+                });
+                
+                if (matchScore > 0) {
+                    item.classList.remove('hidden');
+                    item.classList.add('highlight');
+                    foundCount++;
+                    
+                    // تتبع النتائج حسب القسم
+                    const categoryId = item.closest('.faq-category').id;
+                    if (!matchesByCategory[categoryId]) {
+                        matchesByCategory[categoryId] = 0;
+                    }
+                    matchesByCategory[categoryId]++;
+                    
+                    if (!firstMatch || matchScore > firstMatch.score) {
+                        firstMatch = { element: item, score: matchScore };
+                    }
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+            
+            // إخفاء الأقسام التي لا تحتوي على نتائج
+            faqCategories.forEach(category => {
+                const categoryId = category.id;
+                const visibleItems = category.querySelectorAll('.faq-item:not(.hidden)');
+                
+                if (visibleItems.length === 0) {
+                    category.style.display = 'none';
+                } else {
+                    category.style.display = 'block';
+                }
+            });
+            
+            // عرض رسالة النتائج
+            if (foundCount > 0) {
+                const messageEn = `Found ${foundCount} result${foundCount > 1 ? 's' : ''} across all categories`;
+                const messageAr = `تم العثور على ${foundCount} نتيجة في جميع الأقسام`;
+                searchMessageText.textContent = currentLang === 'ar' ? messageAr : messageEn;
+                searchMessageText.setAttribute('data-en', messageEn);
+                searchMessageText.setAttribute('data-ar', messageAr);
+                searchMessage.classList.add('active');
+                
+                // التمرير إلى أول نتيجة تلقائياً
+                if (firstMatch) {
+                    setTimeout(() => {
+                        firstMatch.element.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center' 
+                        });
+                        
+                        // فتح السؤال تلقائياً
+                        setTimeout(() => {
+                            if (!firstMatch.element.classList.contains('active')) {
+                                firstMatch.element.classList.add('active');
+                            }
+                        }, 500);
+                    }, 100);
+                }
+            } else {
+                const messageEn = `No results found for "${searchTerm}". Try different keywords.`;
+                const messageAr = `لا توجد نتائج لـ "${searchTerm}". جرب كلمات مفتاحية أخرى.`;
+                searchMessageText.textContent = currentLang === 'ar' ? messageAr : messageEn;
+                searchMessageText.setAttribute('data-en', messageEn);
+                searchMessageText.setAttribute('data-ar', messageAr);
+                searchMessage.classList.add('active');
+                
+                // إخفاء جميع الأقسام عند عدم وجود نتائج
+                faqCategories.forEach(category => {
+                    category.style.display = 'none';
+                });
+            }
+        }
+
+        // إضافة مستمع للبحث الفوري
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.addEventListener('input', searchFAQs);
+            
+            // البحث عند الضغط على Enter
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchFAQs();
+                }
+            });
         }
 
         window.addEventListener('load', function() {
@@ -496,7 +667,8 @@
             if (savedLang) changeLang(savedLang);
         });
     </script>
-	<script src="footer.js"></script>
+    <script src="footer.js"></script>
 </body>
 </html>
-
+	
+	
